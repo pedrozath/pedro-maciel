@@ -1,1 +1,4 @@
 = render @events
+- if logged_in
+	= form_for Event.new do |f|
+		| create new
