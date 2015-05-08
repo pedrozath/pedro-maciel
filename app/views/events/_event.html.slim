@@ -1,1 +1,9 @@
-	
+section id="event-#{event.id}"
+	h2 data-editable=(logged_in) data-id=event.id data-field="title" = event.title
+	time data-editable=(logged_in) data-id=event.id data-field="when" 
+		- if event.when.blank?
+			| ---
+		- else
+			= event.when
+
+	p data-editable=(logged_in) data-id=event.id data-field="description" = event.description

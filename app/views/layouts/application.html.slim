@@ -7,6 +7,9 @@ html
 		= csrf_meta_tags
 
 	body
-		header
-			= if logged_in then "logado" 
+		- if logged_in
+			header
+				p
+					| logado / 
+					= link_to "sair", sessions_path, method: :delete
 		= yield

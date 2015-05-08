@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 	def create
-		if params[:password] == ENV["PASSWORD"]
-			session[:logged_in] = true
+		session[:password] = params[:password]
+		if view_context.logged_in
 			redirect_to "/"
 		else
 			redirect_to action: new, alert: "senha errada"
@@ -9,6 +9,10 @@ class SessionsController < ApplicationController
 	end
 
 	def new
+	end
 
+	def destroy
+		session.delete :password
+		redirect_to "/"
 	end
 end
