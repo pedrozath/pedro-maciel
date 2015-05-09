@@ -12,4 +12,8 @@ class EventsController < ApplicationController
 		e.save
 		render nothing: true, status: 200
 	end
+	def destroy
+		Event.find(params[:id]).destroy
+		redirect_to action: :index
+	end
 end

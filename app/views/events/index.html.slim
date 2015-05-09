@@ -1,7 +1,6 @@
 = render @events
 - if logged_in
 	= form_for Event.new do |f|
-		h2 add a new event
-		= f.text_field :title
-		= f.text_area :description
+		= f.text_field :title, placeholder: "Title"
+		= f.text_area :description, rows: 5, placeholder: "Description"
 		= f.submit

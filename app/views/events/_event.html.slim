@@ -1,4 +1,5 @@
 section id="event-#{event.id}"
+	= link_to "apagar", event, method: :delete
 	h2 data-editable=(logged_in) data-id=event.id data-field="title" = event.title
 	time data-editable=(logged_in) data-id=event.id data-field="when" 
 		- if event.when.blank?

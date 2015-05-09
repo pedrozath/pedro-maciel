@@ -15,7 +15,6 @@ class Editable
 				@save()
 			, 1000
 
-
 	save: ->
 		console.log("save")
 		$.post "/#{@id}",
@@ -28,6 +27,5 @@ class Editable
 				setTimeout =>
 					@element.css color: color
 				, 200
-
 
 @Editable = Editable
