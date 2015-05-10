@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-		session.delete :password
+		session[:password] = nil
 		redirect_to "/"
 	end
 end

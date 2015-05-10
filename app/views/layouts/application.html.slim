@@ -8,8 +8,8 @@ html
 
 	body
 		- if logged_in
-			header
-				p
-					| logado / 
-					= link_to "sair", sessions_path, method: :delete
+			.admin-bar
+				| logado / 
+				= link_to "sair", sessions_path, method: :delete
+		header
 		= yield

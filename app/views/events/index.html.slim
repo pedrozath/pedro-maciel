@@ -1,6 +1,14 @@
+.container: .row style="padding-top: 40px" 
+	.span1.fill
+	h2.span6 Biography
+
 = render @events
 - if logged_in
-	= form_for Event.new do |f|
-		= f.text_field :title, placeholder: "Title"
-		= f.text_area :description, rows: 5, placeholder: "Description"
-		= f.submit
+	.container
+		= form_for Event.new do |f|
+			.row
+				.span1
+					= f.text_field :when
+				.span5
+					= f.text_area :description, rows: 5, placeholder: "Description"
+					= f.submit :postar
