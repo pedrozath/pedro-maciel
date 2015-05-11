@@ -18,4 +18,8 @@ group :development, :test do
     gem 'web-console', '~> 2.0'
 end
 
+group :production do
+	gem "rails_12factor"
+end
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
