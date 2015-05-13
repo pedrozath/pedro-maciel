@@ -12,6 +12,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails'
 gem 'redcarpet'
+gem 'carrierwave'
+gem 'fog-google'
+gem 'jquery-ui-rails'
+gem 'jquery-fileupload-rails'
 
 group :development, :test do
 	gem 'byebug'

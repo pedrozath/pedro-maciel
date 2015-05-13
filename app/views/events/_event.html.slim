@@ -11,4 +11,6 @@ article.container.event id="event-#{event.id}"
 
 		.contents.span5 data-editable=(logged_in) data-id=event.id data-field="description" = event.description
 
-		.media.span5
+		.media.span5 data-droppable=(logged_in)
+			- if logged_in
+				p Drag and drop files here
