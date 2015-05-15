@@ -1,3 +1,5 @@
+#= require fileupload
+
 class Droppable
 	constructor: (options) ->
 		for key, value of options 
@@ -5,6 +7,8 @@ class Droppable
 
 		@dragging_count = 0
 		@bind_events()
+		@files = []
+		@id = parseInt @element.attr "data-id"
 
 	bind_events: ->
 		@element.on
@@ -23,35 +27,11 @@ class Droppable
 			drop: (e) =>
 				e.preventDefault()
 				@element.removeClass("dropping")
-				@load_previews(e.originalEvent.dataTransfer.files, 0)
-
-	load_previews: (files, index) ->
-		reader = new FileReader
-		reader.readAsDataURL(files[index])
-		reader.onload = => 
-			$("<img src=\"#{reader.result}\"/>").appendTo(@element)
-			@load_previews(files,index+1) if index < files.length-1
-
-
-
-$("[data-dropfile]").on
-	dragenter: (e) ->
-		e.preventDefault()
-		elem = $ e.currentTarget
-		elem.css background: "red"
-
-	dragover: (e) ->
-		e.preventDefault()
-
-	drop: (e) ->
-		e.preventDefault()
-		reader = new FileReader();
-		f = e.originalEvent.dataTransfer.files[0]
-		reader.readAsDataURL(f)
-		reader.onload = ->
-			img = reader.result
-			console.log img
-			$("body").css
-				backgroundImage: "url(#{img})"
+				files = e.originalEvent.dataTransfer.files
+				for file in files
+					@files.push new FileUpload 
+						file: file
+						wrapper: @element
+						event_id: @id
 
 @Droppable = Droppable

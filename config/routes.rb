@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 	delete "admin" => "sessions#destroy"
 	resources :sessions, path: "admin"
 	resources :events, path: "/"
+	resources :files
 end
