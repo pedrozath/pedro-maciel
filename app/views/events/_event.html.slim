@@ -13,6 +13,6 @@ article.container.event id="event-#{event.id}"
 
 		.media.span5 data-droppable=(logged_in) data-id=event.id
 			- for picture in event.pictures
-				= image_tag picture.file.url
+				= link_to image_tag(picture.file.url), "#"
 			- if logged_in
 				p Drag and drop files here
