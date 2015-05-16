@@ -16,4 +16,7 @@ class EventsController < ApplicationController
 		Event.find(params[:id]).destroy
 		redirect_to action: :index
 	end
+
+	def graphic_design
+	end
 end
