@@ -9,10 +9,10 @@ article.container.event id="event-#{event.id}"
 			- else
 				= event.when
 
-		.contents.span5 data-editable=(logged_in) data-id=event.id data-field="description" = event.description
-
 		.media.span5 data-droppable=(logged_in) data-id=event.id
 			- for picture in event.pictures
-				= link_to image_tag(picture.file.url), "#"
+				= link_to image_tag(picture.file.url :thumb), "#"
 			- if logged_in
 				p Drag and drop files here
+
+		.contents.span5 data-editable=(logged_in) data-id=event.id data-field="description" = event.description

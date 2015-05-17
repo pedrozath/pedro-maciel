@@ -2,9 +2,9 @@
 #= require jquery_ujs
 #= require editable
 #= require droppable
-#= require zoomable_image
-#= require viewport
-#= require TweenMax
+# require zoomable_image
+# require viewport
+# require TweenMax
 
 App =
 	editables: []

@@ -24,8 +24,8 @@ class ZoomableImage
 						x: @element.offset().left+@element.outerWidth()/2
 						y: @element.offset().top+@element.outerHeight()/2
 
+					$("html").css transformOrigin: "#{element_middle.x}px #{element_middle.y}px"
 					@properties =
-						transformOrigin: "#{element_middle.x}px #{element_middle.y}px"
 						scale: window_smallest_dimension/element_dimension
 				else
 					@properties = scale: 1
