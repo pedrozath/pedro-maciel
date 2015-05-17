@@ -3,6 +3,8 @@
 #= require editable
 #= require droppable
 #= require zoomable_image
+#= require viewport
+#= require TweenMax
 
 App =
 	editables: []
@@ -21,5 +23,7 @@ $ ->
 	$("a img").each ->
 		App.zoomable_images.push new ZoomableImage
 			element: $(this)
+
+	App.viewport = new Viewport
 
 @App = App

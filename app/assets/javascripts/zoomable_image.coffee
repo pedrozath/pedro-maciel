@@ -6,30 +6,32 @@ class ZoomableImage
 		@bind_events()
 		@zoomed = false
 
+		$(document).on "mousemove", (e) ->
+			console.log e.pageX, e.pageY
+
 	bind_events: ->
 		@element.on
 			click: (e) =>
 				if !@zoomed
-					e.preventDefault()
-					scale = (window.outerHeight-200)/@element.height()
-					# scale = 1
-					x = (window.innerWidth/2)-(@element.offset().left+@element.width()/2)
-					y = (window.innerHeight/2)-(@element.offset().top+@element.height()/2)+100
+					window_smallest_dimension = Math.min $(window).height(), $(window).width()
+					element_dimension = 
+						if window_smallest_dimension == $(window).height()
+							@element.height()
+						else
+							@element.width()
 
-					console.log x,y,scale
+					element_middle = 
+						x: @element.offset().left+@element.outerWidth()/2
+						y: @element.offset().top+@element.outerHeight()/2
 
+					@properties =
+						transformOrigin: "#{element_middle.x}px #{element_middle.y}px"
+						scale: window_smallest_dimension/element_dimension
 				else
-					scale = 1
-					x = 0
-					y = 0
+					@properties = scale: 1
+
+				new TweenMax $("html"), 1, @properties
 
 				@zoomed = !@zoomed
-				$("body").css
-					"-webkit-transition": "all cubic-bezier(.39,.7,.48,1) 300ms"
-					"-webkit-transform": [
-							"translate(#{x}px,#{y}px)"
-							"scale(#{scale})",
-						].join(" ")
-
 
 @ZoomableImage = ZoomableImage
