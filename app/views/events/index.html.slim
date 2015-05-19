@@ -3,7 +3,22 @@
 	.span1.fill
 	h2.span6 Biografia
 
-= render @events
+.row
+	nav.span2
+		.row
+			= (1..Time.now.month).to_a
+			ul.span4
+				- for year in (1987..Time.now.year)
+					li= year
+			ul.span4
+				- for month in Date::ABBR_MONTHNAMES.slice(1,12)
+					li= month
+			ul.span4
+				- for day in (1..(Time.days_in_month Time.now.month))
+					li= month
+	section.span10
+		= render @events
+
 - if logged_in
 	.container
 		= form_for Event.new do |f|
