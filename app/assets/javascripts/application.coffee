@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require editable
 #= require droppable
+#= require date_nav
 # require zoomable_image
 # require viewport
 # require TweenMax
@@ -12,6 +13,12 @@ App =
 	zoomable_images: []
 
 $ ->
+	App.events = $(".event")
+
+	App.events_offsets = []
+
+	App.events.each -> App.events_offsets.push $(this).offset().top
+
 	$("[data-editable]").each ->
 		App.editables.push new Editable 
 			element: $(this)
@@ -20,10 +27,5 @@ $ ->
 		App.droppables.push new Droppable
 			element: $(this)
 
-	$("a img").each ->
-		App.zoomable_images.push new ZoomableImage
-			element: $(this)
-
-	App.viewport = new Viewport
-
+	new DateNav $("nav.time")
 @App = App

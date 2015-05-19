@@ -1,0 +1,11 @@
+nav.time class=main_class
+	.row
+		ul.years.span4
+			- for year in (1987..Time.now.year)
+				li data-value=(year) class=("active" if event.when.year == year) = year
+		ul.months.span4
+			- Date::ABBR_MONTHNAMES.slice(1,12).each_with_index do |month,index|
+				li data-value=(index+1) class=("active" if event.when.month == index+1) = month
+		ul.days.span4
+			- for day in (1..31)
+				li data-value=(day) class=("active" if event.when.day == day) = day

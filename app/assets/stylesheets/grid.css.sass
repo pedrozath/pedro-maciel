@@ -1,0 +1,52 @@
+*
+	box-sizing: border-box
+
+$grid-columns: 12
+$gutter: (100%/$grid-columns)/10
+
+= desktop
+	@media (min-width: 1280px)
+		@content
+
+= large-desktop
+	@media (min-width: 1400px)
+		@content
+
+body
+	margin: 0
+	padding: 0
+
+.container
+	width: 1024px
+	+desktop
+		width: 1280px
+	+large-desktop
+		width: 1400px
+
+@for $i from 1 through $grid-columns
+	$column-width: ($i/$grid-columns)*100%
+	
+	.span#{$i}
+		width: $column-width
+
+	.offset#{$i}
+		margin-left: $column-width
+
+.row
+	display: table
+	width: 100%
+	margin-left: -$gutter
+	margin-right: -$gutter
+
+	&.fill, &.fill > *
+		margin: 0
+		padding: 0
+
+.row > *
+	padding-left: $gutter
+	padding-right: $gutter
+	display: block
+	float: left
+
+.push-right
+	float: right
