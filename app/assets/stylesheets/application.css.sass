@@ -1,6 +1,9 @@
 @import "grid"
 @import "fonts"
 
+$preto: #000
+$amarelo: #F7FF10
+
 body
 	font-family: $font-copy
 	font-size: 16px
@@ -12,8 +15,6 @@ main
 	padding: 20px
 
 .admin-bar
-
-$preto: #000
 
 main.files-viewer
 	position: fixed
@@ -96,6 +97,9 @@ h1, h2
 
 h1
 	font-size: 40px
+	background-color: $amarelo
+	display: inline
+	
 	=mobile
 		font-size: 20px
 
@@ -123,3 +127,12 @@ input, label, button, textarea
 h1,h2,h3,h4,h5
 	text-transform: uppercase
 	margin-top: -5px
+
+ul.inline
+	list-style-type: none
+	list-style-position: inside
+	padding: 0
+
+
+	li::after
+		content: "/"
