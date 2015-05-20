@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
 
 	def set_locale
 		session[:locale] = case request.location.country_code
-			when "br" then "pt_BR"
+			when "BR" then "pt_BR"
+			when "PT" then "pt_BR"
 			else "en"
 		end
 	end
