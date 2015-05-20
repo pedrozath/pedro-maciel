@@ -4,13 +4,15 @@ main
 			= image_tag "eu-sentado.png", style:"margin-top:-70px"
 
 		.span6
-			h1 Um profissional multi-facetado
-			h2 style="padding-top: 20px" Paulista, 28 anos, designer gráfico, motion grapher, web designer, web developer.
-			p entusiasta em música, artes plásticas, fotografia e psicologia.
+			h1= t "index.big_title"
+			h2 style="padding-top: 20px"= t "index.title"
+			p= t "index.hobbies"
 			hr
 			ul.inline
 				li= link_to "facebook", "//facebook.com/pedrozath"
 				li= link_to "twitter", "//twitter.com/pedrozath"
+				li= link_to "linkedin", "//br.linkedin.com/pub/pedro-maciel/22/752/a41"
+				li= link_to "instagram", "//instagram.com/pedrozath"
 				li= link_to "e-mail", "mailto://pedro.maciel@hiperativo.co"
 
 

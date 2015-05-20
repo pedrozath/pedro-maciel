@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 	resources :events, path: "biography" do 
 		resources :files
 	end
+	get "set-language/:locale", to: "locale#update"
 end

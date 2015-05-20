@@ -19,8 +19,8 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+pt-BR:
   index:
-    big_title: An all-round professional
-    title: a graphic/motion graphics/web designer and developer based on São Paulo, Brazil
-    hobbies: and passionated by music, plastic arts, photography and psicology.
+    big_title: Um profissional multifacetado
+    title: Paulista, 28 anos, designer gráfico, motion grapher, web designer, web developer.
+    hobbies: e entusiasta em fotografia, música, artes plásticas e psicologia.
