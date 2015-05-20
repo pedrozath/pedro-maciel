@@ -19,7 +19,7 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-pt-BR:
+pt_BR:
   index:
     big_title: Um profissional multifacetado
     title: Paulista, 28 anos, designer gráfico, motion grapher, web designer, web developer.
