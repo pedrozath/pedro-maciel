@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 	def index
-		@events = Event.order(:when)
+		@events = Event.order(when: :desc)
 	end
 	def create
 		Event.create(params.require(:event).permit(:title, :description)).save
