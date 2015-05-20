@@ -12,6 +12,10 @@ $gutter: (100%/$grid-columns)/10
 	@media (min-width: 1400px)
 		@content
 
+= mobile
+	@media (max-width: 600px)
+		@content
+
 body
 	margin: 0
 	padding: 0
@@ -28,9 +32,16 @@ body
 	
 	.span#{$i}
 		width: $column-width
+		@extend %spans
 
 	.offset#{$i}
 		margin-left: $column-width
+
+%spans
+	img
+		width: 100%
+	+mobile
+		width: 100%
 
 .row
 	display: table

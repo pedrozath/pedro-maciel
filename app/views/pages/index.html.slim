@@ -1,0 +1,16 @@
+main
+	.row
+		.span4.offset1
+			= image_tag "eu-sentado.png", style:"margin-top:-70px"
+
+		.span6
+			h1 Um profissional multi-facetado
+			h2 Paulista, 28 anos, designer gráfico, motion grapher, web designer, web developer.
+			p Apaixonado por fotografia, arte e música.
+
+coffee:
+	$(window).on resize: -> 
+		$("main").css 
+			marginTop: ($(window).height()-$("main").height())/2
+
+	$(window).trigger "resize"
