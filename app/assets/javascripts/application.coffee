@@ -28,7 +28,20 @@ $ ->
 		App.droppables.push new Droppable
 			element: $(this)
 
-	App.logo = new Logo $("#logo")
+	$("#logo").css
+		left: 0
+		bottom	: 0
+		position: "absolute"
+		zIndex: -1
+		width: $(window).width()
+		height: $(window).height()
+
+	App.logo = new Logo 
+		element: $("#logo")
+		iterations: 18
+		branching_rate: 5
+		module_size: 20
+
 
 	new DateNav $("nav.time")
 
