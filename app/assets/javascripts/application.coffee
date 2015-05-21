@@ -1,6 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= processing
+#= require logo
 #= require editable
 #= require droppable
 #= require date_nav
@@ -28,5 +28,8 @@ $ ->
 		App.droppables.push new Droppable
 			element: $(this)
 
+	App.logo = new Logo $("#logo")
+
 	new DateNav $("nav.time")
+
 @App = App
