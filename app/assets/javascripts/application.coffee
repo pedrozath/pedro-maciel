@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= processing
 #= require editable
 #= require droppable
 #= require date_nav
