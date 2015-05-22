@@ -17,7 +17,7 @@ class Editable
 
 	save: ->
 		console.log("save")
-		$.post "/#{@id}",
+		$.post "/events/#{@id}",
 			field: @field
 			value: @element.html()
 			_method: "put"

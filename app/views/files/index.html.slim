@@ -1,0 +1,24 @@
+main.files
+	.row
+		nav.span2
+			ul
+				- 30.times
+					li job
+			hr
+			p total: 30
+		.files.span10
+			.row: span12
+				h1 My graphic designer career
+				p There are works which include logos, web sites, key visuals, etc.
+			- for year in (1987..Time.now.year).to_a.reverse
+				section.files
+					section.year
+						hr
+						h2 
+							| #{year-1987} anos
+							small= year
+						- if @events.include? year
+							- for event in @events[year]
+								- unless event.pictures.nil?			
+									- for picture in event.pictures
+										= image_tag picture.file.url(:thumb), class: "span2"

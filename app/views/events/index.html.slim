@@ -1,13 +1,11 @@
-= image_tag "eu-sentado.png", style: "position: fixed; right: 0; bottom: 0; z-index=-1", width: 300
-.container: .row style="padding-top: 40px" 
-	.black-rectangle.span1
-	h2.span6 Biografia
+main
+	h1.span6.offset1 Biografia
+	hr
 
 	section.span10
 		= render @events
 
-- if logged_in
-	.container
+	- if logged_in
 		= form_for Event.new do |f|
 			.row
 				.span1

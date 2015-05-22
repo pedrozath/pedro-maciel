@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-	root to: "pages#index"
 	get "admin", to: "sessions#new"
 	delete "admin", to: "sessions#destroy"
-	get "/", to: "events#graphic_design", constraints: {subdomain: "graphicdesign"}
+	
+	get "/", as:"design_works", to: "files#index", constraints: {subdomain: "designer"}
+	get "/", as:"biography", to: "events#index", constraints: {subdomain: "bio"}
+	
 	resources :sessions, path: "admin"
-	resources :events, path: "biography" do 
+	resources :events do 
 		resources :files
 	end
 	get "set-language/:locale", to: "locale#update"
+	root to: "pages#index"
 end
