@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
 	def apply_locale
 		set_locale if location_not_set?
-		puts session[:locale]
 		I18n.locale = session[:locale] || :en
 	end
 
