@@ -1,0 +1,9 @@
+h1= @project.name
+.contents
+	== @project.description
+
+- for picture in @project.pictures
+	= image_tag picture.file
+
+- for movie in @project.movies
+	= video_tag movie.file

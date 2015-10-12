@@ -1,6 +1,3 @@
-ENV["GOOGLE_ID"] ||= "UNDEFINED"
-ENV["GOOGLE_SECRET"] ||= "UNDEFINED"
-
 CarrierWave.configure do |config|
 	config.fog_credentials = {
 		provider: 							"Google",

@@ -6,7 +6,7 @@ class PictureUploader < CarrierWave::Uploader::Base
     include CarrierWave::MiniMagick
 
     def store_dir
-        "events/#{model.event_id}/pictures/#{model.id}"
+        "pictures/#{model.id}"
     end
 
     version :thumb do

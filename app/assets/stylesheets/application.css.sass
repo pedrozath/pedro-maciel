@@ -2,7 +2,8 @@
 @import "fonts"
 
 $preto: #000
-$amarelo: hsl(62, 100%, 53%)
+$yellow: hsl(62, 100%, 53%)
+$grey: #ccc
 
 body
 	font-family: $font-copy
@@ -15,13 +16,17 @@ main
 	padding: 20px
 	padding-top: 100px
 
+.rich-text-area
+	display: block
+	height: 200px
+
 .admin-bar
 
 [contenteditable="true"]
 	display: block
 
 	&:hover
-		background-color: $amarelo
+		background-color: $yellow
 
 .files
 	.year
@@ -32,6 +37,25 @@ main
 		=mobile
 			float: none
 			width: 100%
+
+ul.pictures
+	list-style-type: none
+	padding: 0
+
+	li
+		display: block
+		margin: 5px
+		float: left
+
+.project
+	width: 25%
+
+	picture
+		border: 1px solid $yellow
+
+		&, & img
+			width: 200px
+			height: 200px
 
 [data-droppable]
 	background-color: #ccc
@@ -76,7 +100,7 @@ h1, h2
 
 h1
 	font-size: 40px
-	background-color: $amarelo
+	background-color: $yellow
 	display: inline
 
 	=mobile
@@ -91,7 +115,7 @@ h2
 	small
 		font-family: $font-copy
 		float: right
-		color: $amarelo
+		color: $yellow
 
 .event
 	time
@@ -103,10 +127,14 @@ h2
 .event, .event > *
 	// border: 1px solid red
 
-input, label, button, textarea
-	padding: 10px
-	display: block
+input, label, button, textarea, .rich-text-area
 	width: 100%
+	display: block
+
+input, label, button, textarea, .rich-text-area, select
+	padding: 10px
+	margin: 5px 0
+	border: 1px solid $grey
 
 h1,h2,h3,h4,h5
 	text-transform: uppercase
@@ -123,7 +151,7 @@ a
 	color: $preto
 
 	&:hover
-		background-color: $amarelo
+		background-color: $yellow
 
 ul.inline
 	list-style-type: none
