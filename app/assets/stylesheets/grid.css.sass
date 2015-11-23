@@ -21,12 +21,12 @@ body
 	padding: 0
 
 .container
-	width: 1024px
+	width: 1280px
 	margin: 0 auto
-	+desktop
-		width: 1280px
-	+large-desktop
-		width: 1400px
+	// +desktop
+	// 	width: 1280px
+	// +large-desktop
+	// 	width: 1400px
 
 @for $i from 1 through $grid-columns
 	$column-width: ($i/$grid-columns)*100%

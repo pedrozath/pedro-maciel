@@ -1,25 +1,31 @@
-main
+main.container
+	= image_tag "me-standing.png", style:"margin-top:-70px", class: "left-photo"
 	.row
-		.span4.offset1
-			= image_tag "eu-sentado.png", style:"margin-top:-70px"
+		.span6.offset5.content
+			p.big 
+				strong Hello
+				| , I'm
 
-		.span6
-			h1= t "index.big_title"
-			h2 style="padding-top: 20px"= t "index.title"
-			p= t "index.hobbies"
+			= image_tag "logo-pb.svg", class: "logo"
+			h1 
+				| A 
+				strong graphic designer 
+				| based in 
+				strong são paulo/brasil
+				br
+				| specialized in 
+				strong motion Graphics+Video editing
+
+			erb:
+				<iframe src="https://player.vimeo.com/video/146427359?color=fdf16f&byline=0&portrait=0" width="600" height="338" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
 			hr
-			ul.inline
-				li= link_to "facebook", "//facebook.com/pedrozath"
-				li= link_to "twitter", "//twitter.com/pedrozath"
-				li= link_to "linkedin", "//br.linkedin.com/pub/pedro-maciel/22/752/a41"
-				li= link_to "instagram", "//instagram.com/pedrozath"
-				li= link_to "e-mail", "mailto://pedro.maciel@hiperativo.co"
-
-
-coffee:
-	$(window).on resize: -> 
-		$("main").css 
-			marginTop: ($(window).height()-$("main").height())/2
-
-	$(window).trigger "resize"
-canvas#logo
+			p 
+				| pedro.maciel@hiperativo.co / +55 95252 8011
+				br
+				ul.inline
+					li= link_to "facebook", "//facebook.com/pedrozath"
+					li= link_to "twitter", "//twitter.com/pedrozath"
+					li= link_to "linkedin", "//br.linkedin.com/pub/pedro-maciel/22/752/a41"
+					li= link_to "instagram", "//instagram.com/pedrozath"
+					li= link_to "e-mail", "mailto://pedro.maciel@hiperativo.co"

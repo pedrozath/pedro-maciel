@@ -3,11 +3,9 @@ class MoviesController < ApplicationController
 		@movies = Movie.all
 	end
 	def create
-		for file in params[:movie][:files]
-			p = Project.find(params[:movie][:project]).movies.new
-			p.file = file
-			p.save!
-		end
+		p = Project.find(params[:movie][:project]).movies.new
+		p.file = params[:movie][:file]
+		p.save!
 		redirect_to :back
 	end
 end

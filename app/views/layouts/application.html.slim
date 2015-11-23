@@ -3,9 +3,11 @@ html
 	head
 		title Pedro Maciel
 		meta name="viewport" content="width=device-width, initial-scale=1"
+		= favicon_link_tag "favicons/favicon.ico"
 		= stylesheet_link_tag    "application", media: "all"
 		= javascript_include_tag "application", "data-turbolinks-track" => true
 		= csrf_meta_tags
+
 
 	body
 		- if logged_in

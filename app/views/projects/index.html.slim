@@ -20,7 +20,7 @@
 			h2 Adicionar vídeo
 			= form_for Movie.new do |f|
 				= f.collection_select :project, Project.all, :id, :name
-				= f.file_field :files, multiple: true
+				= f.text_field :file
 				= f.submit "Adicionar vídeos"
 
 	- for year in (1987..Time.now.year).to_a.reverse

@@ -2,19 +2,34 @@
 @import "fonts"
 
 $preto: #000
-$yellow: hsl(62, 100%, 53%)
+$yellow: #FDF16F
 $grey: #ccc
 
 body
-	font-family: $font-copy
-	font-size: 14px
+	font-family: $font-title
+	font-size: 18px
 	line-height: 1.34
+	background-color: $yellow
+	font-weight: 100
 
 	> header
 		// border-bottom: 1px solid #000
+.big
+	font-size: 28px
+	font-family: $font-title
+	text-align: center
+	line-height: 1
+	margin: 0 !important
+
+.left-photo
+	position: fixed
+	bottom: 0
+	width: 500px
+	z-index: -1
+
 main
 	padding: 20px
-	padding-top: 100px
+	padding-top: 40px
 
 .rich-text-area
 	display: block
@@ -70,16 +85,16 @@ ul.pictures
 	[data-state="progress"]
 		-webkit-filter: grayscale(1)
 
-#logo
-	display: block
+.content > *
+	margin-bottom: 20px
 
 .black-rectangle
 	display: visible
 	background-color: #000
 	height: 33px
 
-.event
-	margin-bottom: 20px
+iframe
+	box-shadow: 6px 6px 0px #000
 
 .media
 	margin-left: -10px
@@ -95,27 +110,12 @@ ul.pictures
 		img
 			width: 100%
 
-h1, h2
-	font-family: $font-title
-
 h1
-	font-size: 40px
-	background-color: $yellow
-	display: inline
-
-	=mobile
-		font-size: 20px
-
-h2
+	font-family: $font-title
+	font-weight: 100
+	text-align: justify
 	font-size: 20px
-	margin-top: -9px
-	=mobile
-		font-size: 16px
-
-	small
-		font-family: $font-copy
-		float: right
-		color: $yellow
+	display: block
 
 .event
 	time
@@ -151,15 +151,18 @@ a
 	color: $preto
 
 	&:hover
-		background-color: $yellow
+		background-color: $preto
+		color: $yellow
 
 ul.inline
+	font-family: $font-copy
 	list-style-type: none
 	list-style-position: inside
 	padding: 0
+	font-size: 14px
 
 	li
 		display: inline-block
 
 		&::after
-			content: " / "
+			content: "/"
