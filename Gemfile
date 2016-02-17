@@ -16,7 +16,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
-gem 'geocoder'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks'
