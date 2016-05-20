@@ -1,37 +1,32 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.1'
+gem 'rails'
 gem 'pg'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
+gem 'bourbon'
 
-gem 'foreman', '0.61'
-gem "puma"
+gem 'jquery-rails'
+gem 'turbolinks'
+gem 'jbuilder'
 
-gem 'sdoc', '~> 0.4.0', group: :doc
-
-gem 'redcarpet'
 gem 'slim-rails'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'sass-rails', '~> 5.0'
-
+gem 'slim-mustache'
+gem 'puma'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
+gem "friendly_id", '~> 5.1.0'
 
-gem 'uglifier', '>= 1.3.0'
-gem 'turbolinks'
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'jquery-fileupload-rails'
-gem 'jbuilder', '~> 2.0'
+gem 'markdown-rails'
+gem "font-awesome-rails"
+gem "pagseguro-oficial", "~> 2.4.0"
 
-group :development, :test do
-	gem 'byebug'
+gem 'rails_12factor'
+
+group :development do
     gem 'web-console', '~> 2.0'
     gem 'spring'
+    gem 'dotenv-rails'
 end
-
-group :production do
-	gem "rails_12factor"
-end
-
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
