@@ -1,3 +1,3 @@
-class Tag < ActiveRecord::Base
-	has_many :taggings
+class Tag
+    include Mongoid::Document
 end

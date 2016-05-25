@@ -1,36 +1,34 @@
 header
-    .spacer
+    .spacer.left-column
         .logo-bar
         .tag-bar
+
     .logo-signature
         = image_tag "logo.png", class:"logo"
         .tagline.bar: h1.h3 Multidisciplinary Design
 
-.container
-    nav data-tag-selection=true
-        header: .bar: h2.h2 Tags
+    .spacer.right-column
+        .logo-bar
+        .tag-bar
+
+.content
+    nav.left-column data-tag-selection=true
+        header.header-sandwich: .bar: h2.h2 Tags
         ul
             - for tag in @tags
                 li 
                     = link_to tag, "#", class: "h3"
 
         
-        header: .bar: h2.h2 Clients
+        header.header-sandwich: .bar: h2.h2 Clients
         ul
             - for client in @clients
                 li = link_to client, "#", class: "h3"
 
-        header: .bar: h2.h2 Years 
+        header.header-sandwich: .bar: h2.h2 Years 
         ul.grid
             - for year in @years
                 li = link_to year, "#", class: "h3"
 
     main
-        ul.projects
-            - for project in @projects
-                li 
-                    = link_to "#"
-
-                        .canvas = image_tag project.cover
-                        .caption 
-                            .h3 = project.title
+        = render "jobs"

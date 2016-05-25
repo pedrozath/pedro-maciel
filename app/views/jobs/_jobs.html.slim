@@ -1,0 +1,8 @@
+ul.projects
+    - for job in @jobs
+        li 
+            = link_to 
+
+                .canvas = image_tag job.cover
+                .caption 
+                    .h3 = job.title

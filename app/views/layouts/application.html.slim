@@ -7,4 +7,4 @@ html
 		= favicon_link_tag "favicons/favicon.ico"
 		= csrf_meta_tags
 
-    body class="#{params[:controller]} #{params[:action]}" = yield
+    body data-state="#{params[:controller]}/#{params[:action]}" = yield

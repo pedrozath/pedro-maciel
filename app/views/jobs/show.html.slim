@@ -1,2 +1,16 @@
-h1 Jobs#show
-p Find me in app/views/jobs/show.html.slim
+header
+    .spacer.left-column
+        .logo-bar
+        .tag-bar
+
+    .logo-signature
+        = image_tag "logo.png", class:"logo"
+        .tagline.bar: h1.h3 Multidisciplinary Design
+
+    .spacer.right-column
+        .logo-bar
+        .tag-bar
+
+main = render "job"
+
+aside.right-column

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails'
-gem 'pg'
+gem 'mongoid'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -17,7 +17,6 @@ gem 'puma'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
-gem "friendly_id", '~> 5.1.0'
 
 gem 'markdown-rails'
 gem "font-awesome-rails"

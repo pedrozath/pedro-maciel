@@ -9,239 +9,26 @@
 +font-face("Vectrex",       "vectrex-regular", 500, $file-formats: eot woff ttf svg)
 +font-face("Vectrex",       "vectrex-bold",    900, $file-formats: eot woff ttf svg)
 
-$black: #000
-$brown: #983200
-$yellow: #ffe500
-
 $p: 12px
 $mili-p: $p/3
 $micro-p: $p/6
 $nano-p: $p/12
 
-$cubic-bezier: cubic-bezier(0,.88,.08,.99) 
-
-*
-    box-sizing: border-box
-
-.left-photo
-    z-index: -1
-    width: 700px
-    bottom: 0
-    left: 0
-
-body
-    font-family: Vectrex
-    font-size: $p
-    line-height: 3*$p
-    background-color: $yellow
-    font-weight: 100
-    padding: 2*$p
-    margin: 0
-
-    & > header
-        margin-bottom: 2 * $p
-
-        &::after
-            clear: both
-
-    & > main, & > header
-        display: table
-
-h1,h2,h3,h4,h5
-    text-transform: uppercase
-    margin: 0
-    padding: 0
-    line-height: 1
-    font-weight: 100
-
-.bar
-    background-color: $black
-    display: block
-    line-height: 0
-
-.h1, .h2, .h3, .h4, .h5
-    background-color: $yellow
-    display: inline-block
-
-.h2
-    font-family: "Simple"
-    font-size: 2 * $p
-    line-height: 0.6
-    padding-top: $p/2
-
-.h3
-    font-family: "Vectrex"
-    font-size: $p
-    font-weight: 500
-
-.logo
-    height: 9 * $p
-    margin-top: -$p
-
-.tagline > *
-    margin-left: $p
-    padding: 0 $p
-
-.logo-signature
-    float: left
-
-.spacer, nav
-    width: 24 * $p
-    float: left
-    display: block
-    margin-right: 2* $p
-
-.logo-bar, .tag-bar
-    width: 100%
-    background-color: $black
-
-.logo-bar
-    height: 8 * $p
-    margin-bottom: $p
-
-.tag-bar
-    height: $p
-
-
 $main-width: 54
+$column-width: 24
 $margin: 0.5
 
-main
-    float: left
-    border: $mili-p solid $black
-    width: $main-width * $p
-    margin: 0
-    padding: $margin * $p
+$cubic-bezier: cubic-bezier(0,.88,.08,.99) 
 
-nav
-    header
-        border-top: $mili-p solid $black
-        border-bottom: $nano-p solid $black
-        padding: $p 0
+$black: #000
+$brown: #983200
+$yellow: #FFF030
 
-        .bar > *
-            padding-right: $p/2
+@import "main"
 
-    ul
-        padding: 0
-        padding-bottom: $p
+$black: #FFF030
+$brown: #983200
+$yellow: #000
 
-        li
-            list-style-type: none
-            line-height: 1 * $p
-            display: block
-            border-bottom: $nano-p dotted $black
-            height: $p/2
-            // padding-bottom: $p
-            margin-bottom: $p
-
-            &:hover, &.selected
-                border-bottom: $micro-p solid $black
-                a
-                    font-weight: 900
-
-            a
-                text-decoration: none
-                padding-right: $p/2
-
-a
-    color: $black
-
-ul.projects
-    padding: 0
-    margin: 0
-    display: table
-
-    li
-        list-style-type: none
-        width: 50%
-        padding: $margin * $p
-        padding-bottom: $p
-        float: left
-
-        .caption
-            display block
-            border-bottom: $nano-p dotted $black
-            height: 1.5*$p
-            line-height: 3
-
-            > *
-                padding-right: $p
-
-        &:hover, .selected
-            .caption
-                border-bottom: $micro-p solid $black
-
-                > *
-                    font-weight: 900
-
-        a
-            display: block
-
-        .canvas
-            display: block
-            height: 15 * $p
-            overflow: hidden
-            border: $micro-p solid $black
-            transition: transform 150ms $cubic-bezier, box-shadow 150ms $cubic-bezier
-            box-shadow: 0px 0px transparentize($black, 0.5)
-
-        img
-            height: 15 * $p 
-            -webkit-filter: sepia(100%) brightness(100%) saturate(0%)
-            transition: -webkit-filter 150ms linear, transform 150ms $cubic-bezier
-
-        &:hover
-            .canvas
-                transform: translate(-8px,-8px)
-                box-shadow: 8px 8px transparentize($black, 0.5)
-
-            img
-                -webkit-filter: none
-                transform: scale(1.4)
-                // transform: scale(1.4)
-
-
-
-@function gutter($w,$c,$n)
-    @return ($w - $c * $n) / ($n - 1)
-
-$c: .135
-$n: 6
-$gutter: gutter(1, $c, $n)
-$years-grid-width: 1+($gutter * ($n - 1))
-$relative-true-width: (1) / ($years-grid-width)
-
-nav 
-    a
-        &:hover, &.selected
-            font-weight: 900
-
-ul.grid
-    width: $years-grid-width * 100%
-
-    a
-        padding: 0
-        margin: 0
-
-    li
-        display: block
-        float: left
-        border: none
-        height: auto
-        width: ($c / $years-grid-width) * 100% 
-        margin-right: ($gutter / $years-grid-width) * 100%
-        padding: $p 0
-        border-bottom: $nano-p dotted $black
-        cursor: pointer
-
-        &:hover, .selected
-            border-bottom: $micro-p solid $black
-            padding-bottom: $p - $micro-p
-
-
-        &:nth-child(#{$n}n+1)
-            clear: both
-
-.container
-    display: table
+html.dark-theme
+    @import "main"

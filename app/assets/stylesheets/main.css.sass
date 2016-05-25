@@ -1,0 +1,337 @@
+*
+    box-sizing: border-box
+
+=state($state)
+    body[data-state="#{$state}"] &
+        @content
+
+body
+    font-family: Vectrex
+    font-size: $p
+    line-height: 3*$p
+    background-color: $yellow
+    font-weight: 500
+    margin: 0
+    color: $black
+
+    > * > *
+        margin-left: 2 * $p
+        margin-top: 2 * $p
+
+        &::after
+            clear: both
+
+    & > main, & > header
+        display: table
+
+h1,h2,h3,h4,h5
+    text-transform: uppercase
+    margin: 0
+    padding: 0
+    line-height: 1
+    font-weight: 100
+
+.hat-title
+    border-bottom: $nano-p solid $black
+    padding-bottom: $p
+
+    .h1
+        padding-right: $p
+        font-weight: 900
+
+    .h3
+        padding-right: $p/2
+
+    .line
+        margin-bottom: $p
+
+            
+        .h3
+            margin-top: -$micro-p
+
+
+.bar
+    background-color: $black
+    display: block
+    line-height: 0
+
+.line
+    @extend .bar
+    height: $mili-p
+
+.h1, .h2, .h3, .h4, .h5
+    background-color: $yellow
+    display: inline-block
+
+.h1, .h2
+    font-family: "Simple"
+    line-height: 0.6
+
+.h1
+    font-size: 3 * $p
+    padding-top: $p
+
+.h2
+    font-size: 2 * $p
+    padding-top: $p/2
+
+.h3
+    font-family: "Vectrex"
+    font-size: $p
+    font-weight: 500
+
+.logo
+    height: 9 * $p
+    margin-top: -$p
+    display: block
+
+.tagline
+    margin-top: $p
+
+    > *
+        margin-left: $p
+        padding: 0 $p
+
+.logo-signature
+    float: left
+    width: $main-width * $p
+
+.spacer, nav, nav ul
+    display: block
+    width: $column-width * $p
+
+.left-column, .right-column
+    width: $column-width * $p
+    overflow: hidden
+    float: left
+
+.left-column
+    +state(jobs/show)
+        display: none
+
+.right-column
+    +state(jobs/index)
+        display: none
+
+.logo-bar, .tag-bar
+    width: 100%
+    background-color: $black
+
+.logo-bar
+    height: 8 * $p
+    margin-bottom: $p
+
+.tag-bar
+    height: $p
+
+.job-content
+    section
+        display: table
+
+        > *
+            float: left
+
+        > * + *
+            margin-left: 2 * $p
+
+    > * + *
+        margin-top: 2 * $p
+
+p
+    line-height: 1.4
+
+main
+    float: left
+    // border: $mili-p solid $black
+    width: $main-width * $p
+
+    +state(jobs/show)
+        width: 82 * $p
+
+    img
+        max-width: $main-width * $p
+    // padding: $margin * $p
+
+header.header-sandwich
+    border-top: $mili-p solid $black
+    border-bottom: $nano-p solid $black
+    padding: $p 0
+
+    .bar > *
+        padding-right: $p/2
+
+nav
+
+    ul
+        padding: 0
+        padding-bottom: $p
+
+        li
+            list-style-type: none
+            line-height: 1 * $p
+            display: block
+            border-bottom: $nano-p dotted $black
+            height: $p/2
+            // padding-bottom: $p
+            margin-bottom: $p
+
+            &:hover, &.selected
+                border-bottom: $micro-p solid $black
+                a
+                    font-weight: 900
+
+            a
+                text-decoration: none
+                padding-right: $p/2
+
+a
+    color: $black
+
+ul.projects
+    padding: 0
+    margin: -($margin * $p)
+    display: table
+
+    +state(jobs/show)
+        display: none
+
+    li
+        list-style-type: none
+        width: 50%
+        padding: $margin * $p
+        padding-bottom: $p
+        float: left
+
+        .caption
+            display block
+            border-bottom: $nano-p dotted $black
+            height: 1.5*$p
+            line-height: 3
+
+            > *
+                padding-right: $p
+
+        &:hover, .selected
+            .caption
+                border-bottom: $micro-p solid $black
+
+                > *
+                    font-weight: 900
+
+        a
+            display: block
+
+        .canvas
+            display: block
+            height: 15 * $p
+            overflow: hidden
+            // border: $micro-p solid $black
+            transition: transform 150ms $cubic-bezier, box-shadow 150ms $cubic-bezier
+            box-shadow: 1px 1px transparentize($black, 0), 2px 2px transparentize($black, 0)
+            position: relative
+            z-index
+
+        img
+            height: 15 * $p 
+            -webkit-filter: sepia(100%) brightness(100%) saturate(0%)
+            transition: -webkit-filter 150ms linear, transform 150ms $cubic-bezier
+
+        &:hover
+            .canvas
+                transform: translate(-6px,-6px)
+                box-shadow: 1px 1px transparentize($black, 0), 2px 2px transparentize($black, 0), 3px 3px transparentize($black, 0), 4px 4px transparentize($black, 0), 5px 5px transparentize($black, 0), 6px 6px transparentize($black, 0), 7px 7px transparentize($black, 0), 8px 8px transparentize($black, 0)
+
+            img
+                -webkit-filter: none
+                // transform: scale(1.4)
+                // transform: scale(1.4)
+
+@function gutter($w,$c,$n)
+    @return ($w - $c * $n) / ($n - 1)
+
+$c: .135
+$n: 6
+$gutter: gutter(1, $c, $n)
+$years-grid-width: 1+($gutter * ($n - 1))
+$relative-true-width: (1) / ($years-grid-width)
+
+nav 
+    a
+        &:hover, &.selected
+            font-weight: 900
+
+ul.grid
+    width: $years-grid-width * 100%
+
+    a
+        padding: 0
+        margin: 0
+
+    li
+        display: block
+        float: left
+        border: none
+        height: auto
+        width: ($c / $years-grid-width) * 100% 
+        margin-right: ($gutter / $years-grid-width) * 100%
+        padding: $p 0
+        border-bottom: $nano-p dotted $black
+        cursor: pointer
+
+        &:hover, .selected
+            border-bottom: $micro-p solid $black
+            padding-bottom: $p - $micro-p
+
+
+        &:nth-child(#{$n}n+1)
+            clear: both
+
+.container
+    display: table
+
+table
+    padding: $p
+    width: 100%
+    border-collapse: collapse
+
+    tr + tr
+        td, th
+            border-top: $nano-p solid $black
+
+    th 
+        padding: $p 0
+        font-weight: 900
+
+    th, td
+        line-height: 1.4
+        text-align: left
+        vertical-align: top
+
+        ul
+            padding: 0
+            margin: 0
+
+            li
+                list-style-type: none
+                display: inline-block
+
+                a
+                    text-decoration: none
+                    padding-bottom: $mili-p - 2 * $micro-p
+                    border-radius: $p/2
+                    border: $nano-p solid $black
+                    display: block
+                    margin: $nano-p
+
+    td p, td ul li a
+        padding: $p/2
+        margin-bottom: $p/2
+        padding-bottom: $p/2 - $mili-p
+
+    td
+        padding-top: $p/2
+        padding-left: $p/2
+
+        p
+            margin-top: 0
+            // text-align: right
