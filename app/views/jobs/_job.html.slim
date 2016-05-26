@@ -1,6 +1,8 @@
 article.job-content
     header.hat-title
-        .line: h2.h3= @job.client
+        .line
+            / = link_to "←", "/jobs", class: "line-btn"
+            = link_to "← Back to portfolio index", jobs_path, class: "h3", data: {"auto-route" => true}
         .bar: h1.h1= @job.name
 
     section

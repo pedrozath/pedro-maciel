@@ -22,7 +22,7 @@ gem 'markdown-rails'
 gem "font-awesome-rails"
 gem "pagseguro-oficial", "~> 2.4.0"
 
-gem 'rails_12factor'
+# gem 'rails_12factor'
 
 group :development do
     gem 'web-console', '~> 2.0'
