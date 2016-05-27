@@ -7,4 +7,22 @@ html
 		= favicon_link_tag "favicons/favicon.ico"
 		/ = csrf_meta_tags
 
-    body data-state="#{params[:controller]}##{params[:action]}" = yield
+    body data-state="#{params[:controller]}##{params[:action]}"
+        - if admin?
+            .admin-bar 
+                p 
+                    | Admin mode is ON / 
+                    = link_to "Turn OFF", "/logout", method: :delete
+
+            .admin-group
+                .h2 Add new client
+                = form_for Client.new do |f|
+                    = f.text_field :name        , placeholder: "name"
+                    = f.text_field :description , placeholder: "description"
+
+                    = f.submit
+            .admin-group
+                .h2 Add new Job
+                = render partial: "jobs/job_form", locals: { job: Job.new }
+
+        = yield

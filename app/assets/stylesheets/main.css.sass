@@ -1,3 +1,7 @@
+.admin-bar
+    p
+        margin-top: 0
+        margin-bottom: 0
 *
     box-sizing: border-box
 
@@ -119,6 +123,11 @@ h1,h2,h3,h4,h5
     +state("jobs#index")
         display: none
 
+section
+    .right-column
+        position: absolute
+        right: 0
+
 .logo-bar, .tag-bar
     width: 100%
     background-color: $black
@@ -133,6 +142,7 @@ h1,h2,h3,h4,h5
 .job-content
     section
         display: table
+        min-height: 30 * $p
 
         > *
             float: left
@@ -147,12 +157,13 @@ p
     line-height: 1.4
 
 main
+    position: relative
     float: left
     // border: $mili-p solid $black
     width: $main-width * $p
 
     +state("jobs#show")
-        width: 82 * $p
+        width: 80 * $p
 
     img
         max-width: $main-width * $p

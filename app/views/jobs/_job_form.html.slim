@@ -1,0 +1,10 @@
+= form_for job do |f|
+    = f.text_field        :name        , placeholder: :name
+    = f.text_field        :when        , placeholder: :when
+    = f.text_field        :brief       , placeholder: :brief
+    = f.label :tags
+    = f.collection_check_boxes :tag_ids, Tag.all, :id, :name
+    = f.text_field        :other_tags
+    = f.collection_select :client, Client.all, :id, :name
+    = f.file_field        :image
+    = f.submit

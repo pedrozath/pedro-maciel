@@ -2,14 +2,16 @@ nav.left-column data-tag-selection=true
     header.header-sandwich: .bar: h2.h2 Tags
     ul
         - for tag in @tags
-            li 
-                = link_to tag, "#", class: "h3"
-
+            li
+                = link_to("×", tag, method: :delete) if admin?
+                = link_to tag.name, "#", class: "h3"
     
     header.header-sandwich: .bar: h2.h2 Clients
     ul
         - for client in @clients
-            li = link_to client, "#", class: "h3"
+            li 
+                = link_to("×", client, method: :delete) if admin?
+                = link_to client.name, "#", class: "h3"
 
     header.header-sandwich: .bar: h2.h2 Years 
     ul.grid

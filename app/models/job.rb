@@ -1,12 +1,48 @@
 class Job
     include Mongoid::Document
     include Mongoid::Timestamps
-    
-    has_and_belong_to_many :tags
-    embedded_in :clients
+    include Slug
 
-    field :name,        :string
-    field :description, :string
-    field :when,        :date
-    field :brief,       :text
+    has_and_belongs_to_many :tags
+    belongs_to :client
+    has_one :image, as: :imageable
+    embeds_many :content_sections
+
+    field :name,  type: String
+    field :when,  type: Date
+    field :brief, type: String
+
+    alias_method :content, :content_sections
+    attr_accessor :other_tags, :tag_list
+
+    before_save :save_tags
+
+    validates :name, presence: true
+
+    def areas
+        client.areas
+    end
+
+    def save_tags
+        unless self.tag_list.nil?
+            for tag_id in tag_list
+                tags << Tag.find(tag_id)
+            end
+        end
+
+        unless self.other_tags.nil?
+            for tag_name in other_tags.split(" ") || []
+                tags << Tag.create(name: tag_name)
+            end
+        end
+    end
+
+    def cover
+        begin
+            self.image.file.url
+        rescue
+            ""
+        end
+    end
+
 end

@@ -1,7 +1,10 @@
 ul.jobs
     - for job in @jobs
         li 
-            = link_to "/jobs/2", data: {"auto-route" => true}
+            - if admin?
+                = link_to("×", job, method: :delete) if admin?
+            = link_to job, data: {"auto-route" => true}
                 .canvas = image_tag job.cover
                 .caption 
-                    .h3 = job.title
+                    .h3 
+                        = job.name

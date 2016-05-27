@@ -53,6 +53,9 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
+    carrierwave-mongoid (0.1.0)
+      carrierwave
+      mongoid
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -269,6 +272,11 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (4.2.6)
       actionpack (= 4.2.6)
       activesupport (= 4.2.6)
@@ -331,6 +339,7 @@ PLATFORMS
 DEPENDENCIES
   bourbon
   carrierwave
+  carrierwave-mongoid
   coffee-rails
   dotenv-rails
   fog
@@ -343,6 +352,7 @@ DEPENDENCIES
   pagseguro-oficial (~> 2.4.0)
   puma
   rails
+  rails_12factor
   sass-rails
   slim-mustache
   slim-rails
