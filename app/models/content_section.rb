@@ -10,10 +10,9 @@ class ContentSection
     end
 
     validates :title, :description, presence: true
-    before_validation :upload_image, if: "type = :image"
-    validates :image, presence: true, if: "type = :image"
+    before_validation :upload_image,  if: "type = :image"
+    # validates :image, presence: true, if: "type = :image"
 
-    before_save :upload_image
     embedded_in :job
 
     field :type,        type: Symbol
@@ -22,6 +21,8 @@ class ContentSection
     field :description, type: String
 
     def upload_image
-        self.image = Image.create file: image_file
+        unless image.nil?
+            self.image = Image.create file: image_file
+        end
     end
 end

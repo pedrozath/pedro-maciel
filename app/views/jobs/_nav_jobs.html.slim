@@ -1,19 +1,19 @@
-nav.left-column data-tag-selection=true
+nav.left-column
     header.header-sandwich: .bar: h2.h2 Tags
-    ul
-        - for tag in @tags
-            li
+    ul data-tag-selection="tag" data-habtm="true"
+        - for tag in Tag.all
+            li data-tag=tag.id
                 = link_to("×", tag, method: :delete) if admin?
                 = link_to tag.name, "#", class: "h3"
     
     header.header-sandwich: .bar: h2.h2 Clients
-    ul
-        - for client in @clients
-            li 
+    ul data-tag-selection="client"
+        - for client in Client.all
+            li data-tag=client.id
                 = link_to("×", client, method: :delete) if admin?
                 = link_to client.name, "#", class: "h3"
 
     header.header-sandwich: .bar: h2.h2 Years 
-    ul.grid
-        - for year in @years
-            li = link_to year, "#", class: "h3"
+    ul.grid data-tag-selection="year"
+        - for year in (2004..2016).to_a.reverse
+            li data-tag=year = link_to year, "#", class: "h3"

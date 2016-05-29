@@ -5,7 +5,7 @@ class ContentSectionsController < ApplicationController
         @content_section = @job.content_sections.new params[:content_section].permit \
             :type, :url,
             :title, :description,
-            :image_file, :job
+            :image_file, :job, :url
 
         # render text: params
 
@@ -19,7 +19,7 @@ class ContentSectionsController < ApplicationController
         @content_section.attributes = params[:content_section].permit \
             :type, :url,
             :title, :description,
-            :image_file, :job
+            :image_file, :job, :url
 
         # render text: params
 

@@ -42,6 +42,11 @@ article.job-content
             - case section.type
             - when :image
                 = image_tag section.image.file.url unless section.image.nil?
+            - when :video
+                iframe[src="http://#{section.url}" 
+                    width="648" height="364" 
+                    frameborder="0" webkitallowfullscreen 
+                    mozallowfullscreen allowfullscreen]
 
             .caption.right-column
                 header.header-sandwich: .bar: h3.h2 = section.title

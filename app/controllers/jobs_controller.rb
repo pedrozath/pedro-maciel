@@ -2,21 +2,22 @@ class JobsController < ApplicationController
     before_filter :authorize, only: [:create, :destroy, :edit, :change_cover]
     
     def create
-        @cover = Image.create file: params[:job][:file]
-        @job = Job.create params[:job].permit \
+        @job = Job.new params[:job].permit \
             :name, :when, :tags,
             :brief,:client,
             :other_tags
 
-        @job.image id: @cover.id
+        @job.create_image file: params.require(:job)[:image]
+
+        render text: @job.to_json
         @job.save
 
-        redirect_to "/"
+        # redirect_to :back
     end
 
     def destroy
         Job.find_by(slug: params[:id]).destroy
-        redirect_to "/"
+        redirect_to :back
     end
 
     def update
@@ -50,11 +51,6 @@ class JobsController < ApplicationController
     end
 
     def index
-        @tags = Tag.all
-        @clients = Client.all
-        @years = (2004..2016).to_a.reverse
-        @jobs = Job.all
-
         respond_to do |f|
             f.html
             f.js

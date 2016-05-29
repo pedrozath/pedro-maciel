@@ -1,30 +1,3 @@
-main.container
-	= image_tag "me-standing.png", style:"margin-top:-70px", class: "left-photo"
-	.row
-		.span6.offset5.content
-			p.big 
-				strong Hello
-				| , I'm
-
-			= image_tag "logo-pb.svg", class: "logo"
-			h1 
-				| A 
-				strong graphic designer 
-				| based in 
-				strong Sao Paulo/brazil
-				br
-				| specialized in 
-				strong motion Graphics+Video editing
-
-			erb:
-				<iframe src="https://player.vimeo.com/video/146427359?color=fdf16f&byline=0&portrait=0" width="600" height="338" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-			hr
-			p 
-				| pedro@pedromaciel.com / +55 11 95252 8011
-				br
-				ul.inline
-					li= link_to "facebook", "//facebook.com/pedrozath"
-					li= link_to "twitter", "//twitter.com/pedrozath"
-					li= link_to "linkedin", "//br.linkedin.com/pub/pedro-maciel/22/752/a41"
-					li= link_to "instagram", "//instagram.com/pedrozath"
+.content
+    = render "jobs/nav_jobs"
+    main = render "contact_info"

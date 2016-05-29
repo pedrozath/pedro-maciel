@@ -1,5 +1,46 @@
 animations = ->
-    console.log "refresh!"
+    "pages#index": new TimelineMax
+        paused: true
+        stagger: 0.3
+        align: "start"
+        tweens:[
+            TweenMax.staggerFromTo $(".contact-info ul li"), 0.5,
+                opacity: 1
+            ,
+                opacity: 0
+                ease: Cubic.easeInOut
+            , -0.3
+            TweenMax.staggerFromTo $(".contact-info h2"), 0.5,
+                opacity: 1
+            ,
+                opacity: 0
+                ease: Cubic.easeInOut
+            , -0.1
+            TweenMax.staggerFromTo $(".contact-info hr"), 0.5,
+                width: 648
+            ,
+                width: 0
+                ease: Cubic.easeInOut
+            , -0.1
+            TweenMax.staggerFromTo $(".left-photo"), 0.5,
+                width: 420
+            ,
+                width: 0
+                ease: Cubic.easeInOut
+            , -0.1
+            TweenMax.staggerFromTo $(".motion-reel"), 0.5,
+                height: 364
+            ,
+                height: 0
+                ease: Cubic.easeInOut
+            , -0.1
+            TweenMax.staggerFromTo $("header .left-column"), 0.5,
+                width: 288
+            ,
+                width: 0
+                ease: Cubic.easeInOut
+            , -0.1
+        ]
     "jobs#index": new TimelineMax
         paused: true
         stagger: 0.5

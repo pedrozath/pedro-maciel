@@ -16,11 +16,24 @@ class Job
     attr_accessor :other_tags, :tag_list
 
     before_save :save_tags
+    after_destroy :clean_tags
 
-    validates :name, presence: true
+    validates :name, :when, :brief, presence: true
+
+    def clean_tags
+        Tag.clean_up
+    end
 
     def areas
         client.areas
+    end
+
+    def tag_ids_strings
+        tag_ids.collect(&:to_s)
+    end
+
+    def year
+        self.when.year
     end
 
     def save_tags
@@ -31,7 +44,7 @@ class Job
         end
 
         unless self.other_tags.nil?
-            for tag_name in other_tags.split(" ") || []
+            for tag_name in other_tags.split(", ") || []
                 tags << Tag.create(name: tag_name)
             end
         end

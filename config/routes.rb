@@ -8,5 +8,7 @@ Rails.application.routes.draw do
     end
     resources :tags
     resources :clients
-    root to: redirect("/jobs")
+    get "/index.js", to: "pages#index", defaults: { format: "js"}
+    get "/index", to: redirect("/")
+    root to: "pages#index"
 end

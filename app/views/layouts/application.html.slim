@@ -1,3 +1,15 @@
+/!  
+     _____  _______ ______   ______  _____ 
+    |_____] |______ |     \ |_____/ |     |
+    |       |______ |_____/ |    \_ |_____|
+                                         
+    _______ _______ _______ _____ _______       
+    |  |  | |_____| |         |   |______ |     
+    |  |  | |     | |_____  __|__ |______ |_____
+
+    enjoy the source code! 
+
+
 doctype html
 html
     head
@@ -8,6 +20,19 @@ html
 		/ = csrf_meta_tags
 
     body data-state="#{params[:controller]}##{params[:action]}"
+        header
+            .spacer.left-column
+                .logo-bar
+                .tag-bar
+
+            .logo-signature data-route="/"
+                = image_tag "logo.png", class:"logo"
+                .tagline.bar: h1.h3 Multidisciplinary Design
+
+            .spacer.right-column
+                .logo-bar
+                .tag-bar
+
         - if admin?
             .admin-bar 
                 p 
@@ -25,4 +50,5 @@ html
                 .h2 Add new Job
                 = render partial: "jobs/job_form", locals: { job: Job.new }
 
+        = image_tag "me-standing.png", class: "left-photo"
         = yield

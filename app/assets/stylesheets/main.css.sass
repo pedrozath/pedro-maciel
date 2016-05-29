@@ -26,8 +26,9 @@ body
         &::after
             clear: both
 
-    & > main, & > header
+    main, & > header
         display: table
+
 
 h1,h2,h3,h4,h5
     text-transform: uppercase
@@ -102,13 +103,38 @@ h1,h2,h3,h4,h5
         margin-left: $p
         padding: 0 $p
 
+hr
+    border: 0
+    border-top: solid $nano-p $black
+
+ul
+    padding: 0
+    &.inline
+        li 
+            display: inline
+
+            + li::before
+                content: " / "
+
 .logo-signature
     float: left
     width: $main-width * $p
+    cursor: pointer
+
+    &:hover
+        @extend a:hover
 
 .spacer, nav, nav ul
     display: block
     width: $column-width * $p
+
+.left-column
+    +state("pages#index")
+        opacity: 0
+
+nav.left-column
+    +state("pages#index")
+        display: none
 
 .left-column, .right-column
     width: $column-width * $p
@@ -119,9 +145,16 @@ h1,h2,h3,h4,h5
     +state("jobs#show")
         display: none
 
-.right-column
+header .right-column
     +state("jobs#index")
         display: none
+
+    +state("pages#index")
+        display: none
+
+header .left-column
+    +state("pages#index")
+        opacity: 0
 
 section
     .right-column
@@ -156,6 +189,19 @@ section
 p
     line-height: 1.4
 
+.left-photo
+    display: none
+    +state("pages#index")
+        display: block
+        position: fixed
+        bottom: 0
+        left: 0
+        width: $p*35
+
+.contact-info
+    width: 54 * $p
+    float: right
+
 main
     position: relative
     float: left
@@ -164,6 +210,10 @@ main
 
     +state("jobs#show")
         width: 80 * $p
+
+    +state("pages#index")
+        width: 80 * $p
+        height: 100%
 
     img
         max-width: $main-width * $p
@@ -215,6 +265,7 @@ ul.jobs
     padding: 0
     margin: -($margin * $p)
     display: table
+    width: 54 * $p
 
     +state("jobs#show")
         display: none
@@ -225,6 +276,14 @@ ul.jobs
         padding: $margin * $p
         padding-bottom: $p
         float: left
+        transition-property: -webkit-transform, width
+        transition-duration: 400ms
+        transition-timing-function: $cubic-bezier
+        -webkit-transform: scale(1)
+
+        &.hidden
+            -webkit-transform: scale(0)
+            width: 0
 
         .caption
             display block
