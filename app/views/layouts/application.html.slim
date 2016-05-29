@@ -1,32 +1,54 @@
+/!  
+     _____  _______ ______   ______  _____ 
+    |_____] |______ |     \ |_____/ |     |
+    |       |______ |_____/ |    \_ |_____|
+                                         
+    _______ _______ _______ _____ _______       
+    |  |  | |_____| |         |   |______ |     
+    |  |  | |     | |_____  __|__ |______ |_____
+
+    enjoy the source code! 
+
+
 doctype html
 html
-	head
-		title Pedro Maciel
-		meta name="viewport" content="width=device-width, initial-scale=1"
-		meta name="description" content="A Graphic Designer based in São Paulo/Brazil
-specialized In motion graphics+video editing"
+    head
+        title Pedro Maciel — Multidisciplinary Design
+        = stylesheet_link_tag "application"
+        = javascript_include_tag "application"
 		= favicon_link_tag "favicons/favicon.ico"
-		= stylesheet_link_tag    "application", media: "all"
-		= javascript_include_tag "application", "data-turbolinks-track" => true
-		= csrf_meta_tags
+		/ = csrf_meta_tags
 
+    body data-state="#{params[:controller]}##{params[:action]}"
+        header
+            .spacer.left-column
+                .logo-bar
+                .tag-bar
 
-	body
-		- if logged_in
-			.admin-bar
-				| logado / 
-				= link_to "sair", sessions_path, method: :delete
-		header
-		= yield
+            .logo-signature data-route="/"
+                = image_tag "logo.png", class:"logo"
+                .tagline.bar: h1.h3 Multidisciplinary Design
 
-		erb:
-			<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            .spacer.right-column
+                .logo-bar
+                .tag-bar
 
-			ga('create', 'UA-70632119-1', 'auto');
-			ga('send', 'pageview');
+        - if admin?
+            .admin-bar 
+                p 
+                    | Admin mode is ON / 
+                    = link_to "Turn OFF", "/logout", method: :delete
 
-			</script>
+            .admin-group
+                .h2 Add new client
+                = form_for Client.new do |f|
+                    = f.text_field :name        , placeholder: "name"
+                    = f.text_field :description , placeholder: "description"
+
+                    = f.submit
+            .admin-group
+                .h2 Add new Job
+                = render partial: "jobs/job_form", locals: { job: Job.new }
+
+        = image_tag "me-standing.png", class: "left-photo"
+        = yield

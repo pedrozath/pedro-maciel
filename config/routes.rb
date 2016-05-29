@@ -1,22 +1,14 @@
 Rails.application.routes.draw do
-  get 'projects/index'
-
-  get 'projects/show'
-
-	get "admin", to: "sessions#new"
-	delete "admin", to: "sessions#destroy"
-	
-	get "/", as:"design_works", to: "files#index", constraints: {subdomain: "designer"}
-	get "/", as:"biography", to: "events#index", constraints: {subdomain: "bio"}
-	
-	resources :projects
-	resources :pictures
-	resources :movies
-	
-	resources :sessions, path: "admin"
-	resources :events do 
-		resources :files
-	end
-	get "set-language/:locale", to: "locale#update"
-	root to: "pages#index"
+    get "jobs/change_cover", to: "jobs#change_cover", as: "change_cover"
+    get "/admin", to: "sessions#new"
+    post "/admin", to: "sessions#create"
+    delete "/logout", to: "sessions#destroy"
+    resources :jobs do 
+        resources :content_sections
+    end
+    resources :tags
+    resources :clients
+    get "/index.js", to: "pages#index", defaults: { format: "js"}
+    get "/index", to: redirect("/")
+    root to: "pages#index"
 end

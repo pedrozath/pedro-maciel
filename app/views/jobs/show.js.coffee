@@ -1,0 +1,4 @@
+$("main").html \ 
+"""
+    <%= render "job" %>
+"""

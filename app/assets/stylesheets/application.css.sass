@@ -1,169 +1,28 @@
-@import "grid"
-@import "fonts"
+@import "bourbon"
 
-$preto: #000
-$yellow: #FDF16F
-$grey: #ccc
++font-face("Simple",        "simple-light",    100, $file-formats: eot woff ttf svg)
++font-face("Simple",        "simple-regular",  500, $file-formats: eot woff ttf svg)
++font-face("Simple",        "simple-bold",     900, $file-formats: eot woff ttf svg)
++font-face("SimpleTitling", "simple-bold",     900, $file-formats: eot woff ttf svg)
++font-face("SimpleTitling", "simple",          900, $file-formats: eot woff ttf svg)
++font-face("Vectrex",       "vectrex-light",   100, $file-formats: eot woff ttf svg)
++font-face("Vectrex",       "vectrex-regular", 500, $file-formats: eot woff ttf svg)
++font-face("Vectrex",       "vectrex-bold",    900, $file-formats: eot woff ttf svg)
 
-body
-	font-family: $font-title
-	font-size: 18px
-	line-height: 1.34
-	background-color: $yellow
-	font-weight: 100
+$p: 12px
+$mili-p: $p/3
+$micro-p: $p/6
+$nano-p: $p/12
 
-	> header
-		// border-bottom: 1px solid #000
-.big
-	font-size: 28px
-	font-family: $font-title
-	text-align: center
-	line-height: 1
-	margin: 0 !important
+$main-width: 54
+$column-width: 24
+$margin: 0.5
 
-.left-photo
-	position: fixed
-	bottom: 0
-	width: 500px
-	z-index: -1
+$cubic-bezier: cubic-bezier(0,.88,.08,.99) 
 
-main
-	padding: 20px
-	padding-top: 40px
+$black: #000
+$brown: #983200
+$yellow: #FFF030
 
-.rich-text-area
-	display: block
-	height: 200px
-
-.admin-bar
-
-[contenteditable="true"]
-	display: block
-
-	&:hover
-		background-color: $yellow
-
-.files
-	.year
-		padding: 20px 10px
-		width: 50%
-		float: left
-
-		=mobile
-			float: none
-			width: 100%
-
-ul.pictures
-	list-style-type: none
-	padding: 0
-
-	li
-		display: block
-		margin: 5px
-		float: left
-
-.project
-	width: 25%
-
-	picture
-		border: 1px solid $yellow
-
-		&, & img
-			width: 200px
-			height: 200px
-
-[data-droppable]
-	background-color: #ccc
-
-	&.dropping
-		background-color: red
-
-	img
-		max-width: 200px
-		max-height: 200px
-
-	[data-state="progress"]
-		-webkit-filter: grayscale(1)
-
-.content > *
-	margin-bottom: 20px
-
-.black-rectangle
-	display: visible
-	background-color: #000
-	height: 33px
-
-iframe
-	box-shadow: 6px 6px 0px #000
-
-.media
-	margin-left: -10px
-	margin-top: -10px
-	a
-		display: block
-		@extend .span2
-		height: 90px
-		float: left
-		margin-left: 10px
-		margin-top: 10px
-
-		img
-			width: 100%
-
-h1
-	font-family: $font-title
-	font-weight: 100
-	text-align: justify
-	font-size: 20px
-	display: block
-
-.event
-	time
-		margin-top: 2px
-		font-size: 12px
-		text-align: right
-
-
-.event, .event > *
-	// border: 1px solid red
-
-input, label, button, textarea, .rich-text-area
-	width: 100%
-	display: block
-
-input, label, button, textarea, .rich-text-area, select
-	padding: 10px
-	margin: 5px 0
-	border: 1px solid $grey
-
-h1,h2,h3,h4,h5
-	text-transform: uppercase
-	margin-top: -5px
-
-h3
-	text-transform: none
-
-hr
-	border: none
-	border-top: 1px solid $preto
-
-a
-	color: $preto
-
-	&:hover
-		background-color: $preto
-		color: $yellow
-
-ul.inline
-	font-family: $font-copy
-	list-style-type: none
-	list-style-position: inside
-	padding: 0
-	font-size: 14px
-	margin-top: 0
-
-	li
-		display: inline-block
-
-		&::before
-			content: "/"
+@import "main"
+@import "form"

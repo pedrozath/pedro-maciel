@@ -1,0 +1,10 @@
+ul.jobs data-filter="true"
+    - for job in Job.all
+        li data-client=job.client.id data-tag=job.tag_ids_strings data-year=job.year
+            - if admin?
+                = link_to("×", job, method: :delete) if admin?
+            = link_to job, "data-auto-route" => true
+                .canvas = image_tag job.cover
+                .caption 
+                    .h3 
+                        = job.name
