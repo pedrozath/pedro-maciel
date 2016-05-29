@@ -1,4 +1,4 @@
-class JobsController < ApplicationController
+class PortfolioController < ApplicationController
     before_filter :authorize, only: [:create, :destroy, :edit, :change_cover]
     
     def create

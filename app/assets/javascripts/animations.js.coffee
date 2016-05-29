@@ -41,7 +41,7 @@ animations = ->
                 ease: Cubic.easeInOut
             , -0.1
         ]
-    "jobs#index": new TimelineMax
+    "portfolio#index": new TimelineMax
         paused: true
         stagger: 0.5
         align: "start"
@@ -63,7 +63,7 @@ animations = ->
             , -0.1
             , => callback.call() if callback?
         ]
-    "jobs#show": new TimelineMax
+    "portfolio#show": new TimelineMax
         stagger: 0.5
         paused: true
         align: "start"

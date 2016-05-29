@@ -46,12 +46,12 @@ class App
                 state: "pages#index"
                 url: "/index"
 
-            else if route.match(/\/jobs\/(.+)/) isnt null
-                state: "jobs#show"
+            else if route.match(/\/portfolio\/(.+)/) isnt null
+                state: "portfolio#show"
                 url: route
 
             else
-                state: "jobs#index"
+                state: "portfolio#index"
                 url: route
 
     load_state: (route_object, callback) ->

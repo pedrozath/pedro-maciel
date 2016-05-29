@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get "/admin", to: "sessions#new"
     post "/admin", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
-    resources :jobs do 
+    resources :jobs, path: "portfolio", controller: "portfolio" do 
         resources :content_sections
     end
     resources :tags

@@ -142,11 +142,11 @@ nav.left-column
     float: left
 
 .left-column
-    +state("jobs#show")
+    +state("portfolio#show")
         display: none
 
 header .right-column
-    +state("jobs#index")
+    +state("portfolio#index")
         display: none
 
     +state("pages#index")
@@ -208,7 +208,7 @@ main
     // border: $mili-p solid $black
     width: $main-width * $p
 
-    +state("jobs#show")
+    +state("portfolio#show")
         width: 80 * $p
 
     +state("pages#index")
@@ -267,7 +267,7 @@ ul.jobs
     display: table
     width: 54 * $p
 
-    +state("jobs#show")
+    +state("portfolio#show")
         display: none
 
     li
