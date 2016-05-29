@@ -24,20 +24,14 @@ class PortfolioController < ApplicationController
         @job = Job.find_by slug: params[:id]
 
         unless params[:job][:image].blank?
-            @cover = Image.create! file: params[:job][:image]
-            @job.image = @cover
-            @job.save
+            @job.create_image file: params[:job][:image]
         end
-
-        # render json: @job.to_json
 
         params[:job].delete :image
 
         @job.attributes = params.require(:job).permit \
             :name, :when, {tag_ids:[]},
             :brief,:client, :other_tags
-
-        # render text: params
 
         @job.save
 
