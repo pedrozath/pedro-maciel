@@ -1,4 +1,5 @@
 class ClientsController < ApplicationController
+    before_filter :authorize
     def create
         Client.create params[:client].permit(:name, :description)
         redirect_to :back

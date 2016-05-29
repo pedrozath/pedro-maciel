@@ -9,10 +9,9 @@ class PortfolioController < ApplicationController
 
         @job.create_image file: params.require(:job)[:image]
 
-        render text: @job.to_json
         @job.save
 
-        # redirect_to :back
+        redirect_to :back
     end
 
     def destroy
@@ -42,12 +41,8 @@ class PortfolioController < ApplicationController
 
         @job.save
 
-        redirect_to @job
+        redirect_to :back
 
-    end
-
-    def change_cover
-        @job.image 
     end
 
     def index
@@ -55,7 +50,6 @@ class PortfolioController < ApplicationController
             f.html
             f.js
         end
-
     end
 
     def show

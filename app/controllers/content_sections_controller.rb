@@ -1,4 +1,5 @@
 class ContentSectionsController < ApplicationController
+    before_filter :authorize
     def create
         @job = Job.find_by slug: params[:job_id]
 
