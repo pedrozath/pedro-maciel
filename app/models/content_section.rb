@@ -22,7 +22,7 @@ class ContentSection
 
     def upload_image
         unless image.nil?
-            self.image = Image.create file: image_file
+            self.create_image file: image_file
         end
     end
 end
