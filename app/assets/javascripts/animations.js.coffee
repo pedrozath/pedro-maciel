@@ -36,8 +36,10 @@ animations = ->
             , -0.1
             TweenMax.staggerFromTo $("header .left-column"), 0.5,
                 width: 288
+                marginLeft: 24
             ,
                 width: 0
+                marginLeft: 0
                 ease: Cubic.easeInOut
             , -0.1
         ]

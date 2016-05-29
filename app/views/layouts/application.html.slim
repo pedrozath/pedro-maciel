@@ -48,7 +48,7 @@ html
                     = f.submit
             .admin-group
                 .h2 Add new Job
-                = render partial: "jobs/job_form", locals: { job: Job.new }
+                = render partial: "portfolio/job_form", locals: { job: Job.new }
 
         = image_tag "me-standing.png", class: "left-photo"
         = yield
