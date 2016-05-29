@@ -3,7 +3,5 @@ class Image
     include Mongoid::Timestamps
 
     mount_uploader :file, ImageUploader
-
-    validates :file, presence: true
-    belongs_to :imageable, polymorphic: true
+    embedded_in :imageable, polymorphic: true
 end

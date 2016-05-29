@@ -6,5 +6,5 @@
     = f.collection_check_boxes :tag_ids, Tag.all, :id, :name
     = f.text_field        :other_tags
     = f.collection_select :client, Client.all, :id, :name
-    = f.file_field        :image
+    = f.file_field        :image_file
     = f.submit

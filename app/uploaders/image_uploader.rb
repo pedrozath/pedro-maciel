@@ -4,7 +4,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     storage :fog
 
     def store_dir
-        "images/#{model.id}-#{DateTime.now.to_s.parameterize}"
+        "images/#{model.id}"
     end
 
     def default_url(*args)

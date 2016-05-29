@@ -3,14 +3,13 @@ class ContentSectionsController < ApplicationController
     def create
         @job = Job.find_by slug: params[:job_id]
 
-        @content_section = @job.content_sections.new params[:content_section].permit \
+        @job.content_sections.new params[:content_section].permit \
             :type, :url,
             :title, :description,
-            :image_file, :job, :url
+            :image_file
 
-        # render text: params
+        @job.save!# render text: params
 
-        @content_section.save!
         redirect_to :back
     end
 

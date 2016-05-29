@@ -2,14 +2,12 @@ class PortfolioController < ApplicationController
     before_filter :authorize, only: [:create, :destroy, :edit, :change_cover]
     
     def create
-        @job = Job.new params[:job].permit \
+        @client = Client.find(params[:job][:client])
+        @client.jobs.new params[:job].permit \
             :name, :when, :tags,
-            :brief,:client,
-            :other_tags
+            :brief, :other_tags, :image_file
 
-        @job.create_image file: params.require(:job)[:image]
-
-        @job.save
+        @client.save!
 
         redirect_to :back
     end
@@ -23,13 +21,9 @@ class PortfolioController < ApplicationController
         # render text: params
         @job = Job.find_by slug: params[:id]
 
-        @job.create_image file: params[:job][:image] unless params[:job][:image].blank?
-
-        params[:job].delete :image
-
         @job.attributes = params.require(:job).permit \
             :name, :when, {tag_ids:[]},
-            :brief,:client, :other_tags
+            :brief,:client, :other_tags, :image_file
 
         @job.save
 

@@ -2,17 +2,16 @@ class Job
     include Mongoid::Document
     include Mongoid::Timestamps
     include Slug
+    include ImageHandling
 
     has_and_belongs_to_many :tags
     belongs_to :client
-    has_one :image, as: :imageable
     embeds_many :content_sections
 
     field :name,  type: String
     field :when,  type: Date
     field :brief, type: String
 
-    alias_method :content, :content_sections
     attr_accessor :other_tags, :tag_list
 
     before_save :save_tags
