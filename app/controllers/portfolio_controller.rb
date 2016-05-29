@@ -23,9 +23,7 @@ class PortfolioController < ApplicationController
         # render text: params
         @job = Job.find_by slug: params[:id]
 
-        unless params[:job][:image].blank?
-            @job.create_image file: params[:job][:image]
-        end
+        @job.create_image file: params[:job][:image] unless params[:job][:image].blank?
 
         params[:job].delete :image
 
