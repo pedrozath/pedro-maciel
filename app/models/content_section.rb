@@ -3,6 +3,7 @@ class ContentSection
     include Mongoid::Timestamps
     include Mongoid::Orderable
     include ImageHandling
+    orderable
 
     def self.types
         [
@@ -14,7 +15,6 @@ class ContentSection
     default_scope -> { all.order(position: :asc) } 
 
     embedded_in :job
-    orderable
 
     field :type,        type: Symbol
     field :url,         type: String
