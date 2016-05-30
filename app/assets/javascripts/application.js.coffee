@@ -19,10 +19,12 @@ class App
         do @init_filter
 
     init_filter: ->
-        puts "initializing filter"
         @filter = new Filter
             elements_html: $("[data-filter]").children()
             tag_group_elements: $("[data-tag-selection]")
+
+    assign_elements_to_filter: ->
+        @filter.assign_elements $("[data-filter]").children()
 
     bind_events: (scope) ->
         scope = @body unless scope?

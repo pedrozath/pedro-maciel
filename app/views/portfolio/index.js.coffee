@@ -1,3 +1,8 @@
-$('<%= render "portfolio/nav_jobs" %>').prependTo(".content")
 $("main").html('<%= render "jobs" %>')
-do app.init_filter
+
+if $("[data-partial=\"nav_jobs\"]").size() > 0
+    do app.assign_elements_to_filter
+
+else
+    $('<%= render "portfolio/nav_jobs" %>').prependTo(".content")
+    do app.init_filter

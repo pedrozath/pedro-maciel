@@ -7,8 +7,11 @@ class Filter
             tag_group_elements: @tag_group_elements
             callback: => @filter()
 
+        @assign_elements @elements_html
+
+    assign_elements: (elements_html) ->
         @elements = []
-        @elements_html.each (index, html) =>
+        elements_html.each (index, html) =>
             new_element = {}
             new_element.html = html
             new_element.hidden = false
