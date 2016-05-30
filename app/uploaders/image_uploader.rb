@@ -10,4 +10,8 @@ class ImageUploader < CarrierWave::Uploader::Base
     def default_url(*args)
         ""
     end
+
+    version :cover do
+        process resize_to_fill: [312, 180]
+    end
 end
