@@ -34,7 +34,7 @@ class Filter
             else
                 unless element.hidden
                     element.hidden = true
-                    hidden_elements = visible_elements.add(element.html)
+                    hidden_elements = hidden_elements.add(element.html)
 
         hidden_elements.addClass("hidden")
         visible_elements.removeClass("hidden")
