@@ -6,7 +6,7 @@ article.job-content
         .bar: h1.h1= @job.name
 
     section
-        = image_tag @job.cover
+        = image_tag @job.image.file unless @job.image.file.nil?
 
         .caption.right-column
             header.header-sandwich: .bar: h3.h2 Job Info
