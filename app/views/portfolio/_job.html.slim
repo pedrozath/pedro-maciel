@@ -56,7 +56,6 @@ article.job-content
 
         - if admin?
             section.form-box
-                = debug section.to_json
                 h2.h2 Editar a seção acima
                 = link_to "↑ subir seção",  "#{@job.slug}/#{section.id}/higher"
                 = link_to "↓ descer seção", "#{@job.slug}/#{section.id}/lower"
