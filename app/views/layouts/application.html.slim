@@ -33,6 +33,10 @@ html
                 .logo-bar
                 .tag-bar
 
+
+        = image_tag "me-standing.png", class: "left-photo"
+        = yield
+        
         - if admin?
             .admin-bar 
                 p 
@@ -49,6 +53,3 @@ html
             .admin-group
                 .h2 Add new Job
                 = render partial: "portfolio/job_form", locals: { job: Job.new }
-
-        = image_tag "me-standing.png", class: "left-photo"
-        = yield
