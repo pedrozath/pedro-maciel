@@ -51,7 +51,7 @@ class Job
 
     def cover
         begin
-            self.image.file.url
+            self.image.file.url :cover
         rescue
             ""
         end
