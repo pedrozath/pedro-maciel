@@ -16,17 +16,16 @@ class App
         @current_state = @body.attr "data-state"
         @add_to_history location.pathname
         do @bind_events
+        do @init_filter
 
-
+    init_filter: ->
+        puts "initializing filter"
+        @filter = new Filter
+            elements_html: $("[data-filter]").children()
+            tag_group_elements: $("[data-tag-selection]")
 
     bind_events: (scope) ->
         scope = @body unless scope?
-
-
-        if scope.find("[data-filter]")
-            @filter = new Filter
-                elements_html: scope.find("[data-filter]").children()
-                tag_group_elements: scope.find("[data-tag-selection]")
 
         scope.find("[data-auto-route]").on "click", (e) => 
             e.preventDefault()
@@ -57,7 +56,7 @@ class App
     load_state: (route_object, callback) ->
         $.get "#{route_object.url}.js", (data) =>
             callback.call() if callback?
-            @bind_events($("main"))
+            @bind_events $("main")
 
     add_to_history: (url) -> history.pushState url, "", url
 
