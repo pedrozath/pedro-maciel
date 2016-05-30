@@ -17,7 +17,8 @@ class PortfolioController < ApplicationController
 
     def update
         @job = Job.find_by slug: params[:id]
-        @job.client = Client.find_by params.require(:job)[:client]
+        @job.client = Client.find params.require(:job)[:client]
+        # render text: @job.client.to_json
         @job.attributes = params.require(:job).permit \
             :name, :when, {tag_ids:[]},
             :brief, :other_tags, :image_file

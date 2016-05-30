@@ -14,7 +14,7 @@ article.job-content
                 tbody
                     tr
                         th Client
-                        td: p This job has no client. It was made for personal means.
+                        td: p= @job.client.description
                     tr
                         th Brief
                         td: p= @job.brief
