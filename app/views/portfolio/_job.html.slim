@@ -49,6 +49,18 @@ article.job-content
                     frameborder="0" webkitallowfullscreen 
                     mozallowfullscreen allowfullscreen]
 
+            - when :youtube
+                iframe[src=section.youtube_url
+                    width="648" height="364" 
+                    frameborder="0" webkitallowfullscreen 
+                    mozallowfullscreen allowfullscreen]
+ 
+            - when :vimeo
+                iframe[src=section.vimeo_url
+                    width="648" height="364" 
+                    frameborder="0" webkitallowfullscreen 
+                    mozallowfullscreen allowfullscreen]
+
             - unless section.title.blank?
                 .caption.right-column
                     header.header-sandwich: .bar: h3.h2 = section.title
@@ -65,6 +77,7 @@ article.job-content
                         = f.text_field :title, placeholder: "title"
                         = f.select :type, ContentSection.types
                         = f.text_field :description, placeholder: "description"
+                        = f.text_field :video_code, placeholder: "video code"
                         = f.text_field :url, placeholder: "url"
                         = f.file_field :image_file
                         = f.submit

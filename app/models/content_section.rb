@@ -8,7 +8,9 @@ class ContentSection
     def self.types
         [
             :image, 
-            :video
+            :video,
+            :youtube,
+            :vimeo
         ]
     end
 
@@ -18,7 +20,16 @@ class ContentSection
 
     field :type,        type: Symbol
     field :url,         type: String
+    field :video_code,  type: String
     field :title,       type: String
     field :description, type: String
+
+    def youtube_url
+        "http://www.youtube.com/embed/#{self.video_code}"
+    end
+
+    def vimeo_url
+        "http://player.vimeo.com/video/#{self.video_code}"
+    end
 
 end

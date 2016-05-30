@@ -7,7 +7,7 @@ class ContentSectionsController < ApplicationController
         @job.content_sections.create params[:content_section].permit \
             :type, :url,
             :title, :description,
-            :image_file
+            :image_file, :video_code
 
         redirect_to :back
 
@@ -17,7 +17,7 @@ class ContentSectionsController < ApplicationController
         @job = Job.find_by slug: params[:job_id]
         @content_section = @job.content_sections.find params[:id]
         @content_section.attributes = params[:content_section].permit \
-            :type, :url,
+            :type, :url, :video_code,
             :title, :description,
             :image_file, :job, :url
 
