@@ -4,7 +4,10 @@ class ContentSection
     include ImageHandling
 
     def self.types
-        [:image, :video]
+        [
+            :image, 
+            :video
+        ]
     end
 
     validates :title, :description, presence: true

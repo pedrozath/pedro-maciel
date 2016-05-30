@@ -1,16 +1,16 @@
 class ContentSectionsController < ApplicationController
     before_filter :authorize
+
     def create
         @job = Job.find_by slug: params[:job_id]
 
-        @job.content_sections.new params[:content_section].permit \
+        @job.content_sections.create params[:content_section].permit \
             :type, :url,
             :title, :description,
             :image_file
 
-        @job.save!# render text: params
-
         redirect_to :back
+
     end
 
     def update
@@ -24,6 +24,12 @@ class ContentSectionsController < ApplicationController
         # render text: params
 
         @content_section.save!
+        redirect_to :back
+    end
+
+    def destroy
+        @job = Job.find_by slug: params[:job_id]
+        @job.content_sections.find(params[:id]).destroy
         redirect_to :back
     end
 
