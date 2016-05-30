@@ -5,6 +5,6 @@
     = f.label :tags
     = f.collection_check_boxes :tag_ids, Tag.all, :id, :name
     = f.text_field        :other_tags
-    = f.collection_select :client, Client.all, :id, :name
+    = f.collection_select :client, Client.all, :id, :name, (job.client.nil? ? {} : {selected: job.client.id})
     = f.file_field        :image_file
     = f.submit
