@@ -16,12 +16,11 @@ class PortfolioController < ApplicationController
     end
 
     def update
-        # render text: params
         @job = Job.find_by slug: params[:id]
-
+        @job.client = Client.find_by params.require(:job)[:client]
         @job.attributes = params.require(:job).permit \
             :name, :when, {tag_ids:[]},
-            :brief,:client, :other_tags, :image_file
+            :brief, :other_tags, :image_file
 
         @job.save
 
