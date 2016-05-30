@@ -7,7 +7,7 @@ class Job
 
     has_and_belongs_to_many :tags
     belongs_to :client
-    embeds_many :content_sections
+    embeds_many :content_sections, cascade_callbacks: true
 
     # default_scope order(:order_by)
 

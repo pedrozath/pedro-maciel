@@ -33,4 +33,12 @@ class ContentSectionsController < ApplicationController
         redirect_to :back
     end
 
+    def move
+        @job = Job.find_by(slug: params[:job])
+        @section = @job.content_sections.find(params[:id])
+        @section.move_to params[:direction].to_sym
+        @section.save
+        redirect_to :back
+    end
+
 end

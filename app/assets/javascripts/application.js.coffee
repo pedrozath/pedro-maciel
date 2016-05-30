@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require turbolinks
 #= require tag_selection
 #= require tag_system
 #= require TweenMax

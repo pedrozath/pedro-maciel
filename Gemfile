@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 
+gem 'mongoid_orderable'
 gem 'slim-rails'
 gem 'slim-mustache'
 gem 'puma'

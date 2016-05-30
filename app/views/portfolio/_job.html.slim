@@ -6,7 +6,8 @@ article.job-content
         .bar: h1.h1= @job.name
 
     section
-        = image_tag @job.image.file unless @job.image.file.nil?
+        - if @job.has_image?
+            = image_tag @job.image.file unless @job.image.file.nil?
 
         .caption.right-column
             header.header-sandwich: .bar: h3.h2 Job Info
@@ -33,9 +34,9 @@ article.job-content
                             - for tag in @job.tags
                                 li= link_to tag.name, "#"
     - if admin?
-        section
+        section.form-box
             h2.h2 Editar Job
-            = render partial: "job_form", locals: { job: @job }
+            div = render partial: "job_form", locals: { job: @job }
 
     - for section in @job.content_sections
         section
@@ -54,24 +55,29 @@ article.job-content
                     p = section.description
 
         - if admin?
-            section
+            section.form-box
+                = debug section.to_json
                 h2.h2 Editar a seção acima
-                = link_to "apagar seção", [@job, section], method: :delete
-                = form_for [@job, section] do |f|
+                = link_to "↑ subir seção",  "#{@job.slug}/#{section.id}/higher"
+                = link_to "↓ descer seção", "#{@job.slug}/#{section.id}/lower"
+                div
+                    = link_to "apagar seção", [@job, section], method: :delete
+                    = form_for [@job, section] do |f|
+                        = f.text_field :title, placeholder: "title"
+                        = f.select :type, ContentSection.types
+                        = f.text_field :description, placeholder: "description"
+                        = f.text_field :url, placeholder: "url"
+                        = f.file_field :image_file
+                        = f.submit
+
+    - if admin?
+        section.form-box
+            h2.h2 Criar nova seção
+            div
+                = form_for [@job, ContentSection.new] do |f|
                     = f.text_field :title, placeholder: "title"
                     = f.select :type, ContentSection.types
                     = f.text_field :description, placeholder: "description"
                     = f.text_field :url, placeholder: "url"
                     = f.file_field :image_file
                     = f.submit
-
-    - if admin?
-        section
-            h2.h2 Criar nova seção
-            = form_for [@job, ContentSection.new] do |f|
-                = f.text_field :title, placeholder: "title"
-                = f.select :type, ContentSection.types
-                = f.text_field :description, placeholder: "description"
-                = f.text_field :url, placeholder: "url"
-                = f.file_field :image_file
-                = f.submit

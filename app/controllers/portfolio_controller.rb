@@ -1,5 +1,5 @@
 class PortfolioController < ApplicationController
-    before_filter :authorize, only: [:create, :destroy, :edit, :change_cover]
+    before_filter :authorize, except: [:index, :show]
     
     def create
         @client = Client.find(params[:job][:client])
