@@ -3,16 +3,17 @@ class Job
     include Mongoid::Timestamps
     include Slug
     include ImageHandling
+    attr_accessor :other_tags, :tag_list
 
     has_and_belongs_to_many :tags
     belongs_to :client
     embeds_many :content_sections
 
+    # default_scope order(:order_by)
+
     field :name,  type: String
     field :when,  type: Date
     field :brief, type: String
-
-    attr_accessor :other_tags, :tag_list
 
     before_save :save_tags
     after_destroy :clean_tags

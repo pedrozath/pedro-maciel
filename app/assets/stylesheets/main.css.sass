@@ -276,7 +276,7 @@ ul.jobs
         padding: $margin * $p
         padding-bottom: $p
         float: left
-        transition-property: -webkit-transform, width
+        transition-property: -webkit-transform, width, padding
         transition-duration: 400ms
         transition-timing-function: $cubic-bezier
         -webkit-transform: scale(1)
@@ -284,6 +284,7 @@ ul.jobs
         &.hidden
             -webkit-transform: scale(0)
             width: 0
+            padding: 0
 
         .caption
             display block
