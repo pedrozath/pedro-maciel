@@ -48,9 +48,10 @@ article.job-content
                     frameborder="0" webkitallowfullscreen 
                     mozallowfullscreen allowfullscreen]
 
-            .caption.right-column
-                header.header-sandwich: .bar: h3.h2 = section.title
-                p = section.description
+            - unless section.title.blank?
+                .caption.right-column
+                    header.header-sandwich: .bar: h3.h2 = section.title
+                    p = section.description
 
         - if admin?
             section

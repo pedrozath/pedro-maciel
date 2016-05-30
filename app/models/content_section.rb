@@ -10,8 +10,6 @@ class ContentSection
         ]
     end
 
-    validates :title, :description, presence: true
-
     embedded_in :job
 
     field :type,        type: Symbol
