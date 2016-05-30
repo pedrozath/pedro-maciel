@@ -4,9 +4,11 @@ namespace :images do
         for job in Job.all
             unless job.image.file.nil?
                 job.image.file.recreate_versions!
+            end
             for section in job.content_sections
                 unless job.image.file.nil?
                     section.image.file.recreate_versions!
+                end
             end
         end
     end
