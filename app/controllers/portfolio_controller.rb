@@ -3,11 +3,9 @@ class PortfolioController < ApplicationController
     
     def create
         @client = Client.find(params[:job][:client])
-        @client.jobs.new params[:job].permit \
+        @client.jobs.create params[:job].permit \
             :name, :when, :tags,
             :brief, :other_tags, :image_file
-
-        @client.save!
 
         redirect_to :back
     end
