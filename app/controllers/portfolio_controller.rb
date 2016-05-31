@@ -7,7 +7,8 @@ class PortfolioController < ApplicationController
             :name, :when, :tags,
             :brief, :other_tags, :image_file
         @job.credits = eval "#{params[:job][:credits]}"
-
+        @job.save
+        
         redirect_to :back
     end
 
