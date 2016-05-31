@@ -3,9 +3,10 @@ class PortfolioController < ApplicationController
     
     def create
         @client = Client.find(params[:job][:client])
-        @client.jobs.create params[:job].permit \
+        @job = @client.jobs.new params[:job].permit \
             :name, :when, :tags,
             :brief, :other_tags, :image_file
+        @job.credits = eval "#{params[:job][:credits]}"
 
         redirect_to :back
     end
@@ -22,9 +23,8 @@ class PortfolioController < ApplicationController
         @job.attributes = params.require(:job).permit \
             :name, :when, {tag_ids:[]},
             :brief, :other_tags, :image_file
-
-        @job.save
-
+        @job.credits = eval "#{params[:job][:credits]}"
+        @job.save!
         redirect_to :back
 
     end

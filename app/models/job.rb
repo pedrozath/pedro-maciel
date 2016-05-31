@@ -11,9 +11,10 @@ class Job
 
     # default_scope order(:order_by)
 
-    field :name,  type: String
-    field :when,  type: Date
-    field :brief, type: String
+    field :name,    type: String
+    field :when,    type: Date
+    field :brief,   type: String
+    field :credits, type: Hash
 
     before_save :save_tags
     after_destroy :clean_tags

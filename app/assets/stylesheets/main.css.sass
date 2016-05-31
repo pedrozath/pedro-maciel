@@ -168,7 +168,40 @@ section
 .tag-bar
     height: $p
 
+.center
+    text-align: center
+    width: 100%
+
 .job-content
+    footer
+        width: 54 * $p
+
+        tr
+
+        th, td
+            vertical-align: top
+            width: 50%
+            padding: $mili-p
+            line-height: 1.5
+
+        td 
+            ul
+                li
+                    list-style-type: none
+            p, ul
+                margin: 0
+                margin-top: 1px
+
+        table
+            margin: 0 auto
+            width: auto
+
+        tr > *
+            border: none
+
+        th
+            text-align: right
+
     section
         display: table
         min-height: 30 * $p
@@ -376,23 +409,33 @@ ul.grid
 .container
     display: table
 
-table
-    padding: $p
-    width: 100%
-    border-collapse: collapse
+.right-column
+    table
+        padding: $p
+        width: 100%
+        border-collapse: collapse
 
-    tr + tr
-        td, th
-            border-top: $nano-p solid $black
+        tr + tr
+            td, th
+                border-top: $nano-p solid $black
 
-    th 
-        padding: $p 0
-        font-weight: 900
+        th 
+            padding: $p 0
+            font-weight: 900
 
-    th, td
-        line-height: 1.4
-        text-align: left
-        vertical-align: top
+        th, td
+            line-height: 1.4
+            text-align: left
+            vertical-align: top
+
+        ul li
+            text-decoration: none
+            padding: $mili-p
+            padding-bottom: $mili-p -  2 * $nano-p
+            border-radius: $p/2
+            border: $nano-p solid $black
+            // display: block
+            margin: $nano-p
 
         ul
             padding: 0
@@ -402,23 +445,15 @@ table
                 list-style-type: none
                 display: inline-block
 
-                a
-                    text-decoration: none
-                    padding-bottom: $mili-p - 2 * $micro-p
-                    border-radius: $p/2
-                    border: $nano-p solid $black
-                    display: block
-                    margin: $nano-p
+        td p, td ul li a
+            padding: $p/2
+            margin-bottom: $p/2
+            padding-bottom: $p/2 - $mili-p
 
-    td p, td ul li a
-        padding: $p/2
-        margin-bottom: $p/2
-        padding-bottom: $p/2 - $mili-p
+        td
+            padding-top: $p/2
+            padding-left: $p/2
 
-    td
-        padding-top: $p/2
-        padding-left: $p/2
-
-        p
-            margin-top: 0
-            // text-align: right
+            p
+                margin-top: 0
+                // text-align: right

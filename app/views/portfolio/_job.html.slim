@@ -11,28 +11,13 @@ article.job-content
 
         .caption.right-column
             header.header-sandwich: .bar: h3.h2 Job Info
-            table
-                tbody
-                    tr
-                        th Client
-                        td: p= @job.client.description
-                    tr
-                        th Brief
-                        td: p= @job.brief
-                    tr
-                        th Date
-                        td: p = @job.when
+            = table_for \
+                "Client" => @job.client.description,
+                "Brief"  => @job.brief,
+                "Date"   => @job.when,
+                "Areas"  => @job.areas.collect(&:name),
+                "Tags"   => @job.tags.collect(&:name)
 
-                    tr
-                        th Areas
-                        td: ul
-                                - for area in @job.areas
-                                    li= link_to area, "#"
-                    tr
-                        th Tags
-                        td: ul
-                            - for tag in @job.tags
-                                li= link_to tag.name, "#"
     - if admin?
         section.form-box
             h2.h2 Editar Job
@@ -76,7 +61,7 @@ article.job-content
                     = form_for [@job, section] do |f|
                         = f.text_field :title, placeholder: "title"
                         = f.select :type, ContentSection.types
-                        = f.text_field :description, placeholder: "description"
+                        = f.text_area :description, placeholder: "description"
                         = f.text_field :video_code, placeholder: "video code"
                         = f.text_field :url, placeholder: "url"
                         = f.file_field :image_file
@@ -89,7 +74,11 @@ article.job-content
                 = form_for [@job, ContentSection.new] do |f|
                     = f.text_field :title, placeholder: "title"
                     = f.select :type, ContentSection.types
-                    = f.text_field :description, placeholder: "description"
+                    = f.text_area :description, placeholder: "description"
                     = f.text_field :url, placeholder: "url"
                     = f.file_field :image_file
                     = f.submit
+        footer
+            h2.h2.center Credits
+            = table_for @job.credits
+            = link_to "← Back to portfolio index", jobs_path, class: "h3", data: {"auto-route" => true}
