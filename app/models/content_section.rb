@@ -14,7 +14,8 @@ class ContentSection
             :youtube,
             :vimeo,
             :speaker_deck,
-            :github
+            :github,
+            :issu
         ]
     end
 

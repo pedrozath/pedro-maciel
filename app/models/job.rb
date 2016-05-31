@@ -9,8 +9,6 @@ class Job
     belongs_to :client
     embeds_many :content_sections, cascade_callbacks: true
 
-    # default_scope order(:order_by)
-
     field :name,    type: String
     field :when,    type: Date
     field :brief,   type: String
