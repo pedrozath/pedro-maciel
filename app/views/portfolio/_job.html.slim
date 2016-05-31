@@ -78,7 +78,7 @@ article.job-content
                     = f.text_field :url, placeholder: "url"
                     = f.file_field :image_file
                     = f.submit
-        footer
-            h2.h2.center Credits
-            = table_for @job.credits
-            = link_to "← Back to portfolio index", jobs_path, class: "h3", data: {"auto-route" => true}
+    footer
+        h2.h2.center Credits
+        = table_for @job.credits
+        = link_to "← Back to portfolio index", jobs_path, class: "h3", data: {"auto-route" => true}
