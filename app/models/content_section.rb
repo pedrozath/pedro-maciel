@@ -10,7 +10,8 @@ class ContentSection
             :image, 
             :video,
             :youtube,
-            :vimeo
+            :vimeo,
+            :speaker_deck
         ]
     end
 
@@ -21,6 +22,7 @@ class ContentSection
     field :type,        type: Symbol
     field :url,         type: String
     field :video_code,  type: String
+    field :code,        type: String
     field :title,       type: String
     field :description, type: String
 

@@ -28,5 +28,11 @@ module PedroMaciel
         config.i18n.available_locales = [:en, :pt_BR]
         config.assets.paths << Rails.root.join("app", "assets", "fonts")
         # Do not swallow errors in after_commit/after_rollback callbacks.
+
+        config.action_dispatch.default_headers = {
+            'Access-Control-Allow-Origin' => 'http://my-web-service-consumer-site.com',
+            'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+        }
+        
     end
 end

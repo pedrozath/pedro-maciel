@@ -5,7 +5,7 @@ class ContentSectionsController < ApplicationController
         @job = Job.find_by slug: params[:job_id]
 
         @job.content_sections.create params[:content_section].permit \
-            :type, :url,
+            :type, :url, :code,
             :title, :description,
             :image_file, :video_code
 
@@ -17,7 +17,7 @@ class ContentSectionsController < ApplicationController
         @job = Job.find_by slug: params[:job_id]
         @content_section = @job.content_sections.find params[:id]
         @content_section.attributes = params[:content_section].permit \
-            :type, :url, :video_code,
+            :type, :url, :video_code, :code,
             :title, :description,
             :image_file, :job, :url
 

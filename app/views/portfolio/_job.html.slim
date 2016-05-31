@@ -24,7 +24,7 @@ article.job-content
             div = render partial: "job_form", locals: { job: @job }
 
     - for section in @job.content_sections
-        section
+        section id="section-#{section.id}"
             - case section.type
             - when :image
                 = image_tag section.image.file.url unless section.image.nil?
@@ -45,6 +45,16 @@ article.job-content
                     width="648" height="364" 
                     frameborder="0" webkitallowfullscreen 
                     mozallowfullscreen allowfullscreen]
+            - when :speaker_deck
+                
+
+                javascript:
+                    data = {"type":"rich","version":1.0,"provider_name":"Speaker Deck","provider_url":"https://speakerdeck.com/","title":"Fight the Zombie Pattern Library - RWD Summit 2016","author_name":"Marcelo Somers","author_url":"https://speakerdeck.com/marcelosomers","html":"\u003Ciframe allowfullscreen=\"true\" allowtransparency=\"true\" frameborder=\"0\" height=\"596\" id=\"talk_frame_334390\" mozallowfullscreen=\"true\" src=\"//speakerdeck.com/player/1f957e89563b440d96c16986507b790f\" style=\"border:0; padding:0; margin:0; background:transparent;\" webkitallowfullscreen=\"true\" width=\"710\"\u003E\u003C/iframe\u003E\n","width":710,"height":596}
+
+                    var iframe = $(data.html)
+                    iframe.width(648)
+                    iframe.appendTo("#section-#{section.id}")
+
 
             - unless section.title.blank?
                 .caption.right-column
@@ -64,6 +74,7 @@ article.job-content
                         = f.text_area :description, placeholder: "description"
                         = f.text_field :video_code, placeholder: "video code"
                         = f.text_field :url, placeholder: "url"
+                        = f.text_area :code, placeholder: "code"
                         = f.file_field :image_file
                         = f.submit
 
@@ -75,7 +86,8 @@ article.job-content
                     = f.text_field :title, placeholder: "title"
                     = f.select :type, ContentSection.types
                     = f.text_area :description, placeholder: "description"
-                    = f.text_field :url, placeholder: "url"
+                    = f.text_field :url, placeholder: "url (for embedding iframe, :video)"
+                    = f.text_area :code, placeholder: "code"
                     = f.file_field :image_file
                     = f.submit
     footer
