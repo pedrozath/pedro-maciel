@@ -4,7 +4,7 @@ class PortfolioController < ApplicationController
     def create
         @client = Client.find(params[:job][:client])
         @job = @client.jobs.new params[:job].permit \
-            :name, :when, :tags,
+            :name, :when, {tag_ids:[]},
             :brief, :other_tags, :image_file
         @job.credits = eval "#{params[:job][:credits]}"
         @job.save
