@@ -49,11 +49,11 @@ article.job-content
                 
 
                 javascript:
-                    data = {"type":"rich","version":1.0,"provider_name":"Speaker Deck","provider_url":"https://speakerdeck.com/","title":"Fight the Zombie Pattern Library - RWD Summit 2016","author_name":"Marcelo Somers","author_url":"https://speakerdeck.com/marcelosomers","html":"\u003Ciframe allowfullscreen=\"true\" allowtransparency=\"true\" frameborder=\"0\" height=\"596\" id=\"talk_frame_334390\" mozallowfullscreen=\"true\" src=\"//speakerdeck.com/player/1f957e89563b440d96c16986507b790f\" style=\"border:0; padding:0; margin:0; background:transparent;\" webkitallowfullscreen=\"true\" width=\"710\"\u003E\u003C/iframe\u003E\n","width":710,"height":596}
-
-                    var iframe = $(data.html)
-                    iframe.width(648)
-                    iframe.appendTo("#section-#{section.id}")
+                    $.get("http://speakerdeck.com/oembed.json?url=#{section.url}", function(data){
+                        var iframe = $(data.html)
+                        iframe.width(648)
+                        iframe.appendTo("#section-#{section.id}")
+                    })
 
 
             - unless section.title.blank?
