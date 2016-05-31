@@ -25,7 +25,7 @@ article.job-content
 
     - for section in @job.content_sections
         - if section.type == :github
-            h2.h2 Check the repository on GitHub
+            h2.h2 Check on GitHub
         section id="section-#{section.id}"
             - case section.type
             - when :image
