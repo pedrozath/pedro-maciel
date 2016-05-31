@@ -12,8 +12,13 @@ body
     background-color: $yellow
     font-weight: 500
     margin: 0
-    padding-left: 10%
     color: $black
+    padding-left: 10%
+    min-width: 960px
+    transition: padding 300ms ease-out
+
+    &[data-state="portfolio#index"]
+        padding-left: 0
 
     > * > *
         margin-left: 2 * $p
@@ -237,11 +242,13 @@ main
     // border: $mili-p solid $black
     width: $main-width * $p
 
-    +state("portfolio#show")
-        width: 80 * $p
-
     +state("pages#index")
         width: 80 * $p
+
+    +state("portfolio#index")
+        width: calc(100% - #{24 * $p + 4 * $p})
+    
+    +state("pages#index")
         height: 100%
 
     img
@@ -294,14 +301,14 @@ ul.jobs
     padding: 0
     margin: -($margin * $p)
     display: table
-    width: 54 * $p
+    width: 100%
 
     +state("portfolio#show")
         display: none
 
     li
         list-style-type: none
-        width: 50%
+        width: 26 * $p
         padding: $margin * $p
         padding-bottom: $p
         float: left
