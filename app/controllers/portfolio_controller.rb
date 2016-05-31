@@ -6,6 +6,7 @@ class PortfolioController < ApplicationController
         @job = @client.jobs.new params[:job].permit \
             :name, :when, {tag_ids:[]},
             :brief, :other_tags, :image_file
+
         @job.credits = eval "#{params[:job][:credits]}"
         @job.save
         
@@ -24,6 +25,7 @@ class PortfolioController < ApplicationController
         @job.attributes = params.require(:job).permit \
             :name, :when, {tag_ids:[]},
             :brief, :other_tags, :image_file
+            
         @job.credits = eval "#{params[:job][:credits]}"
         @job.save!
         redirect_to :back
