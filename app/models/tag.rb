@@ -4,6 +4,8 @@ class Tag
     field :name, type: String
     validates :name, uniqueness: true, presence: true
 
+    default_scope Proc.new { all.order_by name: :asc }
+
     def self.clean_up
         for tag in self.all
             tag.destroy unless tag.jobs.size > 0
