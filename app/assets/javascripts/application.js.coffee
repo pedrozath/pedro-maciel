@@ -6,6 +6,7 @@
 #= require TweenMax
 #= require animations
 #= require filter
+#= require github_card
 
 class App
     constructor: (options) ->

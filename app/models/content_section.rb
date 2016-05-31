@@ -13,7 +13,8 @@ class ContentSection
             :video,
             :youtube,
             :vimeo,
-            :speaker_deck
+            :speaker_deck,
+            :github
         ]
     end
 
@@ -27,6 +28,11 @@ class ContentSection
     field :code,        type: String
     field :title,       type: String
     field :description, type: String
+
+    def github
+        github_data = self.url.split("/")
+        OpenStruct.new user: github_data[0], repo: github_data[1]
+    end
 
     def youtube_url
         "http://www.youtube.com/embed/#{self.video_code}"

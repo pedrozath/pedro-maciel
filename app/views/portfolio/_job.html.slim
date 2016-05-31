@@ -24,6 +24,8 @@ article.job-content
             div = render partial: "job_form", locals: { job: @job }
 
     - for section in @job.content_sections
+        - if section.type == :github
+            h2.h2 Check the repository on GitHub
         section id="section-#{section.id}"
             - case section.type
             - when :image
@@ -47,6 +49,19 @@ article.job-content
                     mozallowfullscreen allowfullscreen]
             - when :speaker_deck
                 == section.speakerdeck_presentation
+
+            - when :github
+                .github-card[
+                    data-user="#{section.github.user}"
+                    data-repo="#{section.github.repo}" 
+                    data-width="400" 
+                    data-height="" 
+                    data-theme="default"]
+                / = image_tag "github-mark.png", height: 30
+                / = image_tag "github-logo.png", height: 30
+                
+                coffee:
+                    github_card()
 
             - unless section.title.blank?
                 .caption.right-column
