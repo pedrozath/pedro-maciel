@@ -46,15 +46,7 @@ article.job-content
                     frameborder="0" webkitallowfullscreen 
                     mozallowfullscreen allowfullscreen]
             - when :speaker_deck
-                
-
-                javascript:
-                    $.get("http://speakerdeck.com/oembed.json?url=#{section.url}", function(data){
-                        var iframe = $(data.html)
-                        iframe.width(648)
-                        iframe.appendTo("#section-#{section.id}")
-                    })
-
+                == section.speakerdeck_presentation
 
             - unless section.title.blank?
                 .caption.right-column
@@ -62,34 +54,21 @@ article.job-content
                     p = section.description
 
         - if admin?
+
             section.form-box
                 h2.h2 Editar a seção acima
                 = link_to "↑ subir seção",  "#{@job.slug}/#{section.id}/higher"
                 = link_to "↓ descer seção", "#{@job.slug}/#{section.id}/lower"
                 div
                     = link_to "apagar seção", [@job, section], method: :delete
-                    = form_for [@job, section] do |f|
-                        = f.text_field :title, placeholder: "title"
-                        = f.select :type, ContentSection.types
-                        = f.text_area :description, placeholder: "description"
-                        = f.text_field :video_code, placeholder: "video code"
-                        = f.text_field :url, placeholder: "url"
-                        = f.text_area :code, placeholder: "code"
-                        = f.file_field :image_file
-                        = f.submit
+                    = render partial: "content_section_form", locals: { job: @job, section: section }
 
     - if admin?
         section.form-box
             h2.h2 Criar nova seção
             div
-                = form_for [@job, ContentSection.new] do |f|
-                    = f.text_field :title, placeholder: "title"
-                    = f.select :type, ContentSection.types
-                    = f.text_area :description, placeholder: "description"
-                    = f.text_field :url, placeholder: "url (for embedding iframe, :video)"
-                    = f.text_area :code, placeholder: "code"
-                    = f.file_field :image_file
-                    = f.submit
+                = render partial: "content_section_form", locals: { job: @job, section: @job.content_sections.new }
+
     footer
         h2.h2.center Credits
         = table_for @job.credits

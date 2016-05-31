@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class ContentSection
     include Mongoid::Document
     include Mongoid::Timestamps
@@ -34,4 +36,7 @@ class ContentSection
         "http://player.vimeo.com/video/#{self.video_code}"
     end
 
+    def speakerdeck_presentation
+        JSON.parse(open("https://speakerdeck.com/oembed.json?url=#{self.url}").read)["html"]
+    end
 end

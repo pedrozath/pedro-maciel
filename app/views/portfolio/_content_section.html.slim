@@ -1,0 +1,9 @@
+= form_for [job, section] do |f|
+    = f.text_field :title, placeholder: "title"
+    = f.select :type, ContentSection.types
+    = f.text_area :description, placeholder: "description"
+    = f.text_field :video_code, placeholder: "video code"
+    = f.text_field :url, placeholder: "url"
+    = f.text_area :code, placeholder: "code"
+    = f.file_field :image_file
+    = f.submit
