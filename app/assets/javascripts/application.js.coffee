@@ -7,6 +7,7 @@
 #= require animations
 #= require filter
 #= require github_card
+#= require plugins/ScrollToPlugin.min.js
 
 class App
     constructor: (options) ->
@@ -64,6 +65,11 @@ class App
 
     add_to_history: (url) -> history.pushState url, "", url
 
+    scroll_up: ->
+        TweenMax.to window, 2, 
+            scrollTo: { y: 0 }
+            ease: Cubic.easeInOut
+
     change_state: (route_object) ->
         state = route_object.state
         if state isnt @current_state
@@ -77,6 +83,7 @@ class App
 
             @animations[@current_state].eventCallback "onComplete", on_complete
             @animations[@current_state].play()
+            do @scroll_up
 
 $ -> 
     window.app = new App

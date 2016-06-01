@@ -59,10 +59,16 @@ animations = ->
 
             TweenMax.staggerFromTo $(".jobs li"), 0.5,
                 opacity: 1
+                transformOrigin:"0 0"
+                rotationX: "0deg"
+                z: 0
             ,
                 opacity: 0
+                transformOrigin:"0 0"
+                rotationX: "90deg"
                 ease: Cubic.easeInOut
-            , -0.1
+                z: 200
+            , -0.6
             , => callback.call() if callback?
         ]
     "portfolio#show": new TimelineMax
