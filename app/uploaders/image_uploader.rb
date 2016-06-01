@@ -2,6 +2,8 @@
 
 class ImageUploader < CarrierWave::Uploader::Base
     include CarrierWave::MiniMagick
+    include CarrierWave::MimeTypes
+
     storage :fog
 
     def store_dir
