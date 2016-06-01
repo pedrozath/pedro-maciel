@@ -6,3 +6,4 @@ if $("[data-partial=\"nav_jobs\"]").size() > 0
 else
     $('<%= render "portfolio/nav_jobs" %>').prependTo(".content")
     do app.init_filter
+    do app.fixed_nav

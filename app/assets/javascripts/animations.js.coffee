@@ -53,13 +53,13 @@ animations = ->
                 z: 0
                 opacity: 1
             ,
-                z: 100, opacity: 0,
+                z: 100, 
+                opacity: 0,
                 ease: Cubic.easeInOut
             , -0.02
 
             TweenMax.staggerFromTo $(".left-column, nav.left-column > * "), 0.4,
                 width: 288
-                opacity: 1
             ,
                 width: 0
                 ease: Cubic.easeInOut

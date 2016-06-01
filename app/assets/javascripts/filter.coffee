@@ -36,17 +36,25 @@ class Filter
                     element.hidden = true
                     hidden_elements = hidden_elements.add(element.html)
 
-        TweenMax.staggerTo hidden_elements, 0.2,
+        visible_elements.removeClass("hidden")
+        hidden_elements.addClass("hidden")
+
+        TweenMax.staggerTo hidden_elements, 0.18,
             z: -100
             opacity: 0.2
-            ease: Cubic.easeInOut
+            ease: Cubic.easeOut
             transformOrigin: "50% 50%"
+        , 0.03
 
-        TweenMax.staggerTo visible_elements, 0.2,
+        TweenMax.staggerTo visible_elements, 0.18,
             z: 0
             opacity: 1
-            ease: Cubic.easeInOut
+            ease: Cubic.easeOut
             transformOrigin: "50% 50%"
+        , 0.03
+
+        TweenMax.to window, 0.2,
+            scrollTo: { y: $("ul.jobs li").not(".hidden").first().offset().top - 24 }
 
     test: (element) ->
         veredict = true

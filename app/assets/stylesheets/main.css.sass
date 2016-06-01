@@ -135,7 +135,10 @@ ul
         opacity: 0
 
 nav.left-column
-    
+    left: 0
+    top: 12 * $p
+    position: fixed
+
     +state("pages#index")
         display: none
 
@@ -249,7 +252,7 @@ main
 
     +state("portfolio#index")
         width: calc(100% - #{24 * $p + 4 * $p})
-    
+        margin-left: 26 * $p + 2 * $p
     +state("pages#index")
         height: 100%
 

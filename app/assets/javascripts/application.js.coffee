@@ -20,6 +20,7 @@ class App
         @add_to_history location.pathname
         do @bind_events
         do @init_filter
+        do @fixed_nav
 
     init_filter: ->
         @filter = new Filter
@@ -43,6 +44,14 @@ class App
         window.onpopstate = (e) => @route e.state
 
     refresh_animations: -> @animations = @animations_template()
+
+    fixed_nav: ->
+        nav_jobs = $("[data-partial=\"nav_jobs\"]")
+        nav_position = 144
+        $(document).unbind "scroll"
+        $(document).on "scroll", (e) => 
+            limiter = Math.min $(document).scrollTop() - nav_position, 0
+            nav_jobs.css top: -limiter
 
     route: (route) ->
         @change_state do ->
