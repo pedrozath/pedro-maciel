@@ -7,7 +7,7 @@ article.job-content
 
     section
         - if @job.has_image?
-            = image_tag @job.image.file unless @job.image.file.nil?
+            = image_tag @job.image.file.url(:medium) unless @job.image.file.nil?
 
         .caption.right-column
             header.header-sandwich: .bar: h3.h2 Job Info
@@ -29,7 +29,7 @@ article.job-content
         section id="section-#{section.id}"
             - case section.type
             - when :image
-                = image_tag section.image.file.url unless section.image.nil?
+                = image_tag section.image.file.url(:medium) unless section.image.nil?
             - when :video
                 iframe[src="http://#{section.url}" 
                     width="648" height="364" 

@@ -12,6 +12,10 @@ class ImageUploader < CarrierWave::Uploader::Base
         ""
     end
 
+    version :medium do
+        process resize_to_fit: [648, nil]
+    end
+
     version :cover do
         process resize_to_fill: [312, 180]
     end
