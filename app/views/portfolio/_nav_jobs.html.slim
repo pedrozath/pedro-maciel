@@ -13,7 +13,7 @@ nav.left-column data-partial="nav_jobs"
                 = link_to("×", client, method: :delete) if admin?
                 = link_to client.name, "#", class: "h3"
 
-    header.header-sandwich: .bar: h2.h2 Years 
-    ul.grid data-tag-selection="year"
+    / header.header-sandwich: .bar: h2.h2 Years 
+    / ul.grid data-tag-selection="year"
         - for year in (2004..2016).to_a.reverse
             li data-tag=year = link_to year, "#", class: "h3"
