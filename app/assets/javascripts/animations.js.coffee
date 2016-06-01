@@ -1,9 +1,9 @@
 animations = ->
     CSSPlugin.defaultTransformPerspective = 600
     "pages#index": new TimelineMax
+        stagger: -0.3
         paused: true
-        stagger: 0.3
-        align: "start"
+        align: "sequence"
         tweens:[
             TweenMax.staggerFromTo $(".contact-info ul li"), 0.5,
                 opacity: 1
@@ -45,27 +45,28 @@ animations = ->
             , -0.1
         ]
     "portfolio#index": new TimelineMax
+        stagger: -0.4
         paused: true
-        stagger: 0
-        align: "normal"
+        align: "sequence"
         tweens:[
-            TweenMax.staggerFromTo $("nav.left-column > * > *"), 0.4,
-                perspective: 600, z: 0, opacity: 1
+            TweenMax.staggerFromTo $("nav.left-column > * > *"), 0.15,
+                z: 0
+                opacity: 1
             ,
                 z: 100, opacity: 0,
-                ease: Cubic.easeIn
-            , -0.05
-            
-            TweenMax.staggerFromTo $(".left-column"), 0.8,
+                ease: Cubic.easeInOut
+            , -0.02
+
+            TweenMax.staggerFromTo $(".left-column, nav.left-column > * "), 0.4,
                 width: 288
-                marginLeft: 24
+                opacity: 1
             ,
                 width: 0
-                marginLeft: 0
                 ease: Cubic.easeInOut
             , -0.1
 
             TweenMax.staggerFromTo $(".jobs li"), 0.5,
+                # delay: -10
                 opacity: 1
                 transformOrigin: "0 0"
                 rotationX: "0deg"
@@ -73,16 +74,16 @@ animations = ->
             ,
                 opacity: 0
                 transformOrigin: "0 0"
-                rotationX: "30deg"
-                ease: Cubic.easeIn
+                rotationX: "60deg"
+                ease: Cubic.easeInOut
                 z: 20
-            , -0.09
-            , => callback.call() if callback?
+            , -0.10
+
         ]
     "portfolio#show": new TimelineMax
-        stagger: 0.5
+        stagger: -0.3
         paused: true
-        align: "start"
+        align: "sequence"
         tweens:[
             TweenMax.staggerFromTo $(".caption.right-column"), 0.5,
                 opacity: 1

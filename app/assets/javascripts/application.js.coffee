@@ -59,9 +59,23 @@ class App
                 url: route
 
     load_state: (route_object, callback) ->
+        @start_loading()
         $.get "#{route_object.url}.js", (data) =>
+            @stop_loading()
             callback.call() if callback?
             @bind_events $("main")
+
+    start_loading: ->
+        @loading_tween = TweenMax.to $(".logo-signature"), 0.3,
+            opacity: 0.5
+            ease: Cubic.easeInOut
+            repeat: -1
+
+    stop_loading: ->
+        @loading_tween.pause()
+        TweenMax.to $(".logo-signature"), 0.3,
+            opacity: 1
+            ease: Cubic.easeInOut
 
     add_to_history: (url) -> history.pushState url, "", url
 

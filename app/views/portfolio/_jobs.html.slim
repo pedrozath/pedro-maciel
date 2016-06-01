@@ -4,6 +4,8 @@ ul.jobs data-filter="true"
             - if admin?
                 = link_to("×", job, method: :delete, data:{ confirm: "Quer deletar mesmo? Não tem volta." }) if admin?
             = link_to job, "data-auto-route" => true
-                .canvas = image_tag job.cover
+                / .preview 
+                    .tags = job.tags.collect(&:name).join ", "
+                .canvas  = image_tag job.cover
                 .caption 
-                    .h3 = job.name
+                    .h3  = job.name

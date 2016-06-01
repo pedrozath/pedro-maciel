@@ -36,8 +36,17 @@ class Filter
                     element.hidden = true
                     hidden_elements = hidden_elements.add(element.html)
 
-        hidden_elements.addClass("hidden")
-        visible_elements.removeClass("hidden")
+        TweenMax.staggerTo hidden_elements, 0.2,
+            z: -100
+            opacity: 0.2
+            ease: Cubic.easeInOut
+            transformOrigin: "50% 50%"
+
+        TweenMax.staggerTo visible_elements, 0.2,
+            z: 0
+            opacity: 1
+            ease: Cubic.easeInOut
+            transformOrigin: "50% 50%"
 
     test: (element) ->
         veredict = true

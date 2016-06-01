@@ -130,10 +130,12 @@ ul
     width: $column-width * $p
 
 .left-column
+    transition: margin 600ms ease-out
     +state("pages#index")
         opacity: 0
 
 nav.left-column
+    
     +state("pages#index")
         display: none
 
@@ -318,6 +320,11 @@ ul.jobs
         transition-duration: 400ms
         transition-timing-function: $cubic-bezier
         -webkit-transform: scale(1)
+        position: relative
+
+        .preview 
+            position: absolute
+            z-index: 1
 
         .caption
             display block
