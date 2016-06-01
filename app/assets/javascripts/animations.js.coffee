@@ -1,4 +1,5 @@
 animations = ->
+    CSSPlugin.defaultTransformPerspective = 600
     "pages#index": new TimelineMax
         paused: true
         stagger: 0.3
@@ -45,10 +46,17 @@ animations = ->
         ]
     "portfolio#index": new TimelineMax
         paused: true
-        stagger: 0.5
-        align: "start"
+        stagger: 0
+        align: "normal"
         tweens:[
-            TweenMax.staggerFromTo $(".left-column"), 0.5,
+            TweenMax.staggerFromTo $("nav.left-column > * > *"), 0.4,
+                perspective: 600, z: 0, opacity: 1
+            ,
+                z: 100, opacity: 0,
+                ease: Cubic.easeIn
+            , -0.05
+            
+            TweenMax.staggerFromTo $(".left-column"), 0.8,
                 width: 288
                 marginLeft: 24
             ,
@@ -59,16 +67,16 @@ animations = ->
 
             TweenMax.staggerFromTo $(".jobs li"), 0.5,
                 opacity: 1
-                transformOrigin:"0 0"
+                transformOrigin: "0 0"
                 rotationX: "0deg"
                 z: 0
             ,
                 opacity: 0
-                transformOrigin:"0 0"
-                rotationX: "90deg"
-                ease: Cubic.easeInOut
-                z: 200
-            , -0.6
+                transformOrigin: "0 0"
+                rotationX: "30deg"
+                ease: Cubic.easeIn
+                z: 20
+            , -0.09
             , => callback.call() if callback?
         ]
     "portfolio#show": new TimelineMax
@@ -108,7 +116,7 @@ animations = ->
             ,
                 width: 0
                 ease: Cubic.easeInOut
-            , -0.2
+            , -0.5
 
         ]
 

@@ -16,7 +16,6 @@ body
     padding-left: 10%
     min-width: 960px
     transition: padding 300ms ease-out
-    perspective: 600px
 
     &[data-state="portfolio#index"]
         padding-left: 0
@@ -140,7 +139,7 @@ nav.left-column
 
 .left-column, .right-column
     width: $column-width * $p
-    overflow: hidden
+    // overflow: hidden
     float: left
 
 .left-column
@@ -254,6 +253,8 @@ main
 
     img
         max-width: $main-width * $p
+
+        
     // padding: $margin * $p
 
 header.header-sandwich
@@ -317,11 +318,6 @@ ul.jobs
         transition-duration: 400ms
         transition-timing-function: $cubic-bezier
         -webkit-transform: scale(1)
-
-        &.hidden
-            -webkit-transform: scale(0)
-            width: 0
-            padding: 0
 
         .caption
             display block
