@@ -11,30 +11,35 @@ animations = ->
                 opacity: 0
                 ease: Cubic.easeInOut
             , -0.3
+
             TweenMax.staggerFromTo $(".contact-info h2"), 0.5,
                 opacity: 1
             ,
                 opacity: 0
                 ease: Cubic.easeInOut
             , -0.1
+
             TweenMax.staggerFromTo $(".contact-info hr"), 0.5,
                 width: 648
             ,
                 width: 0
                 ease: Cubic.easeInOut
             , -0.1
+
             TweenMax.staggerFromTo $(".left-photo"), 0.5,
                 width: 420
             ,
                 width: 0
                 ease: Cubic.easeInOut
             , -0.1
+
             TweenMax.staggerFromTo $(".motion-reel"), 0.5,
                 height: 364
             ,
                 height: 0
                 ease: Cubic.easeInOut
             , -0.1
+
             TweenMax.staggerFromTo $("header .left-column"), 0.5,
                 width: 288
                 marginLeft: 24
@@ -43,6 +48,12 @@ animations = ->
                 marginLeft: 0
                 ease: Cubic.easeInOut
             , -0.1
+
+            TweenMax.staggerFromTo $("main"), 0.3, 
+                marginLeft: 24
+            ,
+                marginLeft: 24
+                ease: Cubic.easeInOut
         ]
     "portfolio#index": new TimelineMax
         stagger: -0.4
@@ -64,6 +75,12 @@ animations = ->
                 width: 0
                 ease: Cubic.easeInOut
             , -0.1
+
+            TweenMax.staggerFromTo $("main"), 0.6, 
+                marginLeft: 336
+            ,
+                marginLeft: 48
+                ease: Cubic.easeInOut
 
             TweenMax.staggerFromTo $(".jobs li"), 0.5,
                 # delay: -10
@@ -118,6 +135,12 @@ animations = ->
                 width: 0
                 ease: Cubic.easeInOut
             , -0.5
+
+            TweenMax.staggerFromTo $("main"), 0.3, 
+                marginLeft: 24
+            ,
+                marginLeft: 24
+                ease: Cubic.easeInOut
 
         ]
 
