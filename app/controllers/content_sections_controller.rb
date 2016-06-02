@@ -25,7 +25,7 @@ class ContentSectionsController < ApplicationController
             :title, :description,
             :image_file, :job, :url
 
-        @csection.technologies = eval "["+params.require(:content_section)[:technologies].split(", ")
+        @csection.technologies = params.require(:content_section)[:technologies].split(", ")
 
 
         # render text: params
