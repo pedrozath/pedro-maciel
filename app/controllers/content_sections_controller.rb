@@ -10,7 +10,7 @@ class ContentSectionsController < ApplicationController
             :title, :description,
             :image_file, :video_code
 
-        if params.require(:content_section)[:technologies].nil?
+        unless params.require(:content_section)[:technologies].nil?
             @csection.technologies = params.require(:content_section)[:technologies].split(", ")
         end
 
