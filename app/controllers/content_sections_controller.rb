@@ -33,7 +33,7 @@ class ContentSectionsController < ApplicationController
 
         # render text: params
 
-        @content_section.save!
+        @csection.save!
         redirect_to :back
     end
 
