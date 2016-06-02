@@ -10,6 +10,7 @@ class ContentSection
     def self.types
         [
             :image, 
+            :gif,
             :video,
             :youtube,
             :vimeo,
@@ -35,16 +36,6 @@ class ContentSection
     def github
         github_data = self.url.split("/")
         OpenStruct.new user: github_data[0], repo: github_data[1]
-    end
-
-    def medium_image
-        unless self.image.nil?
-            content_type = self.image.file.content_type
-            if content_type == "image/gif"
-                self.image.file.url
-            end
-            self.image.file.url(:medium)
-        end
     end
 
     def youtube_url
