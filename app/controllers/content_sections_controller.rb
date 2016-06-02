@@ -10,7 +10,9 @@ class ContentSectionsController < ApplicationController
             :title, :description,
             :image_file, :video_code
 
-        @csection.technologies = params.require(:content_section)[:technologies].split(", ") if @csection.technologies.blank?
+        if params.require(:content_section)[:technologies].nil?
+            @csection.technologies = params.require(:content_section)[:technologies].split(", ")
+        end
 
         @csection.save!
         redirect_to :back
@@ -25,8 +27,9 @@ class ContentSectionsController < ApplicationController
             :title, :description,
             :image_file, :job, :url
 
-        @csection.technologies = params.require(:content_section)[:technologies].split(", ") if @csection.technologies.blank?
-
+        if params.require(:content_section)[:technologies].nil?
+            @csection.technologies = params.require(:content_section)[:technologies].split(", ")
+        end
 
         # render text: params
 
