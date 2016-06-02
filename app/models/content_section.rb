@@ -39,11 +39,11 @@ class ContentSection
 
     def medium_image
         unless self.image.nil?
-            begin
-                self.image.file.url(:medium) 
-            rescue
+            content_type = self.image.file.content_type
+            if content_type == "image/gif"
                 self.image.file.url
             end
+            self.image.file.url(:medium)
         end
     end
 
