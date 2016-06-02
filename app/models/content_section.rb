@@ -15,7 +15,8 @@ class ContentSection
             :vimeo,
             :speaker_deck,
             :github,
-            :issu
+            :issu,
+            :technologies
         ]
     end
 
@@ -23,12 +24,13 @@ class ContentSection
 
     embedded_in :job
 
-    field :type,        type: Symbol
-    field :url,         type: String
-    field :video_code,  type: String
-    field :code,        type: String
-    field :title,       type: String
-    field :description, type: String
+    field :type,        type:  Symbol
+    field :url,         type:  String
+    field :video_code,  type:  String
+    field :code,        type:  String
+    field :title,       type:  String
+    field :description, type:  String
+    field :technologies, type: Array
 
     def github
         github_data = self.url.split("/")

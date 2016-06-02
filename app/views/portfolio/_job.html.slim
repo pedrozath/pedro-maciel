@@ -24,8 +24,6 @@ article.job-content
             div = render partial: "job_form", locals: { job: @job }
 
     - for section in @job.content_sections
-        - if section.type == :github
-            h2.h2 Check on GitHub
         section id="section-#{section.id}"
             - case section.type
             - when :image
@@ -51,6 +49,8 @@ article.job-content
                 == section.speakerdeck_presentation
 
             - when :github
+                h2.h2 Check on GitHub
+                br
                 .github-card[
                     data-user="#{section.github.user}"
                     data-repo="#{section.github.repo}" 
@@ -67,7 +67,9 @@ article.job-content
                     style="width:648px;height:432px"]
 
                 script type="text/javascript" src="//e.issuu.com/embed.js" async="true"
-                
+            
+            - when :technologies
+                = render_technologies section
 
             - unless section.title.blank?
                 .caption.right-column

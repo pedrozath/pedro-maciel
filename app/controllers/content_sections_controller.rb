@@ -4,11 +4,15 @@ class ContentSectionsController < ApplicationController
     def create
         @job = Job.find_by slug: params[:job_id]
 
-        @job.content_sections.create params[:content_section].permit \
+
+        @csection = @job.content_sections.new params[:content_section].permit \
             :type, :url, :code,
             :title, :description,
             :image_file, :video_code
 
+        @csection.technologies = params.require(:content_section)[:technologies].split(", ")
+
+        @csection.save!
         redirect_to :back
 
     end
@@ -20,6 +24,9 @@ class ContentSectionsController < ApplicationController
             :type, :url, :video_code, :code,
             :title, :description,
             :image_file, :job, :url
+
+        @csection.technologies = eval "["+params.require(:content_section)[:technologies].split(", ")
+
 
         # render text: params
 

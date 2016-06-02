@@ -52,6 +52,7 @@ class App
         $(document).on "scroll", (e) => 
             limiter = Math.min $(document).scrollTop() - nav_position, 0
             nav_jobs.css top: -limiter
+        $(document).trigger "scroll"
 
     route: (route) ->
         @change_state do ->
