@@ -37,6 +37,16 @@ class ContentSection
         OpenStruct.new user: github_data[0], repo: github_data[1]
     end
 
+    def medium_image
+        unless self.image.nil?
+            begin
+                self.image.file.url(:medium) 
+            rescue
+                self.image.file.url
+            end
+        end
+    end
+
     def youtube_url
         "http://www.youtube.com/embed/#{self.video_code}"
     end

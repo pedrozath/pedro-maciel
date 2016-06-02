@@ -31,8 +31,6 @@ class ContentSectionsController < ApplicationController
             @csection.technologies = params.require(:content_section)[:technologies].split(", ")
         end
 
-        # render text: params
-
         @csection.save!
         redirect_to :back
     end

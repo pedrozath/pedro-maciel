@@ -27,7 +27,7 @@ article.job-content
         section id="section-#{section.id}"
             - case section.type
             - when :image
-                = image_tag section.image.file.url(:medium) unless section.image.nil?
+                = image_tag section.medium_sized_image
             - when :video
                 iframe[src="http://#{section.url}" 
                     width="648" height="364" 
