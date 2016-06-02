@@ -3,5 +3,5 @@ br
 ul.technologies
     - for technology in technologies
         li
-            = link_to "//google.com/search?q=#{technology.parameterize}", target: :blank
+            = link_to "//google.com/search?q=#{technology}", target: :blank
                 = image_tag "technologies/#{technology.parameterize}.png", alt: technology
