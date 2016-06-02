@@ -11,7 +11,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     end
 
     def default_url(*args)
-        ""
+        model.file
     end
 
     version :medium do
