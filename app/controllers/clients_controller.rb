@@ -6,7 +6,7 @@ class ClientsController < ApplicationController
     end
 
     def destroy
-        Client.find(params[:id]).destroy
+        Client.find_by(slug: params[:id]).destroy
         redirect_to :back
     end
 end
