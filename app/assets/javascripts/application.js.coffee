@@ -15,9 +15,10 @@ class App
         @util = puts: (stuff...) -> console.log stuff...
         window[k] = @util[k] for k,v of @util
         @body = $("body")
-        @animations = @animations_template()
+        # @animations = @animations_template()
         @current_state = @body.attr "data-state"
         @add_to_history location.pathname
+        @animation = @animations()[@current_state]()
         do @bind_events
         do @init_filter
         do @fixed_nav
@@ -42,8 +43,6 @@ class App
             @route $(e.currentTarget).attr("data-route")
         
         window.onpopstate = (e) => @route e.state
-
-    refresh_animations: -> @animations = @animations_template()
 
     fixed_nav: ->
         nav_jobs = $("[data-partial=\"nav_jobs\"]")
@@ -98,17 +97,17 @@ class App
         state = route_object.state
         if state isnt @current_state
             @add_to_history route_object.url
-            on_complete = =>
+            on_complete_animation = =>
                 @current_state = state
                 @load_state route_object, =>
                     @body.attr "data-state", state
-                    @refresh_animations()
-                    @animations[state].reverse(0)
+                    @animation = @animations()[state]()
+                    @animation.reverse(0)
 
-            @animations[@current_state].eventCallback "onComplete", on_complete
-            @animations[@current_state].play()
+            @animation.eventCallback "onComplete", on_complete_animation
+            @animation.play()
             do @scroll_up
 
 $ -> 
     window.app = new App
-        animations_template: animations
+        animations: animations

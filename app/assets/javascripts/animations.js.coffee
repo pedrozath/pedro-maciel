@@ -1,6 +1,6 @@
-animations = ->
+animations = =>
     CSSPlugin.defaultTransformPerspective = 600
-    "pages#index": new TimelineMax
+    "pages#index": => new TimelineMax
         stagger: -0.3
         paused: true
         align: "sequence"
@@ -55,7 +55,7 @@ animations = ->
                 marginLeft: 24
                 ease: Cubic.easeInOut
         ]
-    "portfolio#index": new TimelineMax
+    "portfolio#index": => new TimelineMax
         stagger: -0.4
         paused: true
         align: "sequence"
@@ -97,7 +97,7 @@ animations = ->
             , -0.10
 
         ]
-    "portfolio#show": new TimelineMax
+    "portfolio#show": => new TimelineMax
         stagger: -0.3
         paused: true
         align: "sequence"
