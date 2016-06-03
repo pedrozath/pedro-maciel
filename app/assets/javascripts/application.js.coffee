@@ -95,7 +95,6 @@ class App
     change_state: (route_object) ->
         state = route_object.state
         if state isnt @current_state
-            time = new Date()
             complete_animation = (data) =>
                 eval data.responseText
                 @stop_loading()
@@ -108,10 +107,8 @@ class App
             
             @load_state route_object, (data) =>
                 if @animation.totalProgress() < 1
-                    puts "carreguei, mas animation não terminou, vou via callback"
                     @animation.eventCallback "onComplete", complete_animation, [data]
                 else
-                    puts "carreguei e animation já terminou, vou é agora"
                     complete_animation.call(this, data)
 
             @animation.play()
