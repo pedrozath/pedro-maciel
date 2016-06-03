@@ -96,6 +96,13 @@ animations = =>
                 z: 20
             , -0.10
 
+            TweenMax.staggerFromTo $("header .left-column"), 0.4,
+                marginLeft: 24
+            ,
+                marginLeft: 24
+                ease: Cubic.easeInOut
+            , -0.1
+
         ]
     "portfolio#show": => new TimelineMax
         stagger: -0.3

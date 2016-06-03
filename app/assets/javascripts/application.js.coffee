@@ -69,10 +69,9 @@ class App
 
     load_state: (route_object, callback) ->
         @start_loading()
-        $.get "#{route_object.url}.js", (data) =>
-            @stop_loading()
-            callback.call() if callback?
-            @bind_events $("main")
+        $.ajax "#{route_object.url}.js", 
+            dataType: "text"
+            complete: callback
 
     start_loading: ->
         @loading_tween = TweenMax.to $(".logo-signature"), 0.3,
@@ -96,15 +95,25 @@ class App
     change_state: (route_object) ->
         state = route_object.state
         if state isnt @current_state
-            @add_to_history route_object.url
-            on_complete_animation = =>
+            time = new Date()
+            complete_animation = (data) =>
+                eval data.responseText
+                @stop_loading()
+                @bind_events $("main")
+                @body.attr "data-state", state
                 @current_state = state
-                @load_state route_object, =>
-                    @body.attr "data-state", state
-                    @animation = @animations()[state]()
-                    @animation.reverse(0)
+                @animation = @animations()[state]()
+                @animation.reverse(0)
+                @add_to_history route_object.url
+            
+            @load_state route_object, (data) =>
+                if @animation.totalProgress() < 1
+                    puts "carreguei, mas animation não terminou, vou via callback"
+                    @animation.eventCallback "onComplete", complete_animation, [data]
+                else
+                    puts "carreguei e animation já terminou, vou é agora"
+                    complete_animation.call(this, data)
 
-            @animation.eventCallback "onComplete", on_complete_animation
             @animation.play()
             do @scroll_up
 
