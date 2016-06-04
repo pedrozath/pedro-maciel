@@ -43,22 +43,21 @@ class Filter
                     element.hidden = true
                     elements_to_hide = elements_to_hide.add(element.html)
 
-        TweenMax.staggerTo elements_to_show, 0.18,
+        TweenMax.staggerTo elements_to_hide, 0.18,
             z: -100
             opacity: 0.2
             ease: Cubic.easeOut
             transformOrigin: "50% 50%"
         , 0.03
 
-        TweenMax.staggerTo elements_to_hide, 0.18,
+        TweenMax.staggerTo elements_to_show, 0.18,
             z: 0
             opacity: 1
             ease: Cubic.easeOut
             transformOrigin: "50% 50%"
         , 0.03
 
-        TweenMax.to window, 0.2,
-            scrollTo: { y: @visible_elements().first().offset().top - 24 }
+        TweenMax.to window, 0.2, scrollTo: { y: @visible_elements().first().offset().top - 24 }
 
     test: (element) ->
         veredict = true
