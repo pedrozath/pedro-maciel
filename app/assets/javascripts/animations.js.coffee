@@ -82,19 +82,16 @@ animations = =>
                 marginLeft: 48
                 ease: Cubic.easeInOut
 
-            TweenMax.staggerFromTo $(".jobs li"), 0.5,
-                # delay: -10
+            TweenMax.staggerFromTo $(".jobs li"), 0.21,
                 opacity: 1
                 transformOrigin: "0 0"
-                rotationX: "0deg"
                 z: 0
             ,
                 opacity: 0
                 transformOrigin: "0 0"
-                rotationX: "60deg"
                 ease: Cubic.easeInOut
-                z: 20
-            , -0.10
+                z: 60
+            , -0.16
 
             TweenMax.staggerFromTo $("header .left-column"), 0.4,
                 marginLeft: 24
