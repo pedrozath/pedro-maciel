@@ -31,22 +31,22 @@ article.job-content
             - when :gif
                 = image_tag section.image.file.url if section.has_image?
             - when :video
-                iframe[src="http://#{section.url}" 
-                    width="648" height="364" 
-                    frameborder="0" webkitallowfullscreen 
-                    mozallowfullscreen allowfullscreen]
+                .embedded-video
+                    iframe[src="http://#{section.url}" 
+                        frameborder="0" webkitallowfullscreen 
+                        mozallowfullscreen allowfullscreen]
 
             - when :youtube
-                iframe[src=section.youtube_url
-                    width="648" height="364" 
-                    frameborder="0" webkitallowfullscreen 
-                    mozallowfullscreen allowfullscreen]
+                .embedded-video
+                    iframe[src=section.youtube_url
+                        frameborder="0" webkitallowfullscreen 
+                        mozallowfullscreen allowfullscreen]
  
             - when :vimeo
-                iframe[src=section.vimeo_url
-                    width="648" height="364" 
-                    frameborder="0" webkitallowfullscreen 
-                    mozallowfullscreen allowfullscreen]
+                .embedded-video
+                    iframe[src=section.vimeo_url
+                        frameborder="0" webkitallowfullscreen 
+                        mozallowfullscreen allowfullscreen]
             - when :speaker_deck
                 == section.speakerdeck_presentation
 
@@ -66,7 +66,7 @@ article.job-content
             - when :issu
                 .issuuembed[
                     data-configid="#{section.code}"
-                    style="width:648px;height:432px"]
+                    style="width:100%"]
 
                 script type="text/javascript" src="//e.issuu.com/embed.js" async="true"
             

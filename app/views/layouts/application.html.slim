@@ -17,6 +17,10 @@ html
         = stylesheet_link_tag "application"
         = javascript_include_tag "application"
 		= favicon_link_tag "favicons/favicon.ico"
+        meta name="viewport" content="width=device-width" 
+        - if ENV["RAILS_ENV"] == "development"
+            script src="http://macpedro.local:35729/livereload.js?snipver=1"
+        meta(name="theme-color" content="#FFF030")
 		/ = csrf_meta_tags
 
     body data-state="#{params[:controller]}##{params[:action]}"

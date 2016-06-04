@@ -115,5 +115,6 @@ class App
             do @scroll_up
 
 $ -> 
-    window.app = new App
-        animations: animations
+    unless /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test navigator.userAgent
+        window.app = new App
+            animations: animations

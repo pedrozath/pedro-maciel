@@ -24,29 +24,33 @@ class Filter
 
             @elements.push new_element
 
+    visible_elements: ->
+        collection = $()
+        for element in @elements
+            if @test element
+                collection = collection.add element.html
+        collection
+
     filter: ->
-        visible_elements = hidden_elements = $()
+        elements_to_show = elements_to_hide = $()
         for element in @elements
             if @test element
                 if element.hidden
                     element.hidden = false
-                    visible_elements = visible_elements.add(element.html)
+                    elements_to_show = elements_to_show.add(element.html)
             else
                 unless element.hidden
                     element.hidden = true
-                    hidden_elements = hidden_elements.add(element.html)
+                    elements_to_hide = elements_to_hide.add(element.html)
 
-        visible_elements.removeClass("hidden")
-        hidden_elements.addClass("hidden")
-
-        TweenMax.staggerTo hidden_elements, 0.18,
+        TweenMax.staggerTo elements_to_show, 0.18,
             z: -100
             opacity: 0.2
             ease: Cubic.easeOut
             transformOrigin: "50% 50%"
         , 0.03
 
-        TweenMax.staggerTo visible_elements, 0.18,
+        TweenMax.staggerTo elements_to_hide, 0.18,
             z: 0
             opacity: 1
             ease: Cubic.easeOut
@@ -54,7 +58,7 @@ class Filter
         , 0.03
 
         TweenMax.to window, 0.2,
-            scrollTo: { y: $("ul.jobs li").not(".hidden").first().offset().top - 24 }
+            scrollTo: { y: @visible_elements().first().offset().top - 24 }
 
     test: (element) ->
         veredict = true

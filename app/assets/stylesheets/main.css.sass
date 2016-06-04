@@ -5,6 +5,10 @@
     body[data-state="#{$state}"] &
         @content
 
+=mobile
+    @media (max-width: 980px)
+        @content
+
 body
     font-family: Vectrex
     font-size: $p
@@ -14,21 +18,33 @@ body
     margin: 0
     color: $black
     padding-left: 10%
-    min-width: 960px
     transition: padding 300ms ease-out
+
+    +mobile
+        padding: 10px
 
     &[data-state="portfolio#index"]
         padding-left: 0
 
+        +mobile
+            padding: 10px
+
     > * > *
         margin-left: 2 * $p
         margin-top: 2 * $p
+
+        +mobile
+            margin: 0
 
         &::after
             clear: both
 
     main, & > header
         display: table
+
+        +mobile
+            width: 100%
+            margin-bottom: 10px
 
 
 h1,h2,h3,h4,h5
@@ -45,6 +61,9 @@ h1,h2,h3,h4,h5
     .h1
         padding-right: $p
         font-weight: 900
+
+        +mobile
+            line-height: 1
 
     .h3
         padding-right: $p/2
@@ -82,10 +101,15 @@ h1,h2,h3,h4,h5
 .h1
     font-size: 3 * $p
     padding-top: $p
+    +mobile
+        font-size: 2*$p
 
 .h2
     font-size: 2 * $p
     padding-top: $p/2
+
+    +mobile
+        font-size: 1.5 * $p
 
 .h3
     font-family: "Vectrex"
@@ -96,6 +120,11 @@ h1,h2,h3,h4,h5
     height: 9 * $p
     margin-top: -$p
     display: block
+
+    +mobile
+        margin: 0
+        height: auto
+        width: 100%
 
 .tagline
     margin-top: $p
@@ -122,12 +151,20 @@ ul
     width: $main-width * $p
     cursor: pointer
 
+    +mobile
+        width: 100%
+        > *
+            width: 100%
+
     &:hover
         @extend a:hover
 
 .spacer, nav, nav ul
     display: block
     width: $column-width * $p
+
+    +mobile
+        display: none
 
 .left-column
     transition: margin 600ms ease-out
@@ -146,6 +183,9 @@ nav.left-column
     width: $column-width * $p
     // overflow: hidden
     float: left
+
+    +mobile
+        width: 100%
 
 .left-column
     +state("portfolio#show")
@@ -186,6 +226,11 @@ section
     footer
         width: 54 * $p
 
+        +mobile
+            width: 100%
+            margin: 0 auto
+            display: block
+
         tr
 
         th, td
@@ -216,11 +261,17 @@ section
         display: table
         // min-height: 30 * $p
 
+        +mobile
+            display: block
+
         > *
             float: left
 
         > * + *
             margin-left: 2 * $p
+
+            +mobile
+                margin: 0
 
         > br + *
             margin-left: 0
@@ -241,27 +292,65 @@ p
         left: 0
         width: $p*35
 
+        +mobile
+            width: 100%
+            display: none
+
 .contact-info
     width: 54 * $p
     float: right
+
+    +mobile
+        float: none
+        width: 100%
+
+        .h2
+            line-height: 1.4
+
+.embedded-video
+    width: 100%
+    height: auto
+    padding-bottom: (9/16)*100%
+    position: relative
+
+    iframe
+        position: absolute
+        left: 0
+        top: 0
+        width: 100%
+        height: 100%
 
 main
     position: relative
     float: left
     // border: $mili-p solid $black
-    width: $main-width * $p
+    width: 80 * $p
+
+    +mobile
+        float: none
 
     +state("pages#index")
         width: 80 * $p
 
+        +mobile
+            width: 100%
+            margin: 0
+
     +state("portfolio#index")
         width: calc(100% - #{24 * $p + 4 * $p})
         margin-left: 26 * $p + 2 * $p
+
+        +mobile
+            margin: 0 auto
+
     +state("pages#index")
         height: 100%
 
     img
         max-width: $main-width * $p
+
+        +mobile
+            max-width: 100%
 
         
     // padding: $margin * $p
@@ -367,7 +456,7 @@ ul.jobs
             -webkit-filter: saturate(0%)
             transition: -webkit-filter 150ms linear, transform 150ms $cubic-bezier
 
-        &:hover
+        &:hover, &.visible
             .canvas
                 transform: translate(-6px,-6px)
                 box-shadow: 1px 1px transparentize($black, 0), 2px 2px transparentize($black, 0), 3px 3px transparentize($black, 0), 4px 4px transparentize($black, 0), 5px 5px transparentize($black, 0), 6px 6px transparentize($black, 0), 7px 7px transparentize($black, 0), 8px 8px transparentize($black, 0)
@@ -376,6 +465,7 @@ ul.jobs
                 -webkit-filter: none
                 // transform: scale(1.4)
                 // transform: scale(1.4)
+
 
 a:hover
     transition-property: -webkit-transform, text-shadow
@@ -477,7 +567,11 @@ ul.grid
                 // text-align: right
 
 ul.technologies
-    width: 648px
+    width: 54 * $p
+
+    +mobile
+        width: 100%
+
     
     li
         list-style-type: none

@@ -1,7 +1,9 @@
 development:
   clients:
     default:
-      uri: <%=ENV["MONGODB_URI"]%>
+      database: heroku_r23vsgp4
+      hosts:
+        - localhost:27017
 
 production:
   clients:
