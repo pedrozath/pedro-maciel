@@ -29,7 +29,7 @@ html
                 .logo-bar
                 .tag-bar
 
-            .logo-signature data-route="/"
+            = link_to "/", class:"logo-signature", data: {auto_route: true}
                 = image_tag "logo.png", class:"logo"
                 .tagline.bar: h1.h3 Multidisciplinary Design
 
