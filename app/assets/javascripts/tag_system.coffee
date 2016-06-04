@@ -8,6 +8,8 @@ class TagSystem
                     main:         $(element)
                     tag_elements: $(element).find("li")
                     callback: @callback
+                    mouseenter: @mouseenter
+                    mouseleave: @mouseleave
 
     content: -> t.to_json() for t in @tag_groups
 

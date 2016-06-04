@@ -12,16 +12,26 @@ class TagSelection
         habtm:    @habtm
 
     bind_events: ->
-        @tag_elements.on "click", (e) =>
-            e.preventDefault()
-            tag = $(e.currentTarget)
+        @tag_elements.on
+            click: (e) =>
+                e.preventDefault()
+                tag = $(e.currentTarget)
 
-            if @is_selected tag
-                @deselect tag
-            else
-                @select tag 
+                if @is_selected tag
+                    @deselect tag
+                else
+                    @select tag 
 
-            @callback.call() if @callback?
+                @callback.call() if @callback?
+            
+            mouseenter: (e) => @mouseenter [
+                name:     @name
+                selected: [$(e.currentTarget).attr "data-tag"]
+                habtm:    @habtm
+            ]
+
+            mouseleave: @mouseleave
+
 
         @tag_elements.find("a").on "click", (e) =>
             e.preventDefault()

@@ -6,6 +6,8 @@ class Filter
         @tag_system = new TagSystem 
             tag_group_elements: @tag_group_elements
             callback: => @filter()
+            mouseenter: (data) => @preview data
+            mouseleave: => @clear_preview()
 
         @assign_elements @elements_html
 
@@ -24,33 +26,49 @@ class Filter
 
             @elements.push new_element
 
-    visible_elements_html: ->
+    preview: (data) ->
+        @visible_elements_html(data).addClass("visible")
+
+    clear_preview: ->
+        $(".visible").removeClass("visible")
+
+    visible_elements_html: (criteria) ->
+        criteria = @tag_system.content() unless criteria?
         collection = $()
         for element in @elements
-            if @test element
+            if @test element, criteria
                 collection = collection.add element.html
         collection
 
-    filter: ->
-        elements_to_show = elements_to_hide = $()
+    elements_to_show: ->
+        elements = $()
         for element in @elements
             if @test element
                 if element.hidden
                     element.hidden = false
-                    elements_to_show = elements_to_show.add(element.html)
-            else
+                    elements = elements.add(element.html)
+
+        elements
+
+    elements_to_hide: ->
+        elements = $()
+        for element in @elements
+            unless @test element
                 unless element.hidden
                     element.hidden = true
-                    elements_to_hide = elements_to_hide.add(element.html)
+                    elements = elements.add(element.html)
 
-        TweenMax.staggerTo elements_to_hide, 0.18,
+        elements
+        
+    filter: ->
+        TweenMax.staggerTo @elements_to_hide(), 0.18,
             z: -100
             opacity: 0.2
             ease: Cubic.easeOut
             transformOrigin: "50% 50%"
         , 0.03
 
-        TweenMax.staggerTo elements_to_show, 0.18,
+        TweenMax.staggerTo @elements_to_show(), 0.18,
             z: 0
             opacity: 1
             ease: Cubic.easeOut
@@ -64,9 +82,10 @@ class Filter
             y: @visible_elements_html().first().offset().top - 24
         }
 
-    test: (element) ->
+    test: (element, criteria) ->
+        criteria = @tag_system.content() unless criteria?
         veredict = true
-        for criterion in @tag_system.content()
+        for criterion in criteria
             if criterion.selected.length > 0
                 veredict &&= \
                     if criterion.habtm
