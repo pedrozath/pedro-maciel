@@ -24,7 +24,7 @@ class Filter
 
             @elements.push new_element
 
-    visible_elements: ->
+    visible_elements_html: ->
         collection = $()
         for element in @elements
             if @test element
@@ -57,7 +57,12 @@ class Filter
             transformOrigin: "50% 50%"
         , 0.03
 
-        TweenMax.to window, 0.2, scrollTo: { y: @visible_elements().first().offset().top - 24 }
+        $(".visible").removeClass("visible")
+        @visible_elements_html().addClass("visible") if @visible_elements_html().size() < @elements.length
+
+        TweenMax.to window, 0.2, scrollTo: { 
+            y: @visible_elements_html().first().offset().top - 24
+        }
 
     test: (element) ->
         veredict = true
