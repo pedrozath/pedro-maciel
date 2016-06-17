@@ -5,6 +5,13 @@ development:
       hosts:
         - localhost:27017
 
+test:
+  clients:
+    default:
+      database: pedro-maciel-test
+      hosts:
+        - localhost:27017
+
 production:
   clients:
     default:

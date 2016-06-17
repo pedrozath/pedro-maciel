@@ -1,4 +1,1 @@
-$("main").html \ 
-"""
-    <%= render "contact_info" %>
-"""
+$("main").html <%=render("contact_info")%>
