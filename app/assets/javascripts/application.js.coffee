@@ -1,3 +1,5 @@
+#= require jquery
+#= require jquery_ujs
 #= require turbolinks
 #= require tag_selection
 #= require tag_system
@@ -10,15 +12,11 @@
 class App
     constructor: (options) ->
         @[k] = options[k] for k,v of options
-        @util = 
-            puts: (stuff...) -> console.log stuff...
-            $: document.querySelectorAll
-
+        @util = puts: (stuff...) -> console.log stuff...
         window[k] = @util[k] for k,v of @util
-        @body = document.body
+        @body = $("body")
         # @animations = @animations_template()
-        puts @body
-        @current_state = @body.getAttribute "data-state"
+        @current_state = @body.attr "data-state"
         @add_to_history location.pathname
         @animation = @animations()[@current_state]()
         do @bind_events
@@ -99,7 +97,6 @@ class App
         if state isnt @current_state
             complete_animation = (data) =>
                 eval data.responseText
-                
                 @stop_loading()
                 @bind_events $("main")
                 @body.attr "data-state", state
@@ -117,7 +114,7 @@ class App
             @animation.play()
             do @scroll_up
 
-window.onload = ->
+$ -> 
     unless /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test navigator.userAgent
         window.app = new App
             animations: animations
