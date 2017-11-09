@@ -1,0 +1,31 @@
+
+%nav.left-column(data-partial="nav_jobs")
+  %header.header-sandwich
+    .bar
+      %h2.h2 Areas of Expertise
+  %ul(data-tag-selection="tag" data-habtm="true")
+    {% assign tags = site.data.jobs | map: 'tags' | uniq | sort %}
+    {% for tag in tags %}
+    %li(data-tag="{{ tag }}")
+      %a.h3{:href => 'javascript:void(0)'}
+        {{ tag }}
+    {% endfor %}
+
+
+-#  %header.header-sandwich
+-#    .bar
+-#      %h2.h2 Clients
+-#  %ul(data-tag-selection="tag" data-habtm="true")
+-#    {% for client in site.data.clients %}
+-#    %li(data-tag="{{ client.id }}")
+-#      %a.h3{:href => 'javascript:void(0)'} {{ client.name }}
+-#    {% endfor %}
+
+-#  %header.header-sandwich
+-#    .bar
+-#      %h2.h2 Years
+-#  %ul(data-tag-selection="tag" data-habtm="true")
+-#    {% for year in (2004..2017) %}
+-#    %li(data-tag="{{ year }}")
+-#      %a.h3{:href => 'javascript:void(0)'} {{ year }}
+-#    {% endfor %}

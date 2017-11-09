@@ -1,0 +1,603 @@
+*
+    box-sizing: border-box
+
+=state($state)
+    body[data-state="#{$state}"] &
+        @content
+
+=mobile
+    @media (max-width: 980px)
+        @content
+
+body
+    font-family: Vectrex
+    font-size: $p
+    line-height: 3*$p
+    background-color: $yellow
+    font-weight: 500
+    margin: 0
+    color: $black
+    padding-left: 10%
+    transition: padding 300ms ease-out
+
+    +mobile
+        padding: 10px
+
+    &[data-state="portfolio#index"]
+        padding-left: 0
+
+        +mobile
+            padding: 10px
+
+    > * > *
+        margin-left: 2 * $p
+        margin-top: 2 * $p
+
+        +mobile
+            margin: 0
+
+        &::after
+            clear: both
+
+    main, & > header
+        display: table
+
+        +mobile
+            width: 100%
+            margin-bottom: 10px
+
+
+h1,h2,h3,h4,h5
+    text-transform: uppercase
+    margin: 0
+    padding: 0
+    line-height: 1
+    font-weight: 100
+
+.hat-title
+    border-bottom: $nano-p solid $black
+    padding-bottom: $p
+
+    .h1
+        padding-right: $p
+        font-weight: 900
+
+        +mobile
+            line-height: 1
+
+    .h3
+        padding-right: $p/2
+
+    .line
+        margin-bottom: $p
+
+        a
+            @extend h3
+            font-weight: 500
+            text-decoration: none
+            padding-right: $p/2
+
+        .h3
+            margin-top: -$micro-p
+
+
+.bar
+    background-color: $black
+    display: block
+    line-height: 0
+
+.line
+    @extend .bar
+    height: $mili-p
+
+.h1, .h2, .h3, .h4, .h5
+    background-color: $yellow
+    display: inline-block
+
+.h1, .h2
+    font-family: "Simple"
+    line-height: 0.6
+
+.h1
+    font-size: 3 * $p
+    padding-top: $p
+    +mobile
+        font-size: 2*$p
+
+.h2
+    font-size: 2 * $p
+    padding-top: $p/2
+
+    +mobile
+        font-size: 1.5 * $p
+
+.h3
+    font-family: "Vectrex"
+    font-size: $p
+    font-weight: 500
+
+.logo
+    height: 9 * $p
+    margin-top: -$p
+    display: block
+
+    +mobile
+        margin: 0
+        height: auto
+        width: 100%
+
+.tagline
+    margin-top: $p
+
+    > *
+        margin-left: $p
+        padding: 0 $p
+
+hr
+    border: 0
+    border-top: solid $nano-p $black
+
+ul
+    padding: 0
+    &.inline
+        li
+            display: inline
+
+            + li::before
+                content: " / "
+
+.logo-signature
+    float: left
+    width: $main-width * $p
+    cursor: pointer
+
+    +mobile
+        width: 100%
+        > *
+            width: 100%
+
+    &:hover
+        @extend a:hover
+
+.spacer, nav, nav ul
+    display: block
+    width: $column-width * $p
+
+    +mobile
+        display: none
+
+.left-column
+    transition: margin 600ms ease-out
+    +state("pages#index")
+        opacity: 0
+
+nav.left-column
+    left: 0
+    top: 12 * $p
+    position: fixed
+
+    +state("pages#index")
+        display: none
+
+.left-column, .right-column
+    width: $column-width * $p
+    // overflow: hidden
+    float: left
+
+    +mobile
+        width: 100%
+
+.left-column
+    +state("portfolio#show")
+        display: none
+
+header .right-column
+    +state("portfolio#index")
+        display: none
+
+    +state("pages#index")
+        display: none
+
+header .left-column
+    +state("pages#index")
+        opacity: 0
+
+section
+    .right-column
+        // position: absolute
+        right: 0
+
+.logo-bar, .tag-bar
+    width: 100%
+    background-color: $black
+
+.logo-bar
+    height: 8 * $p
+    margin-bottom: $p
+
+.tag-bar
+    height: $p
+
+.center
+    text-align: center
+    width: 100%
+
+.job-content
+    section
+        width: 100%
+
+        .embedded-video
+            width: 54 * $p
+            height: (54 * $p) / (16/9)
+            padding: 0
+
+            +mobile
+                width: 100%
+                height: 0
+                padding-bottom: (9/16) * 100%
+
+    +mobile
+        section > .h2
+            margin: 2 * $p 0
+
+    footer
+        width: 54 * $p
+
+        +mobile
+            width: 100%
+            margin: 0 auto
+            display: block
+
+        tr
+
+        th, td
+            vertical-align: top
+            width: 50%
+            padding: $mili-p
+            line-height: 1.5
+
+        td
+            ul
+                li
+                    list-style-type: none
+            p, ul
+                margin: 0
+                margin-top: 1px
+
+        table
+            margin: 0 auto
+            width: auto
+
+        tr > *
+            border: none
+
+        th
+            text-align: right
+
+    section
+        display: table
+        // min-height: 30 * $p
+
+        +mobile
+            display: block
+
+        > *
+            float: left
+
+        > * + *
+            margin-left: 2 * $p
+
+            +mobile
+                margin: 0
+
+        > br + *
+            margin-left: 0
+
+
+    > * + *
+        margin-top: 2 * $p
+
+p
+    line-height: 1.4
+
+.left-photo
+    display: none
+    +state("pages#index")
+        display: block
+        position: fixed
+        bottom: 0
+        left: 0
+        width: $p*35
+
+        +mobile
+            width: 100%
+            display: none
+
+.contact-info
+    width: 54 * $p
+    float: right
+
+    +mobile
+        float: none
+        width: 100%
+
+        .h2
+            line-height: 1.4
+
+.embedded-video
+    width: 100%
+    height: auto
+    padding-bottom: (9/16)*100%
+    position: relative
+
+    iframe
+        position: absolute
+        left: 0
+        top: 0
+        width: 100%
+        height: 100%
+
+main
+    position: relative
+    float: left
+    // border: $mili-p solid $black
+    width: 80 * $p
+
+    +mobile
+        float: none
+
+    +state("pages#index")
+        width: 80 * $p
+
+        +mobile
+            width: 100%
+            margin: 0
+
+    +state("portfolio#index")
+        width: calc(100% - #{24 * $p + 4 * $p})
+        margin-left: 26 * $p + 2 * $p
+
+        +mobile
+            margin: 0 auto
+
+    +state("pages#index")
+        height: 100%
+
+    img
+        max-width: $main-width * $p
+
+        +mobile
+            max-width: 100%
+
+
+    // padding: $margin * $p
+
+header.header-sandwich
+    border-top: $mili-p solid $black
+    border-bottom: $nano-p solid $black
+    padding: $p 0
+
+    .bar > *
+        padding-right: $p/2
+
+nav
+
+    ul
+        padding: 0
+        padding-bottom: $p
+
+        li
+            list-style-type: none
+            line-height: 1.2 * $p
+            display: block
+            border-bottom: $nano-p dotted $black
+            height: $p/2
+            // padding-bottom: $p
+            margin-bottom: $p
+
+            &:hover, &.selected
+                border-bottom: $micro-p solid $black
+                a
+                    font-weight: 900
+
+            a
+                text-decoration: none
+                padding-right: $p/2
+
+a
+    color: $black
+
+.line-btn
+    background-color: $yellow
+    font-size: 2 * $p
+    line-height: $p
+    display: inline-block
+    text-decoration: none
+
+ul.jobs
+    padding: 0
+    margin: -($margin * $p)
+    display: table
+    width: 100%
+
+    +state("portfolio#show")
+        display: none
+
+    li
+        list-style-type: none
+        width: 26 * $p
+        padding: $margin * $p
+        padding-bottom: $p
+        float: left
+        transition-property: -webkit-transform, width, padding
+        transition-duration: 400ms
+        transition-timing-function: $cubic-bezier
+        -webkit-transform: scale(1)
+        position: relative
+
+        .preview
+            position: absolute
+            z-index: 1
+
+        .caption
+            display block
+            border-bottom: $nano-p dotted $black
+            height: 1.5*$p
+            line-height: 3
+
+            > *
+                padding-right: $p
+
+        &:hover, .selected
+            .caption
+                border-bottom: $micro-p solid $black
+
+                > *
+                    font-weight: 900
+
+        a
+            display: block
+
+        .canvas
+            display: block
+            height: 15 * $p
+            overflow: hidden
+            // border: $micro-p solid $black
+            transition: transform 150ms $cubic-bezier, box-shadow 150ms $cubic-bezier
+            box-shadow: 1px 1px transparentize($black, 0), 2px 2px transparentize($black, 0)
+            position: relative
+            z-index
+
+        img
+            height: 15 * $p
+            -webkit-filter: saturate(0%)
+            transition: -webkit-filter 150ms linear, transform 150ms $cubic-bezier
+
+        &:hover, &.visible
+            .canvas
+                transform: translate(-6px,-6px)
+                box-shadow: 1px 1px transparentize($black, 0), 2px 2px transparentize($black, 0), 3px 3px transparentize($black, 0), 4px 4px transparentize($black, 0), 5px 5px transparentize($black, 0), 6px 6px transparentize($black, 0), 7px 7px transparentize($black, 0), 8px 8px transparentize($black, 0)
+
+            img
+                -webkit-filter: none
+                // transform: scale(1.4)
+                // transform: scale(1.4)
+
+
+a:hover
+    transition-property: -webkit-transform, text-shadow
+    transition-duration: 500ms
+    transition-timing-function: $cubic-bezier
+    -webkit-transform: translate(-2px, -2px)
+    text-shadow: 2px 2px 0 transparentize($black, 0.7)
+
+@function gutter($w,$c,$n)
+    @return ($w - $c * $n) / ($n - 1)
+
+$c: .135
+$n: 6
+$gutter: gutter(1, $c, $n)
+$years-grid-width: 1+($gutter * ($n - 1))
+$relative-true-width: (1) / ($years-grid-width)
+
+nav
+    a
+        &:hover, &.selected
+            font-weight: 900
+
+ul.grid
+    width: $years-grid-width * 100%
+
+    a
+        padding: 0
+        margin: 0
+
+    li
+        display: block
+        float: left
+        border: none
+        height: auto
+        width: ($c / $years-grid-width) * 100%
+        margin-right: ($gutter / $years-grid-width) * 100%
+        padding: $p 0
+        border-bottom: $nano-p dotted $black
+        cursor: pointer
+
+        &:hover, .selected
+            border-bottom: $micro-p solid $black
+            padding-bottom: $p - $micro-p
+
+
+        &:nth-child(#{$n}n+1)
+            clear: both
+
+.container
+    display: table
+
+.right-column
+    table
+        padding: $p
+        width: 100%
+        border-collapse: collapse
+
+        tr + tr
+            td, th
+                border-top: $nano-p solid $black
+
+        th
+            padding: $p 0
+            font-weight: 900
+
+        th, td
+            line-height: 1.4
+            text-align: left
+            vertical-align: top
+
+        ul li
+            text-decoration: none
+            padding: $mili-p
+            padding-bottom: $mili-p -  2 * $nano-p
+            border-radius: $p/2
+            border: $nano-p solid $black
+            // display: block
+            margin: $nano-p
+
+        ul
+            padding: 0
+            margin: 0
+
+            li
+                list-style-type: none
+                display: inline-block
+
+        td p, td ul li a
+            padding: $p/2
+            margin-bottom: $p/2
+            padding-bottom: $p/2 - $mili-p
+
+        td
+            padding-top: $p/2
+            padding-left: $p/2
+
+            p
+                margin-top: 0
+                // text-align: right
+
+ul.technologies
+    width: 54 * $p
+
+    +mobile
+        width: 100%
+
+
+    li
+        list-style-type: none
+        float: left
+        width: 50px
+        height: 50px
+        padding-right: 10px
+        padding-bottom: 10px
+
+        img
+            max-height: 100%
+            max-width: 100%

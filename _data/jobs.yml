@@ -1,0 +1,710 @@
+- name: Corpo & Plástica Media Kit
+  when: 2011-02-22
+  year: 2011
+  client: Corpo & Plástica
+  tags:
+  - Infography
+  - Branding
+  brief: To create a Media Kit infographic to attract advertisers to the magazine
+  credits:
+    Design: Pedro Maciel
+    Model: Gianne Albertone
+  content_sections:
+  - type: image
+    image: midiakit-tela.jpg
+  technologies:
+  - Illustrator
+  - Indesign
+  - Photoshop
+
+- name: Lado (B)lack Visual Concept + Logo
+  when: 2016-01-24
+  tags:
+  - Branding
+
+- name: Mandic Control Panel Video
+  when: 2012-12-05
+  tags:
+  - 3D Graphics
+  - Motion Graphics
+  brief: To create a video to tell existing clients about the new control panel.
+  client: Mandic
+  credits:
+    Motion Graphics: Pedro Maciel
+  content_sections:
+  - type: youtube
+    video_code: Kz5vpDq0Ch0
+  technologies:
+  - After effects
+  - Photoshop
+
+- name: Holi Presentation Video
+  when: 2013-05-30
+  tags:
+  - Motion Graphics
+  brief: To create an inspiring motion graphics video that portraits Holi culture
+    and way of working.
+  client: Holi
+  credits:
+    Project Lead: Pedro Maciel
+    Motion Graphics: Pedro Maciel
+    Art Assistants:
+    - Rafael Ruiz
+    - Natália Franz
+  content_sections:
+  - type: vimeo
+    video_code: '35912128'
+
+  technologies:
+  - After Effects
+  - Photoshop
+  - Illustrator
+
+- name: Rentalmix Folder
+  when: 2013-05-30
+  brief: To help prospect clients by displaying the services.
+  client: Rentalmix
+  tags:
+  - Print
+  content_sections:
+  - type: image
+    image: 065bcc6742307.56027fdb9e718.jpg
+
+  - type: image
+    image: cca0e16742309.56027ffa312e0.jpg
+
+  - type: image
+    image: f81a1b6742311.56027f48ca821.jpg
+
+  - type: image
+    image: 9811ef6742313.56027ffa891c0.jpg
+
+  technologies:
+  - Photoshop
+  - Indesign
+
+  credits:
+    Art Direction: Daniel Pedroso
+    Design: Pedro Maciel
+
+- name: Cabelos Cacheados Campaign
+  when: 2013-05-30
+  brief: To create a point of sale campaign for the Cabelos Cacheados product.
+  client: Kimberly-Clark
+  credits:
+    Art Direction: Daniel Pedroso
+    Design:
+    - Pedro Maciel
+    - Natalia Franz
+    - Rafael Ruiz
+    3d Graphics: Pedro Maciel
+  tags:
+  - 3D Graphics
+  - Photo Manipulation
+  content_sections: []
+
+- name: Dandara Terra Facebook Avatar
+  when: 2016-06-20
+  tags:
+    - Photo Manipulation
+  client: Dandara Terra
+  technologies:
+  - Photoshop
+  credits:
+    Photo & Art: Pedro Maciel
+
+- name: Jeitim Mineiro Packaging
+  when: 1970-01-01
+  brief: Packaging for a ficcional company called Ravena for a brand of instant noodles
+  client: Personal
+  tags:
+  - Packaging
+  - Branding
+  - 3D Graphics
+  - Photography
+  content_sections:
+  - type: image
+    image: render-gondola-5.jpg
+
+  - type: image
+    image: render-gondola-3.jpg
+
+  - type: image
+    image: render-gondola-1.jpg
+
+  - type: image
+    image: render-2.jpg
+
+  - type: image
+    title: Studio Photography
+    description: To illustrate the package, a studio was set to take pictures of real noodles.
+    image: _MG_1697.jpg
+
+  - type: image
+    image: _MG_1692.jpg
+
+  - type: image
+    image: _MG_1678.jpg
+
+  - type: image
+    image: _MG_1674.jpg
+
+  - type: image
+    image: _MG_1668.jpg
+  technologies:
+  - Rhinoceros
+  - Cinema 4D
+  - Photoshop
+  - Aperture
+  - Illustrator
+
+  credits:
+    Branding & Package:
+    - Leticia Guerrero
+    - Nathalia Albuquerque
+    - Pedro Maciel
+    Photography:
+    - Pedro Maciel
+    3D Graphics:
+    - Pedro Maciel
+
+- name: Entrama Mandala Collection
+  when: 2016-07-06
+  brief: To design a software that generates art similar to mayan art
+  client: Entrama
+  tags:
+  - Procedural Art
+  - Fashion Design
+  content_sections:
+  - type: image
+    image: 3.61825344E8-.jpg
+
+  - type: image
+    image: 5.9165421E8-.jpg
+
+  - type: image
+    image: 3.94481664E8-.jpg
+
+  - type: image
+    image: 6.2982624E8-.jpg
+
+  - type: image
+    image: 4.01399072E8-.jpg
+
+  - type: image
+    image: _MG_6371.jpg
+
+  - type: image
+    image: _MG_6372.jpg
+
+  - type: image
+    image: _MG_6374.jpg
+  technologies:
+    - Processing
+
+- name: São Paulo City Logo Redesign
+  when: 2015-04-19
+  brief: São Paulo is a chaotic, energetic and complex city. This work was an attempt
+    to develop a logo that matches the city feeling
+  client: Personal
+  tags:
+  - Branding
+  - Motion Graphics
+
+  content_sections:
+  - type: image
+    title: Original Logo
+    description: The original logo at the time (which is still the current one until
+      this work was posted) was created by Romulo Castilho. It may look appealing,
+      but it looks like too much a party and doesn't feel like São Paulo.
+    image: Screenshot_2016-05-29_15.10.25.png
+
+  - type: image
+    title: Comparison to Recife
+    description: Comparing to other cities, like Recife, in this example, it doesn't
+      differentiates. This is a problem, as Recife is completelly different city,
+      being known by its happyness and carnival events. Being at least 2500km distant
+      from São Paulo, Recife is almost like in another country, having different cultural
+      and social aspects. Thereby, it's almost mandatory São Paulo logo to be different.
+    image: Screenshot_2016-05-29_16.56.19.png
+
+  - type: image
+    title: Overloaded
+    description: 'São Paulo has everything too much. Too much people, too much cars,
+      too much queues, too much to know, too much to learn. Everyday, the ammount
+      of people that could encomprise an entire country moves back and forth. Everyday,
+      a great migration happens. '
+    image: Screenshot_2016-05-29_16.56.03.png
+
+  - type: image
+    title: Audacity
+    description: The city is marked through an architecture that is both courageous
+      and arrogant. Where else can you find a building where at least 5000 people
+      live? (Copan Building). This is also represented into the urban art of artists
+      like Gemeos through out the city.
+    image: Screenshot_2016-05-29_16.55.55.png
+
+  - type: image
+    title: Avant-Garde
+    description: The people of São Paulo indescribable. Everyday a new trend happens.
+      If you live here and by some reason move away for a year, when you come back,
+      it feels like it's a new city. It's always moving, always changing, and somehow,
+      like in the edge of world changes.
+    image: Screenshot_2016-05-29_16.55.42.png
+
+  - type: image
+    title: Grid & Modulation
+    description: The logo was then constructed with a very modular, geometric and
+      Avant-Garde approach, in a Bauhaus spirit.
+    image: Identidade-Sa_o-Paulo.png
+
+  - type: video
+    title: Logo Concept Video
+    url: player.vimeo.com/video/168545514
+    description: To better illustrate the concept, a video was done.
+
+  - type: gif
+    title: Motion Graphics
+    description: An animated version for the logo was also developed.
+    image: logo.gif
+
+  technologies:
+  - After Effects
+  - Final Cut
+  - Illustrator
+  - Photoshop
+  - Processing
+  - Logic
+
+  credits:
+    Design:
+    - Pedro Maciel
+    - Leonardo Montoya
+    Motion Graphics: Pedro Maciel
+    Video narration: Dandara Terra
+    Music used in the video: Hajnal by Venetian Snares
+
+- name: Com licença poética
+  when: 2015-09-08
+  brief: To create videos where Dandara Terra reads poetry.
+  tags:
+  - Motion Graphics
+  - Film Making
+  - Color Grading
+  client: Dandara Terra
+  credits:
+    Actress: Dandara Terra
+
+  content_sections:
+  - type: youtube
+    video_code: 3w_k7CMHroc
+
+  - type: youtube
+    video_code: N0B2DuHx5Lo
+
+  - type: youtube
+    video_code: FMp6J4wHF4E
+
+  - type: youtube
+    video_code: bPLlAsRat2E
+
+  - type: youtube
+    video_code: "-5zNwQ7vHxY"
+
+- name: Ibirapuera Signage+Identity
+  client: Personal
+  credits:
+    Design & Research:
+    - Pedro Maciel
+    - Leonardo Tamura
+    - Beatriz Accioly
+    Visual Identity: Leonardo Tamura
+    3d Graphics: Pedro Maciel
+    Photography: Pedro Maciel
+  tags:
+  - 3D Graphics
+  - Signge
+  - Branding
+
+  content_sections:
+  - type: image
+    image: apresentac_a_o_sinalizac_a_o_parque_ibirapuera-2_Page_48.png
+
+  - type: speaker_deck
+    url: pedrozath/projeto-de-sinalizacao-do-parque-ibirapuera
+
+  technologies:
+  - Photoshop
+  - Illustrator
+  - 3ds max
+  - Rhinoceros
+
+- name: Kobo
+  when: 2010-10-11
+  brief: To create the visual concept for the Kobo company
+  client: Kobo
+  tags:
+  - 3D Graphics
+
+  content_sections:
+  - type: image
+    image: kobo_02.jpg
+
+  - type: image
+    image: kobo_04.jpg
+
+  - type: image
+    image: kobo_06.jpg
+
+  - type: image
+    image: kobo-3d.jpg
+
+  technologies:
+  - Photoshop
+  - 3ds Max
+
+  credits:
+    Art Direction: Pedro Maciel
+    3d Graphics: Pedro Maciel
+
+- name: Apris Visual Identity
+  client: Apris
+  when: 2013-04-09
+  tags:
+  - Branding
+  - Print
+  technologies:
+    - Illustrator
+    - Indesign
+  content_sections:
+  - type: image
+    title: Brand Research
+    description: A panel summarizing the main competitors of the brand
+    image: marcas.jpg
+
+  - type: image
+    title: Grid & Modulation
+    description: The logo was created based on a golden proportion modular system.
+    image: Screenshot_2016-05-31_20.04.11.png
+
+  - type: issu
+    code: 1538161/36113691
+
+  credits:
+    Designer: Pedro Maciel
+
+- name: Articulações Simbólicas Trailer
+  client: Marcos Beccari
+  when: 2016-05-01
+  technologies:
+  - After Effects
+  - Final Cut
+  - Photoshop
+  tags:
+  - Motion Graphics
+  - Video Editing
+  brief: To create a trailer for a book called Articulações Simbólicas by Dr. Marcos Beccari.
+  credits:
+    Screenplay: Marcos Beccari
+    Sound Design & Music: Felipe Ayres
+    Narration: Vicente Pessôa
+    Motion Graphics & Video Editing: Pedro Maciel
+  content_sections:
+  - type: youtube
+    video_code: p6iT-NjViN0
+
+- name: Jogo Reciclagem
+  when: 2011-05-19
+  brief: Design visual aspects of a board game to teach children on how the cycle of consuption, industry and importance of sustainability
+  client: Instituto Supereco
+  tags:
+  - Game
+  - Print
+  - Publishing
+
+  credits:
+    Project Lead: Pedro Maciel
+    Art Direction: Pedro Maciel
+    Design:
+    - Pedro Maciel
+    - Natalia Franz
+    - Rafael Ruiz
+
+  technologies:
+  - 3DS max
+
+  content_sections:
+  - type: image
+    title: Game board
+    image: board.jpg
+
+  - type: issu
+    code: 1538161/36141814
+    title: Game manual
+
+- name: Entrama Tree Collection
+  when: 2015-07-22
+  brief: >-
+    Inspired by the trees of the Brazilian cerrado (a biome analogue to savannah),
+    a software that generate trees was created. And with the generated art, some t-shirts
+    were created.
+  client: Entrama
+  tags:
+    Procedural Art
+  content_sections:
+  - type: image
+    image: tree-02100.jpg
+
+  - type: image
+    image: _rvoreedita.jpg
+
+  - type: image
+    image: tree-04106.jpeg
+
+  - type: image
+    image: tree-03363.jpeg
+
+  - type: image
+    image: trees6755502.0.jpg
+
+  - type: image
+    image: trees3293.4993.jpg
+
+  - type: image
+    image: Arte_Cole__o_01_-_Cabeleira.png
+
+  - type: image
+    image: Arte_Cole__o_02_-__tero.png
+
+  - type: image
+    image: Arte_Cole__o_03_-_Cerrado_Comum.png
+
+  - type: gif
+    image: 01.gif
+
+  - type: gif
+    image: 03.gif
+
+  - type: gif
+    image: 04.gif
+
+  - type: gif
+    image: 05.gif
+
+  - type: gif
+    image: 06.gif
+
+  - type: gif
+    image: 07.gif
+
+  - type: gif
+    image: 08.gif
+
+  - type: image
+    image: _MG_6376.jpg
+
+  - type: image
+    image: _MG_6389.jpg
+
+  - type: image
+    image: _MG_6383.jpg
+
+  - type: image
+    image: _MG_6378.jpg
+
+  - type: image
+    image: _MG_6391.jpg
+
+  - type: image
+    image: _MG_6385.jpg
+
+  technologies:
+  - Processing
+  - Sublime Text
+
+  credits:
+    Software Development: Pedro Maciel
+
+- name: Rubro Alagoas Package
+  when: 2015-12-03
+  client: Personal
+  brief: To create a package for the Rubro Alagoas cosmetic considering the social
+    and cultural aspects.
+  tags:
+  - 3D Graphics
+  credits:
+    Research:
+    - Gabriel Acacio
+    - Leticia Guerrero
+    - Nathalia Albuquerque
+    - Pedro Maciel
+    Graphic Design:
+    - Leticia Guerrero
+    - Gabriel Acacio
+    - Nathalia Albuquerque
+    Package Architecture:
+    - Pedro Maciel
+    - Joao Hümmel
+    3d Graphics: Pedro Maciel
+  content_sections:
+  - type: image
+    image: render_berc_o.jpg
+
+  - type: image
+    image: Screenshot_2016-06-01_19.38.56.png
+
+  - type: image
+    image: render_berc_o_2.jpg
+
+  - type: image
+    image: Screenshot_2016-06-01_19.48.41.png
+
+  - type: image
+    image: 2015-11-26_17.55.55.jpg
+
+  technologies:
+  - Cinema 4D
+  - Photoshop
+  - Rhinoceros
+  - Illustrator
+  - Indesign
+
+- name: Natureza Absurda Expo
+  when: 2015-06-07
+  tags:
+  - 3D Graphics
+  - Branding
+  - Publishing
+  credits:
+    Expography:
+    - Pedro Maciel
+    - Leticia Guerrero
+    - Nathalia Albuquerque
+  content_sections:
+  - type: image
+    image: Cartaz_lg_v02-01.jpg
+
+  - type: image
+    title: Semantic Panel
+    description: This panel tries to synthesize the essential visual aspects of Walmor
+      Côrrea artwork.
+    image: Painel-Sema_ntico-Walmor-Correa.png
+
+  technologies:
+  - Illustrator
+  - Indesign
+  - Photoshop
+
+- name: Entrama Website
+  when: 2016-05-01
+  brief: 'To create the e-commerce website for the Entrama company. The site can be
+    accessed at: www.entrama.com.br.'
+  client: Entrama
+  credits:
+    UI/UX Design: Pedro Maciel
+    Front-end Development: Pedro Maciel
+    Back-end Development: Pedro Maciel
+
+  tags:
+  - Web Design
+  - Front-End
+  - Back-End
+
+  technologies:
+  - HTML5
+  - CSS3
+  - Sass
+  - Slim
+  - JavaScript
+  - Ruby on Rails
+  - Ruby
+  - PagSeguro
+  - PostgreSQL
+  - Heroku
+  - Git
+  - Github
+  - Sublime Text
+
+  content_sections:
+  - type: github
+    user: pedrozath
+    repo: entrama
+
+- name: Woop! Website
+  when: 2012-10-02
+  tags:
+  - Web Design
+  - Front-End
+  - Back-End
+  content_sections:
+  - type: github
+    user: pedrozath
+    repo: woop
+
+  technologies:
+  - HTML5
+  - CSS3
+  - Ruby on Rails
+  - Ruby
+  - Git
+  - Github
+  - JSON
+  - Javascript
+  - JQuery
+  - Sublime Text
+  - Sass
+  - Slim
+
+  credits:
+    UI/UX Design: Rafael Ruiz
+    Front-end Development: Pedro Maciel
+    Back-end Development: Pedro Maciel
+
+- name: Revista Bridge
+  when: 2013-05-30
+  brief: To create a magazine called Bridge that has the objective of make a bridge
+    between the design and code.
+  client: Personal
+  tags:
+  - Print
+  content_sections:
+  - type: image
+    image: dfsg.PNG
+
+  - type: issu
+    code: 1538161/36113636
+
+  technologies:
+  - Illustrator
+  - Photoshop
+  - Indesign
+
+  credits:
+    Design: Pedro Maciel
+    Visual Identity: Pedro Maciel
+
+# - name: Dandara Terra Photo Book
+#   when: 2015-08-23
+#   tags:
+#   client: Dandara Terra
+#   credits:
+#     Photography & Retouch: Pedro Maciel
+
+#   content_sections:
+#   - type: image
+#     image: book-dandara-terra.jpg
+
+#   - type: image
+#     image: book-dandara-terra2.jpg
+
+#   - type: image
+#     image: book-dandara-terra3.jpg
+
+#   - type: image
+#     image: book-dandara-terra6.jpg
+
+#   - type: image
+#     image: book-dandara-terra7.jpg
+
+#   technologies:
+#   - Aperture

@@ -1,0 +1,38 @@
+---
+---
+
+!!!
+/
+  ______  _______ ______   ______  _____
+  |_____] |______ |     \ |_____/ |     |
+  |       |______ |_____/ |    \_ |_____|
+
+  _______ _______ _______ _____ _______
+  |  |  | |_____| |         |   |______ |
+  |  |  | |     | |_____  __|__ |______ |_____
+
+  enjoy the source code!
+
+%html
+  %head
+    %title Pedro Maciel — Multidisciplinary Professional
+    {% css app %}
+    {% js app %}
+    -# = favicon_link_tag "favicons/favicon.ico"
+    %meta(name="viewport" content="width=device-width")
+    %meta(name="theme-color" content="#FFF030")
+
+  %body(data-state="{{ page.state }}")
+    %header
+      .spacer.left-column
+        .logo-bar
+        .tag-bar
+      %a.logo-signature{href: "/", data: {auto_route: true}}
+        {% img logo.png %, class:logo %}
+        .tagline.bar
+          %h1.h3 Multidisciplinary Professional
+      .spacer.right-column
+        .logo-bar
+        .tag-bar
+    {% img me-standing.png class:left-photo %}
+    {{ content }}
