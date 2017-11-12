@@ -15,7 +15,7 @@
 
 %html
   %head
-    %title Pedro Maciel — Multidisciplinary Professional
+    %title Pedro Maciel — Full Stack Developer / Designer
     {% css app %}
     {% js app %}
     -# = favicon_link_tag "favicons/favicon.ico"
@@ -28,11 +28,12 @@
         .logo-bar
         .tag-bar
       %a.logo-signature{href: "/", data: {auto_route: true}}
-        {% img logo.png %, class:logo %}
+        .logo
+          {% include svg/logo-pb.svg %}
         .tagline.bar
-          %h1.h3 Multidisciplinary Professional
+          %h1.h3 Full Stack Developer / Designer
       .spacer.right-column
         .logo-bar
         .tag-bar
-    {% img me-standing.png class:left-photo %}
+    {% img me-2017.png class:left-photo %}
     {{ content }}
