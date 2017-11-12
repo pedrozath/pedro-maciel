@@ -1,0 +1,14 @@
+
+%ul.jobs(data-filter='true')
+  {% for job in site.data.jobs %}
+  %li{data: { client: '{{ job.client | parameterize }}',
+              tag: '{{ job.tags | inspect }}',
+              year: '{{ job.year }}' } }
+
+    %a(href='/portfolio/{{ job.slug | parameterize }}' data-auto-route=true)
+      .canvas
+        {% img 'jobs/{{ job.name | parameterize }}/cover.png' "magick:resize:312x180^" "magick:crop:312x180+0+0" %}
+      .caption
+        .h3 {{ job.name }}
+
+  {% endfor %}

@@ -21,3 +21,7 @@ server.bat
 server.sh
 .env
 public/uploads
+_site
+.asset-cache
+.DS_Store
+.sass-cache

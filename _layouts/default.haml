@@ -1,0 +1,43 @@
+---
+---
+
+!!!
+/
+  ______  _______ ______   ______  _____
+  |_____] |______ |     \ |_____/ |     |
+  |       |______ |_____/ |    \_ |_____|
+
+  _______ _______ _______ _____ _______
+  |  |  | |_____| |         |   |______ |
+  |  |  | |     | |_____  __|__ |______ |_____
+
+  enjoy the source code!
+
+%html
+  %head
+    %title Pedro Maciel — Full Stack Developer / Designer
+    {% css app %}
+    {% js app %}
+    -# = favicon_link_tag "favicons/favicon.ico"
+    %meta(name="viewport" content="width=device-width")
+    %meta(name="theme-color" content="#FFF030")
+
+  %body(data-state="{{ page.state }}")
+    %header
+      .spacer.left-column
+        .logo-bar
+        .tag-bar
+      %a.logo-signature{href: "/", data: {auto_route: true}}
+        .logo
+          {% include svg/logo-pb.svg %}
+        .tagline.bar
+          %h1.h3 Full Stack Developer / Designer
+      .spacer.right-column
+        .logo-bar
+        .tag-bar
+      %nav
+        %a{:href => 'portfolio', data:{auto_route: true}} portfolio
+        %a{:href => '//br.linkedin.com/pub/pedro-maciel/22/752/a41', target: '_blank'} LinkedIn
+    {% img me-2017.png class:left-photo %}
+
+    {{ content }}

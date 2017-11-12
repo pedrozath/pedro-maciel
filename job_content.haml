@@ -1,0 +1,127 @@
+{% assign client = site.data.clients | where:'name',page.job.client | first %}
+
+%article.job-content
+  %header.hat-title
+    .line
+      %a.h3{:href => "/portfolio", :data => {:auto_route => "true"}} ← Back to portfolio index
+    .bar
+      %h1.h1 {{ page.job.name }}
+
+  %section
+    {% img "jobs/{{ page.job.name | parameterize }}/cover.png" "magick:resize:648" %}
+
+    .caption.right-column
+      %header.header-sandwich
+        .bar
+          %h3.h2 Job Info
+
+      %table
+        %tbody
+          %tr
+            %th Client
+            %td
+              %p {{ client["description"] }}
+          %tr
+            %th Brief
+            %td
+              %p {{ page.job.brief }}
+          %tr
+            %th Date
+            %td
+              %p {{ page.job.when }}
+          %tr
+            %th Tags
+            %td
+              %ul {% for tag in page.job.tags %}<li>{{ tag }}</li>{% endfor %}
+
+  {% for section in page.job.content_sections %}
+  %section
+    {% case section.type %}
+    {% when 'image' %}
+    {% img "jobs/{{ page.job.slug }}/{{ section.image }}" "magick:resize:648" %}
+
+    {% when 'gif' %}
+    {% img "jobs/{{ page.job.slug }}/{{ section.image }}" "width:648" %}
+
+    {% when 'video' %}
+    .embedded-video
+      %iframe{ src:"http://{{ section.url }}",
+               frameborder:"0",
+               webkitallowfullscreen: true,
+               mozallowfullscreen: true,
+               allowfullscreen: true }
+
+    {% when 'youtube' %}
+    .embedded-video
+      %iframe{ src:"http://www.youtube.com/embed/{{ section.video_code }}",
+               frameborder:"0",
+               webkitallowfullscreen: true,
+               mozallowfullscreen: true,
+               allowfullscreen: true }
+
+    {% when 'vimeo' %}
+    .embedded-video
+      %iframe{ src:"http://player.vimeo.com/video/{{ section.video_code }}",
+               frameborder:"0",
+               webkitallowfullscreen: true,
+               mozallowfullscreen: true,
+               allowfullscreen: true }
+
+    {% when 'speaker_deck' %}
+    {% speaker_deck "{{ section.url }}" %}
+
+    {% when 'github' %}
+    %h2.h2 Check on GitHub
+    %br
+    .github-card{ data: { user:"{{ section.user }}",
+                          repo: "{{ section.repo }}",
+                          width: "648px",
+                          height: "",
+                          theme: "default" } }
+
+    :coffee
+      github_card()
+
+
+    {% when 'issu' %}
+    .issuuembed{ data: { configid: "{{ section.code }}" },
+                 style: "width:648px;height:648px" }
+    %script(type="text/javascript" src="//e.issuu.com/embed.js" async="true")
+
+    {% endcase %}
+
+    {% if section.title %}
+    .caption.right-column
+      %header.header-sandwich
+        .bar
+          %h3.h2 {{ section.title }}
+      %p {{ section.description }}
+    {% endif %}
+  {% endfor %}
+
+  %section
+    %h2.h2 Used technologies
+    %br
+    %ul.technologies
+      {% for technology in page.job.technologies %}
+      %li
+        %a{:href => "//google.com/search?q={{ technology }}", target: 'blank'}
+          {% img "technologies/{{ technology | parameterize }}.png" alt:technology %}
+      {% endfor %}
+
+  %footer
+    %h2.h2.center Credits
+    %table
+      %tbody
+        {% for credit in page.job.credits %}
+        %tr
+          %th {{ credit[0] }}
+          %td
+            {% if credit[1].first %}
+            %ul {% for item in credit[1] %}<li>{{ item }}</li>{% endfor %}
+            {% else %}
+            %p {{ credit[1] }}
+            {% endif %}
+        {% endfor %}
+
+    %a.h3{:href => "/portfolio", :data => {:route => true}} ← Back to portfolio index
