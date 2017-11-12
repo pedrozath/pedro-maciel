@@ -25,9 +25,6 @@ body
     padding: 10px
 
   &[data-state="pages#index"]
-    // background: linear-gradient(to bottom, mix($black, $space-gray, 50%), $space-gray)
-    // background-attachment: fixed
-    // background-repeat: no-repeat
     background-color: $space-gray
     color: $white
 
@@ -155,6 +152,9 @@ h1,h2,h3,h4,h5
 hr
   border: 0
   border-top: solid $nano-p $black
+
+  +state('pages#index')
+    border-color: $white
 
 ul
   padding: 0
@@ -425,6 +425,9 @@ nav
 
 a
   color: $black
+
+  +state('pages#index')
+    color: $yellow
 
 .line-btn
   background-color: $yellow
