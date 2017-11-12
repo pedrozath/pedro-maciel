@@ -9,7 +9,7 @@ group :jekyll_plugins do
   gem 'jekyll-assets'
   gem 'jekyll-coffeescript'
   gem 'jekyll-livereload'
-  gem 'jekyll-haml', path: '../jekyll-haml'
+  gem 'jekyll-haml', github: 'pedrozath/jekyll-haml'
   gem 'jekyll-feed', '~> 0.6'
 end
 
