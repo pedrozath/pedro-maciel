@@ -1,5 +1,6 @@
-PATH
-  remote: ../jekyll-haml
+GIT
+  remote: git://github.com/pedrozath/jekyll-haml.git
+  revision: 3e2d3a1aafb9e71d976cf223fe2f05230fba70f5
   specs:
     jekyll-haml (0.1.6)
       haml (>= 3.0.0)
