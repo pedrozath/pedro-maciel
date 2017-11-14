@@ -28,6 +28,12 @@ body
     background-color: $space-gray
     color: $white
 
+    > footer
+      position: fixed
+      border-color: $white
+      bottom: 0
+      right: 0
+
   &[data-state="portfolio#index"]
     padding-left: 0
 
@@ -51,6 +57,11 @@ body
     +mobile
       width: 100%
       margin-bottom: 10px
+
+  & > footer
+    border-top: 1px solid $black
+    padding: $p 4*$p $p 0
+    position: static
 
 h1,h2,h3,h4,h5
   text-transform: uppercase
@@ -92,7 +103,7 @@ h1,h2,h3,h4,h5
   line-height: 0
 
   +state('pages#index')
-    background-color: $yellow
+    background-color: $light-gray
 
 .line
   @extend .bar
@@ -140,7 +151,7 @@ h1,h2,h3,h4,h5
     width: 100%
 
   +state('pages#index')
-    fill: $yellow
+    fill: $purple
 
 .tagline
   margin-top: $p
@@ -321,12 +332,27 @@ p
 
 .left-photo
   display: none
+  opacity: 0.8
+
+  img
+    position: absolute
+    bottom: 0
+    left: 0
+
+    &.me
+      width: 420px
+
+    &.chairs
+      left: -100px
+      bottom: -200px
+      width: 1200px
+
   +state("pages#index")
     display: block
     position: fixed
-    bottom: 0
-    left: 0
-    width: $p*35
+    left: 0px
+    bottom: 0px
+    z-index: -1
 
     +mobile
       width: 100%
@@ -610,7 +636,6 @@ ul.technologies
 
   +mobile
     width: 100%
-
 
   li
     list-style-type: none
