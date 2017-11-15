@@ -1,6 +1,6 @@
 
 duration = (time) ->
-  speed = 0.5
+  speed = 1
   (time/1000)/speed
 
 $visible_el = (selector) ->
@@ -39,7 +39,9 @@ animations = =>
     stagger: duration(-300)
     paused: true
     align: 'normal'
-    tweens:[
+    tweens: [
+    ].concat(
+
       TweenMax.staggerFromTo $('.left-photo'), duration(1200),
         opacity: 1
       ,
@@ -47,28 +49,66 @@ animations = =>
         ease: Cubic.easeInOut
       , 0
 
+      TweenMax.staggerFromTo $('.content nav.main > a'), duration(300),
+        top: 0
+        opacity: 1
+      ,
+        top: -50
+        opacity: 0
+        ease: Cubic.easeInOut
+        delay: duration(1000)
+      , duration(120)
+
       TweenMax.staggerFromTo $('.monitor.aspect-ratio'), duration(1000),
         paddingTop: "#{(1/(1400/900))*100}%"
       ,
         paddingTop: '0%'
         ease: Cubic.easeInOut
-        delay: duration(1000)
+        delay: duration(2000)
       , 0
 
       TweenMax.staggerFromTo $('.tagline .h3'), duration(500),
-        y: 0
-      ,
-        y: -20
-        delay: duration(1000)
-        ease: Cubic.easeInOut
-      , 0
-
-      TweenMax.staggerFromTo $('.tagline .h3'), duration(1),
         opacity: 1
       ,
         opacity: 0
-        delay: duration(2000)
+        delay: duration(3300)
+        ease: Cubic.easeInOut
       , 0
+
+      TweenMax.staggerFromTo _.shuffle($('.tagline .square')), duration(300),
+        backgroundColor: light_gray
+      ,
+        backgroundColor: white
+        delay: duration(3300)
+      , duration(15)
+
+    ).push(
+      for square, index in $('.tagline .square').get().reverse()
+        r = 200
+        n = (Math.random() * 2 - 1) * Math.PI
+        x = Math.sin(n) * r
+        y = Math.cos(n) * r
+
+        console.log 3500 + index * 20
+
+        TweenMax.fromTo square, duration(500),
+          x: 0
+          y: 0
+        ,
+          x: x
+          y: y
+          delay: duration(3500)
+          ease: Cubic.easeInOut
+
+    ).concat([
+      TweenMax.staggerFromTo _.shuffle($('.tagline .square')), duration(100),
+        opacity: 1
+      ,
+        opacity: 0
+        delay: duration(5000)
+        ease: Cubic.easeInOut
+      , duration(6)
+
 
       TweenMax.staggerFromTo $('footer'), duration(1000),
         marginBottom: 0
@@ -145,7 +185,7 @@ animations = =>
         delay: duration(5000)
         ease: Cubic.easeInOut
       , 0
-    ]
+    ])
 
   'portfolio#index': => new TimelineMax
     paused: true
@@ -242,7 +282,7 @@ animations = =>
     stagger: -0.3
     paused: true
     align: 'sequence'
-    tweens:[
+    tweens: [
       TweenMax.staggerFromTo $('.caption.right-column'), 0.5,
         opacity: 1
       ,

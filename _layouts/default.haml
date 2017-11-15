@@ -27,11 +27,21 @@
       .spacer.right-column
         .logo-bar
         .tag-bar
-      %a.logo-signature{href: "/", data: {auto_route: true}}
+
+      .logo-signature{href: "/", data: {auto_route: true}}
         .logo
           {% include svg/logo-pb.svg %}
-        .tagline.bar
+        .tagline
           %h1.h3 Full Stack Developer / Designer
+          {% for i in (1..54) %}
+          .square
+          {% endfor %}
+
+
+        %nav.main
+          %a{:href => '/', data:{auto_route: true } } About me
+          %a{:href => '/portfolio', data:{auto_route: true } } Portfolio
+
       .spacer.left-column
         .logo-bar
         .tag-bar

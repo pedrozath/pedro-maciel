@@ -21,16 +21,17 @@ class App
     @add_to_history location.pathname
     @animation = @animations()[@current_state]()
 
-    # @animation.progress(1)
-    # TweenMax.staggerFromTo _.shuffle($('.logo svg g')), 1,
-    #   opacity: 0
-    # ,
-    #   opacity: 1
-    #   ease: Cubic.easeInOut
-    #   delay: 1
-    # , 0.1, (=> @animation.reverse())
+    @animation.progress(1)
 
-    # @animation.reverse()
+    TweenMax.staggerFromTo _.shuffle($('.logo svg g')), 1,
+      opacity: 0
+    ,
+      opacity: 1
+      ease: Cubic.easeInOut
+      delay: 1
+    , 0.1, (=> @animation.reverse())
+
+    # @animation.reverse(0)
 
     do @bind_events
     do @init_filter
@@ -130,7 +131,8 @@ class App
 $ ->
   unless /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test navigator.userAgent
     window.app = new App animations: animations
-    # app.animations()['portfolio#index']().play(0)
+    # app.animations()['pages#index']().reverse(0)
+    # app.animations()['pages#index']().reverse(0)
     # app.animations()['portfolio#index']().reverse(0)
-    # app.animations()['pages#index']()
+    # app.animations()['pages#index']().reverse(0)
     # app.route 'portfolio'

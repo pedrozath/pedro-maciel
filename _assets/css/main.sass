@@ -210,13 +210,30 @@ h1,h2,h3,h4,h5
   +state('pages#index')
     width: 100%
 
+.square
+  width: $p
+  height: $p
+  display: block
+  float: left
+
+  +state('pages#index')
+    background-color: $light-gray
+
 .tagline
   margin-top: $p
   height: 12px
+  display: none
+  position: relative
 
-  > *
-    margin-left: $p
+  +state('pages#index')
+    display: block
+
+  > .h3
+    position: absolute
+    left: $p
     padding: 0 $p
+    overflow: hidden
+    height: 12px
 
 hr
   border: 0
@@ -235,7 +252,6 @@ ul
         content: " / "
 
 .logo-signature
-  cursor: pointer
   width: $main-width * $p
   float: right
 
@@ -244,8 +260,12 @@ ul
     > *
       width: 100%
 
-  &:hover
-    @extend a:hover
+  nav.main
+    +state('pages#index')
+      display: none
+
+  // &:hover
+  //   @extend a:hover
 
 .spacer, nav.left-column, nav.left-column ul
   display: block
@@ -467,6 +487,7 @@ main
   +state("portfolio#index")
     width: calc(100% - #{24 * $p + 4 * $p})
     margin-left: 26 * $p + 2 * $p
+    margin-top: $p
 
     +mobile
       margin: 0 auto
@@ -518,13 +539,22 @@ nav ul
 
 nav.main a
   padding: 1px .5*$p 0 1.5*$p
+  height: $p
   background-repeat: no-repeat
   text-decoration: none
   background-image: url(asset_path('triangle-white'))
+  position: relative
+
+  +state('portfolio#index')
+    background-image: url(asset_path('triangle-black'))
+
+  +state('portfolio#show')
+    background-image: url(asset_path('triangle-black'))
 
   +state('pages#index')
     &:hover
       background-image: url(asset_path('triangle-purple'))
+
 
 a
   color: $black
