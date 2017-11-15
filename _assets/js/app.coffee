@@ -1,6 +1,7 @@
 #= require jquery/dist/jquery
 #= require gsap/src/uncompressed/TweenMax
 #= require gsap/src/uncompressed/plugins/ScrollToPlugin
+#= require underscore/underscore
 
 #= require tag_selection
 #= require tag_system
@@ -16,8 +17,21 @@ class App
     @body = $("body")
     # @animations = @animations_template()
     @current_state = @body.attr "data-state"
+
     @add_to_history location.pathname
     @animation = @animations()[@current_state]()
+
+    # @animation.progress(1)
+    # TweenMax.staggerFromTo _.shuffle($('.logo svg g')), 1,
+    #   opacity: 0
+    # ,
+    #   opacity: 1
+    #   ease: Cubic.easeInOut
+    #   delay: 1
+    # , 0.1, (=> @animation.reverse())
+
+    # @animation.reverse()
+
     do @bind_events
     do @init_filter
     do @fixed_nav
@@ -114,6 +128,9 @@ class App
       do @scroll_up
 
 $ ->
-#   unless /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test navigator.userAgent
-#     window.app = new App
-#       animations: animations
+  unless /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test navigator.userAgent
+    window.app = new App animations: animations
+    # app.animations()['portfolio#index']().play(0)
+    # app.animations()['portfolio#index']().reverse(0)
+    # app.animations()['pages#index']()
+    # app.route 'portfolio'

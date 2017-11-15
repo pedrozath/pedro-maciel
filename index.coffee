@@ -2,5 +2,5 @@
 ---
 $("main").html \
 """
-  {% haml contact_info.haml %}
+  {% haml my_work.haml %}
 """

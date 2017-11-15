@@ -18,13 +18,13 @@
     %title Pedro Maciel — Full Stack Developer / Designer
     {% css app %}
     {% js app %}
-    -# = favicon_link_tag "favicons/favicon.ico"
+    %link(rel='icon' href='favicon.png' type="image/png")
     %meta(name="viewport" content="width=device-width")
     %meta(name="theme-color" content="#FFF030")
 
   %body(data-state="{{ page.state }}")
     %header
-      .spacer.left-column
+      .spacer.right-column
         .logo-bar
         .tag-bar
       %a.logo-signature{href: "/", data: {auto_route: true}}
@@ -32,15 +32,23 @@
           {% include svg/logo-pb.svg %}
         .tagline.bar
           %h1.h3 Full Stack Developer / Designer
-      .spacer.right-column
+      .spacer.left-column
         .logo-bar
         .tag-bar
 
-      /
-        %nav
-          %a{:href => 'portfolio', data:{auto_route: true}} portfolio
-          %a{:href => '//br.linkedin.com/pub/pedro-maciel/22/752/a41', target: '_blank'} LinkedIn
+    .left-photo
+      {% img chairs-purple.png class:'chairs' %}
+      {% img me-2017.png class:'me' %}
+
     {{ content }}
 
   %footer
-    %h2.h2 PEDRO@PEDROMACIEL.COM / +55 11 95252 8011
+    %h2.h2
+      %a{href: 'mailto://PEDRO@PEDROMACIEL.COM'} PEDRO@PEDROMACIEL.COM
+      /
+      %phone +55 11 95252 8011
+      %a{href: '//{{ site.social.linkedin }}',  target: '_blank'} <i class='fa fa-linkedin'></i>
+      %a{href: '//{{ site.social.github }}',    target: '_blank'} <i class='fa fa-github'></i>
+      / %a{href: '//{{ site.social.facebook }}',  target: '_blank'} <i class='fa fa-facebook'></i>
+      / %a{href: '//{{ site.social.instagram }}', target: '_blank'} <i class='fa fa-instagram'></i>
+      %a{href: '//{{ site.social.twitter }}',   target: '_blank'} <i class='fa fa-twitter'></i>

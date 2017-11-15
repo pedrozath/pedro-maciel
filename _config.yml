@@ -40,3 +40,10 @@ assets:
 data_show:
   - resource_collection: jobs
     path: portfolio
+
+social:
+  twitter: twitter.com/pedrozath
+  facebook: facebook.com/pedrozath
+  linkedin: linkedin.com/pub/pedro-maciel/22/752/a41
+  instagram: instagram.com/pedrozath
+  github: github.com/pedrozath

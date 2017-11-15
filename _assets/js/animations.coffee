@@ -1,146 +1,283 @@
+
+duration = (time) ->
+  speed = 0.5
+  (time/1000)/speed
+
+$visible_el = (selector) ->
+  window_height = $(window).height()
+  $(selector).filter -> $(this).offset().top < window_height
+
+$invisible_el = (selector) ->
+  window_height = $(window).height()
+  $(selector).filter -> $(this).offset().top > window_height
+
+# window_center = ->
+#   x: $(window).width()/2
+#   y: $(window).height()/2
+
+# el_dims = ($el) ->
+#   x: $el.width()
+#   y: $el.height()
+
+# el_center = ($el) ->
+#   dims   = el_dims($el)
+#   wc     = window_center()
+#   offset = x: $el.offset().left, y: $el.offset().top
+#   x: (wc.x/2) - offset.x - dims.x/2
+#   y: (wc.y/2) - offset.y - dims.y/2
+
 animations = =>
+  black      = '#000000'
+  white      = '#FFFFFF'
+  yellow     = '#FFF030'
+  space_gray = '#121212'
+  light_gray = '#494949'
+  purple     = '#2F0089'
+
   CSSPlugin.defaultTransformPerspective = 600
-  "pages#index": => new TimelineMax
-    stagger: -0.3
+  'pages#index': => new TimelineMax
+    stagger: duration(-300)
     paused: true
-    align: "sequence"
+    align: 'normal'
     tweens:[
-      TweenMax.staggerFromTo $(".contact-info ul li"), 0.5,
+      TweenMax.staggerFromTo $('.left-photo'), duration(1200),
         opacity: 1
       ,
         opacity: 0
         ease: Cubic.easeInOut
-      , -0.3
+      , 0
 
-      TweenMax.staggerFromTo $(".contact-info h2"), 0.5,
+      TweenMax.staggerFromTo $('.monitor.aspect-ratio'), duration(1000),
+        paddingTop: "#{(1/(1400/900))*100}%"
+      ,
+        paddingTop: '0%'
+        ease: Cubic.easeInOut
+        delay: duration(1000)
+      , 0
+
+      TweenMax.staggerFromTo $('.tagline .h3'), duration(500),
+        y: 0
+      ,
+        y: -20
+        delay: duration(1000)
+        ease: Cubic.easeInOut
+      , 0
+
+      TweenMax.staggerFromTo $('.tagline .h3'), duration(1),
         opacity: 1
       ,
         opacity: 0
-        ease: Cubic.easeInOut
-      , -0.1
+        delay: duration(2000)
+      , 0
 
-      TweenMax.staggerFromTo $(".contact-info hr"), 0.5,
-        width: 648
+      TweenMax.staggerFromTo $('footer'), duration(1000),
+        marginBottom: 0
+        opacity: 1
       ,
-        width: 0
-        ease: Cubic.easeInOut
-      , -0.1
+        marginBottom: -100
+        opacity: 0
+        delay: duration(2000)
+      , 0
 
-      TweenMax.staggerFromTo $(".left-photo"), 0.5,
-        width: 420
+      TweenMax.staggerFromTo $('body'), duration(1000),
+        backgroundColor: black
       ,
-        width: 0
-        ease: Cubic.easeInOut
-      , -0.1
+        backgroundColor: yellow
+        delay: duration(2000)
+      , 0
 
-      TweenMax.staggerFromTo $(".motion-reel"), 0.5,
-        height: 364
+      TweenMax.staggerFromTo $('nav.main'), duration(1000),
+        opacity: 1
       ,
-        height: 0
-        ease: Cubic.easeInOut
-      , -0.1
+        opacity: 0
+        delay: duration(2000)
+      , 0
 
-      TweenMax.staggerFromTo $("header .left-column"), 0.5,
-        width: 288
-        marginLeft: 24
+      TweenMax.staggerFromTo $('.bar'), duration(1000),
+        backgroundColor: light_gray
       ,
-        width: 0
-        marginLeft: 0
-        ease: Cubic.easeInOut
-      , -0.1
+        backgroundColor: black
+        delay: duration(3000)
+      , 0
 
-      TweenMax.staggerFromTo $("main"), 0.3,
-        marginLeft: 24
+
+      TweenMax.staggerFromTo $('.logo'), duration(1000),
+        fill: purple
       ,
-        marginLeft: 24
+        fill: black
+        delay: duration(3000)
+      , 0
+
+      TweenMax.staggerFromTo $('.bar'), duration(1000),
+        width: '100%'
+      ,
+        width: '0%'
+        delay: duration(4000)
+      , 0
+
+      TweenMax.staggerFromTo $('header'), duration(1000),
+        width: '100%'
+      ,
+        width: '50%'
         ease: Cubic.easeInOut
+        delay: duration(4000)
+      , 0
+
+      TweenMax.staggerFromTo $('.logo'), duration(1000),
+        position: 'static'
+        x: 0
+      ,
+        position: 'relative'
+        ease: Cubic.easeInOut
+        delay: duration(5000)
+        x: '50%'
+      , 0
+
+      TweenMax.staggerFromTo $('.logo'), duration(1000),
+        position: 'static'
+        left: 0
+        top: 0
+      ,
+        position: 'relative'
+        top: $(window).height() * (0.8/2)
+        x: '50%'
+        y: '-50%'
+        delay: duration(5000)
+        ease: Cubic.easeInOut
+      , 0
     ]
-  "portfolio#index": => new TimelineMax
-    stagger: -0.4
+
+  'portfolio#index': => new TimelineMax
     paused: true
-    align: "sequence"
+    align: 'normal'
     tweens:[
-      TweenMax.staggerFromTo $("nav.left-column > * > *"), 0.15,
+      TweenMax.staggerFromTo $visible_el('.jobs li').get().reverse(), duration(210),
+        opacity: 1
+        transformOrigin: '0 0'
+        z: 0
+      ,
+        opacity: 0
+        transformOrigin: '0 0'
+        ease: Cubic.easeInOut
+        z: 60
+      , duration(100)
+
+      TweenMax.staggerFromTo $('nav.left-column ul li').get().reverse(), duration(150),
         z: 0
         opacity: 1
       ,
         z: 100,
         opacity: 0,
         ease: Cubic.easeInOut
-      , -0.02
+        delay: duration(900)
+      , duration(20)
 
-      TweenMax.staggerFromTo $(".left-column, nav.left-column > * "), 0.4,
+      TweenMax.staggerFromTo $('.header-sandwich .bar .h2'), duration(300),
+        x: '0%'
+      ,
+        x: '-100%'
+        delay: duration(1300)
+        ease: Cubic.easeInOut
+      , duration(400)
+
+      TweenMax.staggerFromTo $('.left-column').get().reverse(), duration(400),
         width: 288
       ,
         width: 0
         ease: Cubic.easeInOut
-      , -0.1
+        delay: duration(1600)
+      , duration(100)
 
-      TweenMax.staggerFromTo $("main"), 0.6,
-        marginLeft: 336
+      TweenMax.staggerFromTo $('.tagline .h3'), duration(400),
+        x: '0%'
       ,
-        marginLeft: 48
+        x: '-110%'
         ease: Cubic.easeInOut
+        delay: duration(2000)
+      , 0
 
-      TweenMax.staggerFromTo $(".jobs li"), 0.21,
-        opacity: 1
-        transformOrigin: "0 0"
-        z: 0
-      ,
-        opacity: 0
-        transformOrigin: "0 0"
-        ease: Cubic.easeInOut
-        z: 60
-      , -0.16
+      # TweenMax.staggerFromTo $('header .left-column'), duration(400),
+      #   marginLeft: 24
+      # ,
+      #   marginLeft: 24
+      #   ease: Cubic.easeInOut
+      # , duration(-100)
 
-      TweenMax.staggerFromTo $("header .left-column"), 0.4,
-        marginLeft: 24
-      ,
-        marginLeft: 24
-        ease: Cubic.easeInOut
-      , -0.1
+      # logo in the center
+
+      # TweenMax.staggerFromTo $('header'), duration(1000),
+      #   width: '100%'
+      # ,
+      #   width: '50%'
+      #   ease: Cubic.easeInOut
+      #   delay: duration(2000)
+      # , 0
+
+      # TweenMax.staggerFromTo $('.logo'), duration(1000),
+      #   position: 'static'
+      #   x: 0
+      # ,
+      #   position: 'relative'
+      #   ease: Cubic.easeInOut
+      #   delay: duration(5000)
+      #   x: '50%'
+      # , 0
+
+      # TweenMax.staggerFromTo $('.logo'), duration(1000),
+      #   position: 'static'
+      #   left: 0
+      #   top: 0
+      # ,
+      #   position: 'relative'
+      #   top: $(window).height() * (0.8/2)
+      #   x: '50%'
+      #   y: '-50%'
+      #   delay: duration(5000)
+      #   ease: Cubic.easeInOut
+      # , 0
+
 
     ]
-  "portfolio#show": => new TimelineMax
+  'portfolio#show': => new TimelineMax
     stagger: -0.3
     paused: true
-    align: "sequence"
+    align: 'sequence'
     tweens:[
-      TweenMax.staggerFromTo $(".caption.right-column"), 0.5,
+      TweenMax.staggerFromTo $('.caption.right-column'), 0.5,
         opacity: 1
       ,
         opacity: 0
         ease: Cubic.easeInOut
       , -0.2
 
-      TweenMax.staggerFromTo $("section img"), 0.5,
+      TweenMax.staggerFromTo $('section img'), 0.5,
         opacity: 1
       ,
         opacity: 0
         ease: Cubic.easeInOut
       , -0.2
 
-      TweenMax.staggerFromTo $(".hat-title > * > *"), 0.3,
+      TweenMax.staggerFromTo $('.hat-title > * > *'), 0.3,
         opacity: 1
       ,
         opacity: 0
         ease: Cubic.easeInOut
       , -0.2
 
-      TweenMax.staggerFromTo $(".hat-title"), 0.9,
+      TweenMax.staggerFromTo $('.hat-title'), 0.9,
         width: 960
       ,
         width: 0
         ease: Cubic.easeInOut
       , -0.2
-      TweenMax.staggerFromTo $(".spacer.right-column"), 0.5,
+      TweenMax.staggerFromTo $('.spacer.right-column'), 0.5,
         width: 288
       ,
         width: 0
         ease: Cubic.easeInOut
       , -0.5
 
-      TweenMax.staggerFromTo $("main"), 0.3,
+      TweenMax.staggerFromTo $('main'), 0.3,
         marginLeft: 24
       ,
         marginLeft: 24

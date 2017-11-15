@@ -1,3 +1,15 @@
+@keyframes pulsating
+  0%
+    filter: saturate(120%) brightness(70%)
+  100%
+    filter: saturate(70%) brightness(50%)
+
+@keyframes chameleoning-to-yellow
+  0%
+    fill: $yellow
+  100%
+    fill: $purple
+
 *
   box-sizing: border-box
 
@@ -9,6 +21,10 @@
   @media (max-width: 980px)
     @content
 
+%normalized-text
+  padding-top: 4px !important
+  line-height: 8px
+
 body
   font-family: Vectrex
   font-size: $p
@@ -17,7 +33,6 @@ body
   font-weight: 500
   margin: 0
   color: $black
-  padding-left: 10%
   transition: padding 300ms ease-out
   fill: $black
 
@@ -33,9 +48,21 @@ body
       border-color: $white
       bottom: 0
       right: 0
+      width: $main-width * $p + 4 * $p
+
+    > header
+        width: 100%
+
+        .logo-signature
+          margin-right: 4*$p
 
   &[data-state="portfolio#index"]
     padding-left: 0
+
+    > footer
+      border: none
+      text-align: right
+      padding-right: 2*$p
 
     +mobile
       padding: 10px
@@ -62,6 +89,27 @@ body
     border-top: 1px solid $black
     padding: $p 4*$p $p 0
     position: static
+
+.aspect-ratio
+  display: block
+  width: 100%
+  overflow: hidden
+  position: relative
+  height: 0
+
+  &.monitor
+    padding-top: 1/(1440/900) * 100%
+
+  .video
+    width: 100%
+    height: 100%
+    position: absolute
+    display: block
+    left: 0
+    top: 0
+
+    &.work
+      background-color: $purple
 
 h1,h2,h3,h4,h5
   text-transform: uppercase
@@ -101,6 +149,7 @@ h1,h2,h3,h4,h5
   background-color: $black
   display: block
   line-height: 0
+  overflow: hidden
 
   +state('pages#index')
     background-color: $light-gray
@@ -138,6 +187,7 @@ h1,h2,h3,h4,h5
   font-family: "Vectrex"
   font-size: $p
   font-weight: 500
+  @extend %normalized-text
 
 .logo
   height: 9 * $p
@@ -152,9 +202,17 @@ h1,h2,h3,h4,h5
 
   +state('pages#index')
     fill: $purple
+    // animation: chameleoning-to-yellow 2s linear infinite alternate
+
+.content
+  display: table
+
+  +state('pages#index')
+    width: 100%
 
 .tagline
   margin-top: $p
+  height: 12px
 
   > *
     margin-left: $p
@@ -177,9 +235,9 @@ ul
         content: " / "
 
 .logo-signature
-  float: left
-  width: $main-width * $p
   cursor: pointer
+  width: $main-width * $p
+  float: right
 
   +mobile
     width: 100%
@@ -189,17 +247,20 @@ ul
   &:hover
     @extend a:hover
 
-.spacer, nav, nav ul
+.spacer, nav.left-column, nav.left-column ul
   display: block
   width: $column-width * $p
+
+  +state('pages#index')
+    width: 0
+    margin: 0
+    padding: 0
 
   +mobile
     display: none
 
 .left-column
   transition: margin 600ms ease-out
-  +state("pages#index")
-    opacity: 0
 
 nav.left-column
   left: 0
@@ -212,7 +273,7 @@ nav.left-column
 .left-column, .right-column
   width: $column-width * $p
   // overflow: hidden
-  float: left
+  float: right
 
   +mobile
     width: 100%
@@ -346,6 +407,7 @@ p
       left: -100px
       bottom: -200px
       width: 1200px
+      animation: pulsating 2s linear infinite alternate
 
   +state("pages#index")
     display: block
@@ -392,7 +454,11 @@ main
     float: none
 
   +state("pages#index")
-    width: 80 * $p
+    width: $main-width * $p
+    float: right
+    margin-top: $p
+    margin-left: 0
+    margin-right: 4*$p
 
     +mobile
       width: 100%
@@ -422,38 +488,49 @@ header.header-sandwich
   border-bottom: $nano-p solid $black
   padding: $p 0
 
-  .bar > *
-    padding-right: $p/2
+  .bar
+    height: 20px
 
-nav
+    > *
+      padding-right: $p/2
 
-  ul
-    padding: 0
-    padding-bottom: $p
+nav ul
+  padding: 0
+  padding-bottom: $p
 
-    li
-      list-style-type: none
-      line-height: 1.2 * $p
-      display: block
-      border-bottom: $nano-p dotted $black
-      height: $p/2
-      // padding-bottom: $p
-      margin-bottom: $p
+  li
+    list-style-type: none
+    line-height: 1.2 * $p
+    display: block
+    border-bottom: $nano-p dotted $black
+    height: $p/2
+    // padding-bottom: $p
+    margin-bottom: $p
 
-      &:hover, &.selected
-        border-bottom: $micro-p solid $black
-        a
-          font-weight: 900
-
+    &:hover, &.selected
+      border-bottom: $micro-p solid $black
       a
-        text-decoration: none
-        padding-right: $p/2
+        font-weight: 900
+
+    a
+      text-decoration: none
+      padding-right: $p/2
+
+nav.main a
+  padding: 1px .5*$p 0 1.5*$p
+  background-repeat: no-repeat
+  text-decoration: none
+  background-image: url(asset_path('triangle-white'))
+
+  +state('pages#index')
+    &:hover
+      background-image: url(asset_path('triangle-purple'))
 
 a
   color: $black
 
   +state('pages#index')
-    color: $yellow
+    color: $white
 
 .line-btn
   background-color: $yellow
@@ -465,11 +542,11 @@ a
 ul.jobs
   padding: 0
   margin: -($margin * $p)
-  display: table
   width: 100%
+  display: none
 
-  +state("portfolio#show")
-    display: none
+  +state("portfolio#index")
+    display: table
 
   li
     list-style-type: none
@@ -530,7 +607,6 @@ ul.jobs
         -webkit-filter: none
         // transform: scale(1.4)
         // transform: scale(1.4)
-
 
 a:hover
   transition-property: -webkit-transform, text-shadow
