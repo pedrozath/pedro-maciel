@@ -23,13 +23,13 @@ class App
 
     @animation.progress(1)
 
-    # TweenMax.staggerFromTo _.shuffle($('.logo svg g')), 0.8,
-    #   opacity: 0
-    # ,
-    #   opacity: 1
-    #   ease: Cubic.easeInOut
-    #   delay: 1
-    # , 0.075, (=> @animation.reverse())
+    TweenMax.staggerFromTo _.shuffle($('.logo svg g')), 0.8,
+      opacity: 0
+    ,
+      opacity: 1
+      ease: Cubic.easeInOut
+      delay: 1
+    , 0.075, (=> @animation.reverse())
 
     do @bind_events
     do @init_filter
@@ -131,6 +131,6 @@ $ ->
     window.app = new App animations: animations
     # app.animations()['pages#index']().play(0)
     # app.animations()['pages#index']().reverse(0)
-    # app.animations()['portfolio#index']().reverse(0)
+    # app.animations()['portfolio#index']().play(0)
     # app.animations()['pages#index']().reverse(0)
     # app.route 'portfolio'

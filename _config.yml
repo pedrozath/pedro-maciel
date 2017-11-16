@@ -9,6 +9,7 @@ exclude:
   - "job.*"
   - 'build'
   - 'serve'
+  - 'Gemfile.lock'
 markdown: kramdown
 sass:
   sass_dir: assets

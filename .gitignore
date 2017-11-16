@@ -25,3 +25,4 @@ _site
 .asset-cache
 .DS_Store
 .sass-cache
+dist

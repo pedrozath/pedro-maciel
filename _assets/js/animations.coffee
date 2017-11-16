@@ -11,6 +11,11 @@ $invisible_el = (selector) ->
   window_height = $(window).height()
   $(selector).filter -> $(this).offset().top > window_height
 
+circular_random = (r) ->
+  n = (Math.random() * 2 - 1) * Math.PI
+  x: Math.sin(n) * r
+  y: Math.cos(n) * r
+
 # window_center = ->
 #   x: $(window).width()/2
 #   y: $(window).height()/2
@@ -34,9 +39,12 @@ animations = =>
   light_gray = '#494949'
   purple     = '#2F0089'
 
+  logo_center =
+    x: $(window).width()/2 - 648/2 - 24
+    y: $(window).height()/2 - 108/2 - 48
+
   CSSPlugin.defaultTransformPerspective = 600
   'pages#index': => new TimelineMax
-    stagger: duration(0)
     paused: true
     align: 'normal'
     tweens: [].concat(
@@ -89,10 +97,7 @@ animations = =>
       , duration(15)
 
       for square, index in $('.tagline .square').get().reverse()
-        r = 200
-        n = (Math.random() * 2 - 1) * Math.PI
-        x = Math.sin(n) * r
-        y = Math.cos(n) * r
+        {x, y} = circular_random(200)
 
         TweenMax.staggerFromTo $(square), duration(500),
           x: 0
@@ -127,22 +132,22 @@ animations = =>
         delay: duration(4000)
       , 0
 
-      TweenMax.staggerFromTo $('.logo'), duration(1000),
-        x: 0
+      TweenMax.staggerFromTo $('body > header'), duration(1500),
+        width: '100%'
       ,
-        x: '60%'
+        width: '0%'
+        delay: duration(4000)
         ease: Cubic.easeInOut
-        delay: duration(3000)
       , 0
 
       TweenMax.staggerFromTo $('.logo'), duration(1000),
-        right: 0
-        top: 0
+        x: 0
+        y: 0
       ,
-        top: $(window).height()/2 - 108
-        right: $(window).width()/2
-        delay: duration(3000)
+        x: logo_center.x
+        y: logo_center.y
         ease: Cubic.easeInOut
+        delay: duration(4000)
       , 0
 
     )
@@ -160,6 +165,16 @@ animations = =>
         transformOrigin: '0 0'
         ease: Cubic.easeInOut
         z: 60
+      , duration(100)
+
+      TweenMax.staggerFromTo $('nav.main a').get().reverse(), duration(500),
+        top: 0
+        opacity: 1
+      ,
+        top: -100
+        opacity: 0
+        ease: Cubic.easeInOut
+        delay: duration(1600)
       , duration(100)
 
       TweenMax.staggerFromTo $('nav.left-column ul li').get().reverse(), duration(150),
@@ -188,13 +203,6 @@ animations = =>
         delay: duration(1600)
       , duration(100)
 
-      TweenMax.staggerFromTo $('.tagline .h3'), duration(400),
-        x: '0%'
-      ,
-        x: '-110%'
-        ease: Cubic.easeInOut
-        delay: duration(2000)
-      , 0
 
       # TweenMax.staggerFromTo $('header .left-column'), duration(400),
       #   marginLeft: 24
@@ -205,26 +213,22 @@ animations = =>
 
       # logo in the center
 
-      TweenMax.staggerFromTo $('.logo'), duration(1000),
-        position: 'static'
+      # TweenMax.staggerFromTo $('header'), duration(300),
+      #   width: '100%'
+      # ,
+      #   width: '0%'
+      #   delay: duration(4000)
+      #   ease: Cubic.easeInOut
+      # , 0
+
+      TweenMax.fromTo $('.logo'), duration(1000),
         x: 0
+        y: 0
       ,
-        position: 'relative'
+        x: logo_center.x
+        y: logo_center.y
         ease: Cubic.easeInOut
-        delay: duration(3000)
-        x: '60%'
-      , 0
-
-      TweenMax.staggerFromTo $('.logo'), duration(1000),
-        right: 0
-        top: 0
-      ,
-        top: $(window).height()/2 - 108
-        right: $(window).width()/2
-        delay: duration(3000)
-        ease: Cubic.easeInOut
-      , 0
-
+        delay: duration(1700)
 
     )
 
