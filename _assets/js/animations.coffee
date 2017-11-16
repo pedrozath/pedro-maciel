@@ -36,27 +36,24 @@ animations = =>
 
   CSSPlugin.defaultTransformPerspective = 600
   'pages#index': => new TimelineMax
-    stagger: duration(-300)
+    stagger: duration(0)
     paused: true
     align: 'normal'
-    tweens: [
-    ].concat(
-
-      TweenMax.staggerFromTo $('.left-photo'), duration(1200),
+    tweens: [].concat(
+      TweenMax.fromTo $('.left-photo'), duration(1200),
         opacity: 1
       ,
         opacity: 0
         ease: Cubic.easeInOut
-      , 0
 
-      TweenMax.staggerFromTo $('.content nav.main > a'), duration(300),
+      TweenMax.staggerFromTo $('.content nav.main > a').get().reverse(), duration(300),
         top: 0
         opacity: 1
       ,
-        top: -50
+        top: -20
         opacity: 0
         ease: Cubic.easeInOut
-        delay: duration(1000)
+        delay: duration(900)
       , duration(120)
 
       TweenMax.staggerFromTo $('.monitor.aspect-ratio'), duration(1000),
@@ -64,133 +61,96 @@ animations = =>
       ,
         paddingTop: '0%'
         ease: Cubic.easeInOut
-        delay: duration(2000)
+        delay: duration(1200)
+
+      TweenMax.staggerFromTo $('footer'), duration(600),
+        marginBottom: 0
+        opacity: 1
+      ,
+        marginBottom: -100
+        opacity: 0
+        delay: duration(1200)
       , 0
 
       TweenMax.staggerFromTo $('.tagline .h3'), duration(500),
         opacity: 1
+        zIndex: 2
       ,
         opacity: 0
-        delay: duration(3300)
+        zIndex: 2
+        delay: duration(1500)
         ease: Cubic.easeInOut
-      , 0
 
       TweenMax.staggerFromTo _.shuffle($('.tagline .square')), duration(300),
         backgroundColor: light_gray
       ,
         backgroundColor: white
-        delay: duration(3300)
+        delay: duration(1800)
       , duration(15)
 
-    ).push(
       for square, index in $('.tagline .square').get().reverse()
         r = 200
         n = (Math.random() * 2 - 1) * Math.PI
         x = Math.sin(n) * r
         y = Math.cos(n) * r
 
-        console.log 3500 + index * 20
-
-        TweenMax.fromTo square, duration(500),
+        TweenMax.staggerFromTo $(square), duration(500),
           x: 0
           y: 0
         ,
           x: x
           y: y
-          delay: duration(3500)
+          delay: duration(2000 + index * 20)
+          # immediateRender: false
           ease: Cubic.easeInOut
+        , duration(15)
 
-    ).concat([
-      TweenMax.staggerFromTo _.shuffle($('.tagline .square')), duration(100),
+      TweenMax.staggerFromTo _.shuffle($('.tagline .square')), duration(200),
         opacity: 1
       ,
         opacity: 0
-        delay: duration(5000)
+        delay: duration(3500)
         ease: Cubic.easeInOut
       , duration(6)
-
-
-      TweenMax.staggerFromTo $('footer'), duration(1000),
-        marginBottom: 0
-        opacity: 1
-      ,
-        marginBottom: -100
-        opacity: 0
-        delay: duration(2000)
-      , 0
 
       TweenMax.staggerFromTo $('body'), duration(1000),
         backgroundColor: black
       ,
         backgroundColor: yellow
-        delay: duration(2000)
+        delay: duration(4000)
       , 0
 
-      TweenMax.staggerFromTo $('nav.main'), duration(1000),
-        opacity: 1
-      ,
-        opacity: 0
-        delay: duration(2000)
-      , 0
-
-      TweenMax.staggerFromTo $('.bar'), duration(1000),
-        backgroundColor: light_gray
-      ,
-        backgroundColor: black
-        delay: duration(3000)
-      , 0
-
-
-      TweenMax.staggerFromTo $('.logo'), duration(1000),
+      TweenMax.staggerFromTo $('.logo'), duration(300),
         fill: purple
       ,
         fill: black
+        delay: duration(4000)
+      , 0
+
+      TweenMax.staggerFromTo $('.logo'), duration(1000),
+        x: 0
+      ,
+        x: '60%'
+        ease: Cubic.easeInOut
         delay: duration(3000)
       , 0
 
-      TweenMax.staggerFromTo $('.bar'), duration(1000),
-        width: '100%'
-      ,
-        width: '0%'
-        delay: duration(4000)
-      , 0
-
-      TweenMax.staggerFromTo $('header'), duration(1000),
-        width: '100%'
-      ,
-        width: '50%'
-        ease: Cubic.easeInOut
-        delay: duration(4000)
-      , 0
-
       TweenMax.staggerFromTo $('.logo'), duration(1000),
-        position: 'static'
-        x: 0
-      ,
-        position: 'relative'
-        ease: Cubic.easeInOut
-        delay: duration(5000)
-        x: '50%'
-      , 0
-
-      TweenMax.staggerFromTo $('.logo'), duration(1000),
-        position: 'static'
-        left: 0
+        right: 0
         top: 0
       ,
-        position: 'relative'
-        top: $(window).height() * (0.8/2)
-        x: '50%'
-        y: '-50%'
-        delay: duration(5000)
+        top: $(window).height()/2 - 108
+        right: $(window).width()/2
+        delay: duration(3000)
         ease: Cubic.easeInOut
       , 0
-    ])
+
+    )
 
   'portfolio#index': => new TimelineMax
     paused: true
     align: 'normal'
-    tweens:[
+    tweens: [].concat(
       TweenMax.staggerFromTo $visible_el('.jobs li').get().reverse(), duration(210),
         opacity: 1
         transformOrigin: '0 0'
@@ -245,39 +205,29 @@ animations = =>
 
       # logo in the center
 
-      # TweenMax.staggerFromTo $('header'), duration(1000),
-      #   width: '100%'
-      # ,
-      #   width: '50%'
-      #   ease: Cubic.easeInOut
-      #   delay: duration(2000)
-      # , 0
+      TweenMax.staggerFromTo $('.logo'), duration(1000),
+        position: 'static'
+        x: 0
+      ,
+        position: 'relative'
+        ease: Cubic.easeInOut
+        delay: duration(3000)
+        x: '60%'
+      , 0
 
-      # TweenMax.staggerFromTo $('.logo'), duration(1000),
-      #   position: 'static'
-      #   x: 0
-      # ,
-      #   position: 'relative'
-      #   ease: Cubic.easeInOut
-      #   delay: duration(5000)
-      #   x: '50%'
-      # , 0
-
-      # TweenMax.staggerFromTo $('.logo'), duration(1000),
-      #   position: 'static'
-      #   left: 0
-      #   top: 0
-      # ,
-      #   position: 'relative'
-      #   top: $(window).height() * (0.8/2)
-      #   x: '50%'
-      #   y: '-50%'
-      #   delay: duration(5000)
-      #   ease: Cubic.easeInOut
-      # , 0
+      TweenMax.staggerFromTo $('.logo'), duration(1000),
+        right: 0
+        top: 0
+      ,
+        top: $(window).height()/2 - 108
+        right: $(window).width()/2
+        delay: duration(3000)
+        ease: Cubic.easeInOut
+      , 0
 
 
-    ]
+    )
+
   'portfolio#show': => new TimelineMax
     stagger: -0.3
     paused: true
