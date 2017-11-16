@@ -48,6 +48,14 @@ animations = =>
     paused: true
     align: 'normal'
     tweens: [].concat(
+      TweenMax.fromTo $('footer'), duration(1000),
+        x: '0%'
+        opacity: 1
+      ,
+        x: '100%'
+        opacity: 0
+        ease: Cubic.easeInOut
+
       TweenMax.fromTo $('.left-photo'), duration(1200),
         opacity: 1
       ,
@@ -55,30 +63,28 @@ animations = =>
         ease: Cubic.easeInOut
 
       TweenMax.staggerFromTo $('.content nav.main > a').get().reverse(), duration(300),
-        top: 0
         opacity: 1
+        top: 0
       ,
-        top: -20
         opacity: 0
+        top: -20
         ease: Cubic.easeInOut
-        delay: duration(900)
+        delay: duration(300)
       , duration(120)
 
-      TweenMax.staggerFromTo $('.monitor.aspect-ratio'), duration(1000),
+      TweenMax.fromTo $('main > nav.main'), duration(700),
+        width: '100%'
+      ,
+        width: '0%'
+        ease: Cubic.easeInOut
+        delay: duration(600)
+
+      TweenMax.fromTo $('.monitor.aspect-ratio'), duration(1000),
         paddingTop: "#{(1/(1400/900))*100}%"
       ,
         paddingTop: '0%'
         ease: Cubic.easeInOut
         delay: duration(1200)
-
-      TweenMax.staggerFromTo $('footer'), duration(600),
-        marginBottom: 0
-        opacity: 1
-      ,
-        marginBottom: -100
-        opacity: 0
-        delay: duration(1200)
-      , 0
 
       TweenMax.staggerFromTo $('.tagline .h3'), duration(500),
         opacity: 1
@@ -156,6 +162,29 @@ animations = =>
     paused: true
     align: 'normal'
     tweens: [].concat(
+      TweenMax.staggerFromTo $('nav.main a').get().reverse(), duration(300),
+        top: 0
+        opacity: 1
+      ,
+        top: -24
+        opacity: 0
+        ease: Cubic.easeInOut
+        delay: duration(0)
+      , duration(250)
+
+      TweenMax.fromTo $('nav.main'), duration(400),
+        width: '100%'
+      ,
+        width: '0%'
+        ease: Cubic.easeInOut
+        delay: duration(1000)
+
+      TweenMax.staggerFromTo $invisible_el('.jobs li').get().reverse(), duration(100),
+        opacity: 1
+      ,
+        opacity: 0
+      , duration(0)
+
       TweenMax.staggerFromTo $visible_el('.jobs li').get().reverse(), duration(210),
         opacity: 1
         transformOrigin: '0 0'
@@ -165,16 +194,6 @@ animations = =>
         transformOrigin: '0 0'
         ease: Cubic.easeInOut
         z: 60
-      , duration(100)
-
-      TweenMax.staggerFromTo $('nav.main a').get().reverse(), duration(500),
-        top: 0
-        opacity: 1
-      ,
-        top: -100
-        opacity: 0
-        ease: Cubic.easeInOut
-        delay: duration(1600)
       , duration(100)
 
       TweenMax.staggerFromTo $('nav.left-column ul li').get().reverse(), duration(150),
@@ -191,9 +210,10 @@ animations = =>
         x: '0%'
       ,
         x: '-100%'
-        delay: duration(1300)
         ease: Cubic.easeInOut
+        delay: duration(1300)
       , duration(400)
+
 
       TweenMax.staggerFromTo $('.left-column').get().reverse(), duration(400),
         width: 288
@@ -202,7 +222,6 @@ animations = =>
         ease: Cubic.easeInOut
         delay: duration(1600)
       , duration(100)
-
 
       # TweenMax.staggerFromTo $('header .left-column'), duration(400),
       #   marginLeft: 24
@@ -233,50 +252,58 @@ animations = =>
     )
 
   'portfolio#show': => new TimelineMax
-    stagger: -0.3
     paused: true
-    align: 'sequence'
-    tweens: [
-      TweenMax.staggerFromTo $('.caption.right-column'), 0.5,
-        opacity: 1
-      ,
-        opacity: 0
-        ease: Cubic.easeInOut
-      , -0.2
+    align: 'normal'
+    tweens: [].concat(
+      # TweenMax.staggerFromTo $('.caption.right-column'), duration(500),
+      #   opacity: 1
+      # ,
+      #   opacity: 0
+      #   ease: Cubic.easeInOut
+      # , duration(-200)
 
-      TweenMax.staggerFromTo $('section img'), 0.5,
-        opacity: 1
-      ,
-        opacity: 0
-        ease: Cubic.easeInOut
-      , -0.2
+      # TweenMax.staggerFromTo $('section img'), duration(500),
+      #   opacity: 1
+      # ,
+      #   opacity: 0
+      #   ease: Cubic.easeInOut
+      # , duration(-200)
 
-      TweenMax.staggerFromTo $('.hat-title > * > *'), 0.3,
-        opacity: 1
-      ,
-        opacity: 0
-        ease: Cubic.easeInOut
-      , -0.2
+      # TweenMax.staggerFromTo $('.hat-title > * > *'), duration(300),
+      #   opacity: 1
+      # ,
+      #   opacity: 0
+      #   ease: Cubic.easeInOut
+      # , duration(-200)
 
-      TweenMax.staggerFromTo $('.hat-title'), 0.9,
-        width: 960
-      ,
-        width: 0
-        ease: Cubic.easeInOut
-      , -0.2
-      TweenMax.staggerFromTo $('.spacer.right-column'), 0.5,
-        width: 288
-      ,
-        width: 0
-        ease: Cubic.easeInOut
-      , -0.5
+      # TweenMax.staggerFromTo $('.hat-title'), duration(900),
+      #   width: 960
+      # ,
+      #   width: 0
+      #   ease: Cubic.easeInOut
+      # , duration(-200)
 
-      TweenMax.staggerFromTo $('main'), 0.3,
-        marginLeft: 24
-      ,
-        marginLeft: 24
-        ease: Cubic.easeInOut
+      # TweenMax.staggerFromTo $('.spacer.right-column'), duration(500),
+      #   width: 288
+      # ,
+      #   width: 0
+      #   ease: Cubic.easeInOut
+      # , duration(-500)
 
-    ]
+      # TweenMax.staggerFromTo $('main'), duration(300),
+      #   marginLeft: 24
+      # ,
+      #   marginLeft: 24
+      #   ease: Cubic.easeInOut
+
+      TweenMax.fromTo $('.logo'), duration(1000),
+        x: 0
+        y: 0
+      ,
+        x: logo_center.x
+        y: logo_center.y
+        ease: Cubic.easeInOut
+        delay: duration(1700)
+    )
 
 @animations = animations

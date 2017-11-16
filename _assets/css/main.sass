@@ -51,10 +51,13 @@ body
       width: $main-width * $p + 4 * $p
 
     > header
-        width: 100%
+      width: 100%
 
-        .logo-signature
-          margin-right: 4*$p
+      .logo-signature
+        margin-right: 4*$p
+
+  &[data-state="portfolio#show"]
+    padding-left: 10%
 
   &[data-state="portfolio#index"]
     padding-left: 0
@@ -264,12 +267,45 @@ ul
     > *
       width: 100%
 
-  nav.main
+
     +state('pages#index')
       display: none
 
-  // &:hover
-  //   @extend a:hover
+.logo-signature > nav.main
+  +state('pages#index')
+    display: none
+
+nav.main
+  margin-top: $p
+  height: $p/2
+  border-bottom: 1px dotted $black
+  +state('pages#index')
+    border-color: $light-gray
+
+  a
+    height: $p
+    line-height: $p
+    padding: 1px .5*$p 0 1.5*$p
+    background-repeat: no-repeat
+    text-decoration: none
+    background-image: url(asset_path('triangle-white'))
+    overflow: visible
+    position: relative
+    display: block
+    float: left
+
+    +state('portfolio#index')
+      background-color: $yellow
+      background-image: url(asset_path('triangle-black'))
+
+    +state('portfolio#show')
+      background-color: $yellow
+      background-image: url(asset_path('triangle-black'))
+
+    +state('pages#index')
+      background-color: $black
+      &:hover
+        background-image: url(asset_path('triangle-purple'))
 
 .spacer, nav.left-column, nav.left-column ul
   display: block
@@ -491,7 +527,7 @@ main
   +state("portfolio#index")
     width: calc(100% - #{24 * $p + 4 * $p})
     margin-left: 26 * $p + 2 * $p
-    margin-top: $p
+    margin-top: $p*2
 
     +mobile
       margin: 0 auto
@@ -541,29 +577,13 @@ nav ul
       text-decoration: none
       padding-right: $p/2
 
-nav.main a
-  padding: 1px .5*$p 0 1.5*$p
-  height: $p
-  background-repeat: no-repeat
-  text-decoration: none
-  background-image: url(asset_path('triangle-white'))
-  position: relative
-
-  +state('portfolio#index')
-    background-image: url(asset_path('triangle-black'))
-
-  +state('portfolio#show')
-    background-image: url(asset_path('triangle-black'))
-
-  +state('pages#index')
-    &:hover
-      background-image: url(asset_path('triangle-purple'))
-
-
 a
   color: $black
+  border-bottom: 1px dotted $black
+  text-decoration: none
 
   +state('pages#index')
+    border-color: $light-purple
     color: $white
 
 .line-btn

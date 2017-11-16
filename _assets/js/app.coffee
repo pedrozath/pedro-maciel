@@ -15,7 +15,6 @@ class App
     @util = puts: (stuff...) -> console.log stuff...
     window[k] = @util[k] for k,v of @util
     @body = $("body")
-    # @animations = @animations_template()
     @current_state = @body.attr "data-state"
 
     @add_to_history location.pathname
@@ -99,10 +98,13 @@ class App
 
   add_to_history: (url) -> history.pushState url, "", url
 
-  scroll_up: ->
+  scroll_up: (callback) ->
     TweenMax.to window, 2,
       scrollTo: { y: 0 }
       ease: Cubic.easeInOut
+      onComplete: =>
+        callback.call()
+
 
   change_state: (route_object) ->
     state = route_object.state
@@ -123,14 +125,9 @@ class App
         else
           complete_animation.call(this, data)
 
-      @animation.play()
-      do @scroll_up
+      @scroll_up =>
+        @animation.play()
 
 $ ->
   unless /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test navigator.userAgent
     window.app = new App animations: animations
-    # app.animations()['pages#index']().play(0)
-    # app.animations()['pages#index']().reverse(0)
-    # app.animations()['portfolio#index']().play(0)
-    # app.animations()['pages#index']().reverse(0)
-    # app.route 'portfolio'
