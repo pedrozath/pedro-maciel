@@ -1,2 +1,2 @@
 #! /bin/bash
-bundle exec jekyll serve -L
+bundle exec jekyll serve -L -P 5000 --host 0.0.0.0

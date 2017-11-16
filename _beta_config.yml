@@ -1,0 +1,2 @@
+baseurl: '/beta' # the subpath of your site, e.g. /blog
+destination: 'dist/beta'
