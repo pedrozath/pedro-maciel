@@ -579,12 +579,16 @@ nav ul
 
 a
   color: $black
-  border-bottom: 1px dotted $black
   text-decoration: none
 
   +state('pages#index')
-    border-color: $light-purple
     color: $white
+
+  &.underlined
+    border-bottom: 1px dotted $black
+
+    +state('pages#index')
+      border-color: $light-purple
 
 .line-btn
   background-color: $yellow
