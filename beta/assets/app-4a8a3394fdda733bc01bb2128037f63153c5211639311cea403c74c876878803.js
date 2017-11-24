@@ -20816,56 +20816,186 @@ window.github_card = function(d) {
 }
 ;
 (function() {
-  var Video;
-
-  this.Presentation = (function() {
-    function Presentation() {
-      var video_A, video_B;
-      video_A = new Video;
-      video_B = new Video;
-      video_A.preload();
-      video_B.play();
-      $play_button.on('click', (function(_this) {
-        return function() {
-          return _this.attempt_play();
-        };
-      })(this));
+  this.Callback = (function() {
+    function Callback(type, fn) {
+      this.type = type;
+      this.fn = fn;
     }
 
-    Presentation.prototype.attempt_play = function() {
-      var callback, i, len, ref, results, video;
-      if (video_A.loaded && video_B.loaded) {
-        return this.play;
-      } else {
-        callback = Callback["new"]('state_change', 'loaded', (function(_this) {
-          return function() {
-            return _this.attempt_play();
-          };
-        })(this));
-        ref = [video_A, video_B];
-        results = [];
-        for (i = 0, len = ref.length; i < len; i++) {
-          video = ref[i];
-          if (!video.has_callback(callback)) {
-            results.push(video.register_callback(callback));
-          } else {
-            results.push(void 0);
-          }
-        }
-        return results;
-      }
+    Callback.prototype.run = function() {
+      return this.fn.call();
     };
 
-    return Presentation;
+    Callback.prototype.eq = function(callback) {
+      return this.type === callback.type && this.fn === fn;
+    };
+
+    return Callback;
 
   })();
 
-  Video = (function() {
-    function Video() {}
+}).call(this);
+(function() {
+  this.Callbackable = {
+    callbacks: {},
+    register_callback: function(type, fn) {
+      var base, callback, name;
+      callback = new Callback(type, fn);
+      if ((base = this.callbacks)[name = callback.type] == null) {
+        base[name] = [];
+      }
+      return this.callbacks[callback.type].push(callback);
+    },
+    run_callbacks: function(type) {
+      var c, i, len, ref, results;
+      ref = this.get_callbacks(type);
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        c = ref[i];
+        results.push(c.run());
+      }
+      return results;
+    },
+    has_callback: function(callback) {
+      var c, i, len, ref, results;
+      ref = this.get_callbacks(callback.type);
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        c = ref[i];
+        results.push(callback.eq(c));
+      }
+      return results;
+    },
+    get_callbacks: function(type) {
+      return this.callbacks[type] || [];
+    }
+  };
 
-    Video.prototype.preload = function() {};
+}).call(this);
+(function() {
+  this.Video = (function() {
+    Video.prototype.loaded = false;
+
+    function Video($el) {
+      this.$el = $el;
+      this.src = this.$el.attr('data-src');
+    }
+
+    Video.prototype.rewind = function() {
+      this.$el.get(0).currentTime = 0;
+      return this;
+    };
+
+    Video.prototype.preload = function() {
+      var r;
+      if (this.loading_request != null) {
+        return false;
+      }
+      r = new XMLHttpRequest();
+      r.open('GET', this.src, true);
+      r.responseType = 'blob';
+      r.onload = (function(_this) {
+        return function(e) {
+          if (r.status === 200) {
+            _this.loaded = true;
+            _this.run_callbacks('afterLoad');
+            return _this.$el.get(0).src = URL.createObjectURL(r.response);
+          }
+        };
+      })(this);
+      this.loading_request = r;
+      this.loading_request.send();
+      return this;
+    };
+
+    Video.prototype.play = function() {
+      if (this.$el.attr('src') === void 0) {
+        this.$el.attr('src', this.$el.attr('data-src'));
+      }
+      this.show();
+      this.$el.get(0).play();
+      return this;
+    };
+
+    Video.prototype.hide = function() {
+      this.$el.hide();
+      return this;
+    };
+
+    Video.prototype.show = function() {
+      this.$el.show();
+      return this;
+    };
 
     return Video;
+
+  })();
+
+  _.extend(Video.prototype, Callbackable);
+
+}).call(this);
+(function() {
+  this.Presentation = (function() {
+    function Presentation(args) {
+      var i, len, ref, video;
+      this.video_A = new Video(args.$video_A);
+      this.video_B = new Video(args.$video_B);
+      this.$play_btn = args.$play_btn;
+      this.video_B.$el.get(0).mute = true;
+      this.video_B.$el.get(0).loop = true;
+      this.video_B.register_callback('afterLoad', (function(_this) {
+        return function() {
+          return _this.video_B.play();
+        };
+      })(this));
+      ref = [this.video_A, this.video_B];
+      for (i = 0, len = ref.length; i < len; i++) {
+        video = ref[i];
+        video.register_callback('afterLoad', (function(_this) {
+          return function() {
+            return _this.attempt_make_playable();
+          };
+        })(this));
+        video.preload();
+      }
+    }
+
+    Presentation.prototype.attempt_make_playable = function() {
+      var i, len, ref, results, video;
+      ref = [this.video_A, this.video_B];
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        video = ref[i];
+        if (this.video_A.loaded && this.video_B.loaded) {
+          results.push(this.make_playable());
+        } else {
+          results.push(void 0);
+        }
+      }
+      return results;
+    };
+
+    Presentation.prototype.make_playable = function() {
+      this.$play_btn.removeClass('disabled').text('Watch my Introduction');
+      return this.$play_btn.on('click', (function(_this) {
+        return function() {
+          return _this.play();
+        };
+      })(this));
+    };
+
+    Presentation.prototype.play = function() {
+      var i, len, ref, results, video;
+      ref = [this.video_A, this.video_B];
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        video = ref[i];
+        results.push(video.rewind().play());
+      }
+      return results;
+    };
+
+    return Presentation;
 
   })();
 
@@ -20897,21 +21027,26 @@ window.github_card = function(d) {
       this.current_state = this.body.attr("data-state");
       this.add_to_history(location.pathname);
       this.animation = this.animations()[this.current_state]();
+      this.animation.progress(1);
+      TweenMax.staggerFromTo(_.shuffle($('.logo svg g')), 0.8, {
+        opacity: 0
+      }, {
+        opacity: 1,
+        ease: Cubic.easeInOut,
+        delay: 1
+      }, 0.075, ((function(_this) {
+        return function() {
+          return _this.animation.reverse();
+        };
+      })(this)));
       this.bind_events();
       this.init_filter();
       this.fixed_nav();
-      $('.watch-introduction').on('click', (function(_this) {
-        return function(e) {
-          var i, len, ref1, results, video;
-          ref1 = $('video');
-          results = [];
-          for (i = 0, len = ref1.length; i < len; i++) {
-            video = ref1[i];
-            results.push(video.play());
-          }
-          return results;
-        };
-      })(this));
+      window.p = new Presentation({
+        $video_A: $('video.my-introduction').first(),
+        $video_B: $('video.screen').first(),
+        $play_btn: $('.watch-introduction')
+      });
     }
 
     App.prototype.init_filter = function() {
