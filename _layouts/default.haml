@@ -47,7 +47,8 @@
 
     .left-photo
       {% img chairs-purple.png class:'chairs' %}
-      {% img me-2017.png class:'me' %}
+      %video.my-introduction(data-src='{% asset_path pedro-introduction.mp4 %}')
+      / {% img me-2017.png class:'me' %}
 
     {{ content }}
 

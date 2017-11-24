@@ -1,4 +1,40 @@
 
+class window.Delay
+  constructor: ->
+    @delay         = 0
+    @last_duration = 0
+    @last_stagger  = 0
+
+  add_duration: (d) ->
+    @last_duration = d
+    @delay        += d
+
+  @subtract: (d) ->
+    @instance.delay -= d
+    this
+
+  @delay: ->
+    output = @instance.delay - @instance.last_duration
+    @instance.last_duration = 0
+    output
+
+  @add_stagger_duration: (length, d, overlap) ->
+    stagger = d * overlap
+    @add_duration(stagger * length)
+    @instance.last_stagger = stagger
+    d
+
+  @last_stagger: ->
+    @instance.last_stagger
+
+  @add_duration: (d) ->
+    @instance.add_duration(d)
+    d
+
+  @reset: ->
+    @instance = new Delay
+    this
+
 duration = (time) ->
   speed = 1
   (time/1000)/speed
@@ -16,21 +52,6 @@ circular_random = (r) ->
   x: Math.sin(n) * r
   y: Math.cos(n) * r
 
-# window_center = ->
-#   x: $(window).width()/2
-#   y: $(window).height()/2
-
-# el_dims = ($el) ->
-#   x: $el.width()
-#   y: $el.height()
-
-# el_center = ($el) ->
-#   dims   = el_dims($el)
-#   wc     = window_center()
-#   offset = x: $el.offset().left, y: $el.offset().top
-#   x: (wc.x/2) - offset.x - dims.x/2
-#   y: (wc.y/2) - offset.y - dims.y/2
-
 animations = =>
   black      = '#000000'
   white      = '#FFFFFF'
@@ -42,6 +63,8 @@ animations = =>
   logo_center =
     x: $(window).width()/2 - 648/2 - 24
     y: $(window).height()/2 - 108/2 - 48
+
+  $tech_section = $('.job-content section').last()
 
   CSSPlugin.defaultTransformPerspective = 600
   'pages#index': => new TimelineMax
@@ -80,7 +103,7 @@ animations = =>
         delay: duration(600)
 
       TweenMax.fromTo $('.monitor.aspect-ratio'), duration(1000),
-        paddingTop: "#{(1/(1400/900))*100}%"
+        paddingTop: "#{(1/(16/9))*100}%"
       ,
         paddingTop: '0%'
         ease: Cubic.easeInOut
@@ -214,7 +237,6 @@ animations = =>
         delay: duration(1300)
       , duration(400)
 
-
       TweenMax.staggerFromTo $('.left-column').get().reverse(), duration(400),
         width: 288
       ,
@@ -222,23 +244,6 @@ animations = =>
         ease: Cubic.easeInOut
         delay: duration(1600)
       , duration(100)
-
-      # TweenMax.staggerFromTo $('header .left-column'), duration(400),
-      #   marginLeft: 24
-      # ,
-      #   marginLeft: 24
-      #   ease: Cubic.easeInOut
-      # , duration(-100)
-
-      # logo in the center
-
-      # TweenMax.staggerFromTo $('header'), duration(300),
-      #   width: '100%'
-      # ,
-      #   width: '0%'
-      #   delay: duration(4000)
-      #   ease: Cubic.easeInOut
-      # , 0
 
       TweenMax.fromTo $('.logo'), duration(1000),
         x: 0
@@ -255,55 +260,180 @@ animations = =>
     paused: true
     align: 'normal'
     tweens: [].concat(
-      # TweenMax.staggerFromTo $('.caption.right-column'), duration(500),
-      #   opacity: 1
-      # ,
-      #   opacity: 0
-      #   ease: Cubic.easeInOut
-      # , duration(-200)
 
-      # TweenMax.staggerFromTo $('section img'), duration(500),
-      #   opacity: 1
-      # ,
-      #   opacity: 0
-      #   ease: Cubic.easeInOut
-      # , duration(-200)
+      TweenMax.fromTo $('body > footer'), Delay.reset().add_duration(0.6),
+        opacity: 1
+      ,
+        opacity: 0
+        ease: Cubic.easeInOut
+        delay: Delay.delay()
 
-      # TweenMax.staggerFromTo $('.hat-title > * > *'), duration(300),
-      #   opacity: 1
-      # ,
-      #   opacity: 0
-      #   ease: Cubic.easeInOut
-      # , duration(-200)
+      TweenMax.fromTo $('.job-content footer a'), Delay.add_duration(0.6),
+        opacity: 1
+        x: '0%'
+      ,
+        opacity: 0
+        x: '-100%'
+        ease: Cubic.easeInOut
+        delay: Delay.subtract(0.4).delay()
 
-      # TweenMax.staggerFromTo $('.hat-title'), duration(900),
-      #   width: 960
-      # ,
-      #   width: 0
-      #   ease: Cubic.easeInOut
-      # , duration(-200)
+      TweenMax.staggerFromTo $('.job-content footer tr > *').get().reverse(), Delay.add_stagger_duration(4, 0.6, 0.5),
+        opacity: 1
+      ,
+        opacity: 0
+        ease: Cubic.easeInOut
+        delay: Delay.subtract(0.4).delay()
+        , Delay.last_stagger()
 
-      # TweenMax.staggerFromTo $('.spacer.right-column'), duration(500),
-      #   width: 288
-      # ,
-      #   width: 0
-      #   ease: Cubic.easeInOut
-      # , duration(-500)
+      TweenMax.fromTo $('.job-content footer > h2'), Delay.add_duration(0.6),
+        opacity: 1
+        y: '0%'
+      ,
+        opacity: 0
+        y: '-100%'
+        ease: Cubic.easeInOut
+        delay: Delay.subtract(0.4).delay()
 
-      # TweenMax.staggerFromTo $('main'), duration(300),
-      #   marginLeft: 24
-      # ,
-      #   marginLeft: 24
-      #   ease: Cubic.easeInOut
+      for t,index in $('.job-content .technologies li')
+        {x, y} = circular_random(100)
 
-      TweenMax.fromTo $('.logo'), duration(1000),
+        TweenMax.fromTo t, Delay.add_duration(0.7),
+          y: 0
+          x: 0
+        ,
+          y: x
+          x: y
+          ease: Cubic.easeInOut
+          delay: (if index == 0 then Delay.delay() else Delay.subtract(0.7).delay())
+
+      TweenMax.fromTo $('.job-content .technologies li'), Delay.add_duration(0.4),
+        opacity: 1
+      ,
+        opacity: 0
+        ease: Cubic.easeInOut
+        delay: Delay.subtract(0.2).delay()
+
+      TweenMax.fromTo $('.job-content section > .h2'), Delay.add_duration(0.3),
+        opacity: 1
+        y: '0%'
+      ,
+        opacity: 0
+        y: '-100%'
+        ease: Cubic.easeInOut
+        delay: Delay.subtract(0.2).delay()
+
+      for section, index in $('.job-content section').not($tech_section).get().reverse()
+        tweens = []
+        if $(section).find('.caption').length > 0
+          tweens.push TweenMax.fromTo $(section).find('table tr:odd > *'), Delay.add_duration(0.6),
+            x: '0%'
+            opacity: 1
+          ,
+            x: '-100%'
+            opacity: 0
+            ease: Cubic.easeInOut
+            delay: Delay.delay()
+
+          tweens.push TweenMax.fromTo $(section).find('table tr:even > *'), Delay.add_duration(0.6),
+            x: '0%'
+            opacity: 1
+          ,
+            x: '100%'
+            opacity: 0
+            ease: Cubic.easeInOut
+            delay: Delay.subtract(1).delay()
+
+          tweens.push TweenMax.fromTo $(section).find('table'), Delay.add_duration(0.6),
+            transformOrigin: 'top left'
+            scaleX: 1
+          ,
+            ease: Cubic.easeInOut
+            scaleX: 0
+            delay: Delay.delay()
+
+          tweens.push TweenMax.fromTo $(section).find('.header-sandwich .bar .h2'), Delay.add_duration(0.6),
+            x: '0%'
+          ,
+            x: '-100%'
+            ease: Cubic.easeInOut
+            delay: Delay.delay()
+
+          tweens.push TweenMax.staggerFromTo $(section).find('.header-sandwich, .header-sandwich .bar'), Delay.add_stagger_duration(2, 0.4, 0.5),
+            scaleX: 1
+          ,
+            scaleX: 0
+            transformOrigin: 'top left'
+            ease: Cubic.easeInOut
+            delay: Delay.delay()
+          , Delay.last_stagger()
+
+        tweens.push TweenMax.fromTo $(section).find('> *:first'), Delay.add_duration(0.6),
+          transformOrigin: 'top left'
+          opacity: 1
+          scale: 1
+        ,
+          opacity: 0
+          ease: Cubic.easeInOut
+          scale: 0
+          delay: Delay.delay()
+
+        tweens
+
+      TweenMax.fromTo $('.job-content > header .bar > *'), Delay.add_duration(0.6),
+        x: '0%'
+      ,
+        x: '-100%'
+        ease: Cubic.easeInOut
+        delay: Delay.subtract(0.2).delay()
+
+      TweenMax.fromTo $('.job-content > header'), Delay.add_duration(0.6),
+        transformOrigin: 'top left'
+        scaleX: 1
+      ,
+        ease: Cubic.easeInOut
+        scaleX: 0
+        delay: Delay.subtract(0.2).delay()
+
+      TweenMax.fromTo $('.spacer.right-column'), Delay.add_duration(0.6),
+        transformOrigin: 'top left'
+        scaleX: 1
+      ,
+        ease: Cubic.easeInOut
+        scaleX: 0
+        delay: Delay.subtract(0.2).delay()
+
+      TweenMax.staggerFromTo $('nav.main a').get().reverse(), Delay.add_stagger_duration(2, 0.3, 0.5),
+        top: 0
+        opacity: 1
+      ,
+        top: -24
+        opacity: 0
+        ease: Cubic.easeInOut
+        delay: Delay.subtract(0.2).delay()
+      , Delay.last_stagger()
+
+      TweenMax.fromTo $('nav.main'), Delay.add_duration(0.4),
+        width: '100%'
+      ,
+        width: '0%'
+        ease: Cubic.easeInOut
+        delay: Delay.subtract(0.2).delay()
+
+      TweenMax.fromTo $('.logo'), Delay.add_duration(0.6),
         x: 0
         y: 0
       ,
         x: logo_center.x
         y: logo_center.y
         ease: Cubic.easeInOut
-        delay: duration(1700)
+        delay: Delay.subtract(0.2).delay()
+
+      TweenMax.fromTo $('body'), Delay.add_duration(0.6),
+        paddingLeft: '10%'
+      ,
+        paddingLeft: '0%'
+        ease: Cubic.easeInOut
+        delay: Delay.subtract(0.6).delay()
     )
 
 @animations = animations

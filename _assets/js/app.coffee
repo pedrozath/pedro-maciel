@@ -8,6 +8,7 @@
 #= require animations
 #= require filter
 #= require github_card
+#= require presentation
 
 class App
   constructor: (options) ->
@@ -33,6 +34,11 @@ class App
     do @bind_events
     do @init_filter
     do @fixed_nav
+
+    window.p = new Presentation
+      $video_A: $('video.my-introduction').first()
+      $video_B: $('video.screen').first()
+      $play_btn: $('.watch-introduction')
 
   init_filter: ->
     @filter = new Filter
@@ -76,7 +82,7 @@ class App
 
       else
         state: "portfolio#index"
-        url: route
+        url: '/portfolio'
 
   load_state: (route_object, callback) ->
     @start_loading()
@@ -104,7 +110,6 @@ class App
       ease: Cubic.easeInOut
       onComplete: =>
         callback.call()
-
 
   change_state: (route_object) ->
     state = route_object.state

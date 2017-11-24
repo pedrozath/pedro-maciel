@@ -1,0 +1,16 @@
+assets:
+  compress:
+    css: true
+    js: true
+
+
+  image_optim:
+    default:
+      verbose: true
+    zero_png:
+      advpng:
+        level: 0
+      optipng:
+        level: 0
+      pngout:
+        strategy: 4

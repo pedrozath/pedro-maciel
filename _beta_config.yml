@@ -1,2 +1,5 @@
-baseurl: '/beta' # the subpath of your site, e.g. /blog
-destination: 'dist/beta'
+destination: _dist/beta
+baseurl: /beta
+
+assets:
+  prefix: /assets

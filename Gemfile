@@ -5,6 +5,7 @@ gem 'activesupport'
 gem 'pry'
 gem 'mini_magick'
 gem 'font-awesome-sass'
+gem 'image_optim'
 
 group :jekyll_plugins do
   gem 'jekyll-assets'

@@ -10,6 +10,8 @@ exclude:
   - 'build'
   - 'serve'
   - 'Gemfile.lock'
+  - '_dist'
+
 markdown: kramdown
 sass:
   sass_dir: assets
@@ -24,6 +26,7 @@ assets:
     - "*.woff"
     - "*.png"
     - "bundle.css"
+
   sources:
     - _assets/css
     - _assets/images
@@ -32,6 +35,7 @@ assets:
     - _assets/fonts
     - _assets/img
     - _assets/js
+    - _assets/movies
     - _assets/vendor
 
   features:
