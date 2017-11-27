@@ -19948,6 +19948,65 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
   }
 }.call(this));
 (function() {
+  this.Callback = (function() {
+    function Callback(type, fn) {
+      this.type = type;
+      this.fn = fn;
+    }
+
+    Callback.prototype.run = function() {
+      return this.fn.call();
+    };
+
+    Callback.prototype.eq = function(callback) {
+      return this.type === callback.type && this.fn === fn;
+    };
+
+    return Callback;
+
+  })();
+
+}).call(this);
+(function() {
+  this.Callbackable = {
+    register_callback: function(type, fn) {
+      var base, c, name;
+      c = new Callback(type, fn);
+      if (this.callbacks == null) {
+        this.callbacks = {};
+      }
+      if ((base = this.callbacks)[name = c.type] == null) {
+        base[name] = [];
+      }
+      return this.callbacks[c.type].push(c);
+    },
+    run_callbacks: function(type) {
+      var c, i, len, ref, results;
+      ref = this.get_callbacks(type);
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        c = ref[i];
+        results.push(c.run());
+      }
+      return results;
+    },
+    has_callback: function(callback) {
+      var c, i, len, ref, results;
+      ref = this.get_callbacks(callback.type);
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        c = ref[i];
+        results.push(callback.eq(c));
+      }
+      return results;
+    },
+    get_callbacks: function(type) {
+      return this.callbacks[type] || [];
+    }
+  };
+
+}).call(this);
+(function() {
   var TagSelection;
 
   TagSelection = (function() {
@@ -20251,7 +20310,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
               backgroundColor: yellow,
               delay: duration(4000)
             }, 0), TweenMax.staggerFromTo($('.logo'), duration(300), {
-              fill: purple
+              fill: yellow
             }, {
               fill: black,
               delay: duration(4000)
@@ -20816,63 +20875,6 @@ window.github_card = function(d) {
 }
 ;
 (function() {
-  this.Callback = (function() {
-    function Callback(type, fn) {
-      this.type = type;
-      this.fn = fn;
-    }
-
-    Callback.prototype.run = function() {
-      return this.fn.call();
-    };
-
-    Callback.prototype.eq = function(callback) {
-      return this.type === callback.type && this.fn === fn;
-    };
-
-    return Callback;
-
-  })();
-
-}).call(this);
-(function() {
-  this.Callbackable = {
-    callbacks: {},
-    register_callback: function(type, fn) {
-      var base, callback, name;
-      callback = new Callback(type, fn);
-      if ((base = this.callbacks)[name = callback.type] == null) {
-        base[name] = [];
-      }
-      return this.callbacks[callback.type].push(callback);
-    },
-    run_callbacks: function(type) {
-      var c, i, len, ref, results;
-      ref = this.get_callbacks(type);
-      results = [];
-      for (i = 0, len = ref.length; i < len; i++) {
-        c = ref[i];
-        results.push(c.run());
-      }
-      return results;
-    },
-    has_callback: function(callback) {
-      var c, i, len, ref, results;
-      ref = this.get_callbacks(callback.type);
-      results = [];
-      for (i = 0, len = ref.length; i < len; i++) {
-        c = ref[i];
-        results.push(callback.eq(c));
-      }
-      return results;
-    },
-    get_callbacks: function(type) {
-      return this.callbacks[type] || [];
-    }
-  };
-
-}).call(this);
-(function() {
   this.Video = (function() {
     Video.prototype.loaded = false;
 
@@ -20913,6 +20915,7 @@ window.github_card = function(d) {
         this.$el.attr('src', this.$el.attr('data-src'));
       }
       this.show();
+      console.log(this.$el.get(0));
       this.$el.get(0).play();
       return this;
     };
@@ -20941,13 +20944,6 @@ window.github_card = function(d) {
       this.video_A = new Video(args.$video_A);
       this.video_B = new Video(args.$video_B);
       this.$play_btn = args.$play_btn;
-      this.video_B.$el.get(0).mute = true;
-      this.video_B.$el.get(0).loop = true;
-      this.video_B.register_callback('afterLoad', (function(_this) {
-        return function() {
-          return _this.video_B.play();
-        };
-      })(this));
       ref = [this.video_A, this.video_B];
       for (i = 0, len = ref.length; i < len; i++) {
         video = ref[i];
@@ -20977,7 +20973,7 @@ window.github_card = function(d) {
 
     Presentation.prototype.make_playable = function() {
       this.$play_btn.removeClass('disabled').text('Watch my Introduction');
-      return this.$play_btn.on('click', (function(_this) {
+      return this.$play_btn.on('click.presentation', (function(_this) {
         return function() {
           return _this.play();
         };
@@ -20995,16 +20991,31 @@ window.github_card = function(d) {
       return results;
     };
 
+    Presentation.prototype.tear_down = function() {
+      return this.$play_btn.off('.presentation');
+    };
+
     return Presentation;
 
   })();
 
 }).call(this);
 (function() {
-  var App,
-    slice = [].slice;
+  var slice = [].slice;
 
-  App = (function() {
+  this.App = (function() {
+    App.prototype.callbacks = {
+      'after_load:pages#index': [
+        new Callback('after_load:pages#index', function() {
+          return new Presentation({
+            $video_A: $('video.my-introduction').first(),
+            $video_B: $('video.screen').first(),
+            $play_btn: $('.watch-introduction')
+          });
+        })
+      ]
+    };
+
     function App(options) {
       var k, ref, v;
       for (k in options) {
@@ -21025,28 +21036,28 @@ window.github_card = function(d) {
       }
       this.body = $("body");
       this.current_state = this.body.attr("data-state");
-      this.add_to_history(location.pathname);
       this.animation = this.animations()[this.current_state]();
-      this.animation.progress(1);
-      TweenMax.staggerFromTo(_.shuffle($('.logo svg g')), 0.8, {
-        opacity: 0
-      }, {
-        opacity: 1,
-        ease: Cubic.easeInOut,
-        delay: 1
-      }, 0.075, ((function(_this) {
-        return function() {
-          return _this.animation.reverse();
-        };
-      })(this)));
+      this.add_to_history(location.pathname);
+      if (this.skip_intro) {
+        this.run_callbacks("after_load:" + this.current_state);
+      } else {
+        this.animation.progress(1);
+        TweenMax.staggerFromTo(_.shuffle($('.logo svg g')), 0.8, {
+          opacity: 0
+        }, {
+          opacity: 1,
+          ease: Cubic.easeInOut,
+          delay: 1
+        }, 0.075, (function(_this) {
+          return function() {
+            _this.run_callbacks("after_load:" + _this.current_state);
+            return _this.animation.reverse();
+          };
+        })(this));
+      }
       this.bind_events();
       this.init_filter();
       this.fixed_nav();
-      window.p = new Presentation({
-        $video_A: $('video.my-introduction').first(),
-        $video_B: $('video.screen').first(),
-        $play_btn: $('.watch-introduction')
-      });
     }
 
     App.prototype.init_filter = function() {
@@ -21176,7 +21187,8 @@ window.github_card = function(d) {
             _this.current_state = state;
             _this.animation = _this.animations()[state]();
             _this.animation.reverse(0);
-            return _this.add_to_history(route_object.url);
+            _this.add_to_history(route_object.url);
+            return _this.run_callbacks("after_load:" + _this.current_state);
           };
         })(this);
         this.load_state(route_object, (function(_this) {
@@ -21199,6 +21211,8 @@ window.github_card = function(d) {
     return App;
 
   })();
+
+  _.extend(App.prototype, Callbackable);
 
   $(function() {
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
