@@ -10,6 +10,14 @@
   100%
     fill: $purple
 
+@keyframes look-at-me
+  0%
+    transform: scale(1)
+
+  100%
+    transform: scale(1.1)
+    color: $yellow
+
 *
   box-sizing: border-box
 
@@ -101,7 +109,7 @@ body
   height: 0
 
   &.monitor
-    padding-top: 1/(16/9) * 100%
+    padding-top: (1/(16/9) * 100%)
 
   .video
     width: 100%
@@ -211,7 +219,7 @@ h1,h2,h3,h4,h5
     width: 100%
 
   +state('pages#index')
-    fill: $purple
+    fill: $yellow
     // animation: chameleoning-to-yellow 2s linear infinite alternate
 
 .content
@@ -309,6 +317,9 @@ nav.main
       background-color: $black
       &:hover
         background-image: image_url('triangle-purple')
+
+    &.live
+      animation: look-at-me 0.3s $cubic-bezier 1 alternate
 
 .spacer, nav.left-column, nav.left-column ul
   display: block

@@ -155,7 +155,7 @@ animations = =>
       , 0
 
       TweenMax.staggerFromTo $('.logo'), duration(300),
-        fill: purple
+        fill: yellow
       ,
         fill: black
         delay: duration(4000)

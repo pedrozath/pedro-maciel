@@ -6,10 +6,6 @@ class @Presentation
     @video_B   = new Video(args.$video_B)
     @$play_btn = args.$play_btn
 
-    @video_B.$el.get(0).mute = true
-    @video_B.$el.get(0).loop = true
-    @video_B.register_callback 'afterLoad', => @video_B.play()
-
     for video in [@video_A, @video_B]
       video.register_callback 'afterLoad', => @attempt_make_playable()
       video.preload()
@@ -20,9 +16,18 @@ class @Presentation
         @make_playable()
 
   make_playable: ->
-    @$play_btn.removeClass('disabled').text('Watch my Introduction')
-    @$play_btn.on 'click', => @play()
+    @$play_btn.removeClass('disabled').addClass('live').text('Watch my Introduction')
+    @$play_btn.on 'click.presentation', => @play()
 
   play: ->
-    for video in [@video_A, @video_B]
-      video.rewind().play()
+    video.rewind().play() for video in [@video_A, @video_B]
+
+  stop: ->
+    video.stop() for video in [@video_A, @video_B]
+
+  destroy: ->
+    @stop()
+    @tear_down()
+
+  tear_down: ->
+    @$play_btn.off '.presentation'

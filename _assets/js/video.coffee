@@ -36,6 +36,13 @@ class @Video
     @$el.get(0).play()
     this
 
+  stop: ->
+    @pause().rewind()
+
+  pause: ->
+    @$el.get(0).pause()
+    this
+
   hide: ->
     @$el.hide()
     this

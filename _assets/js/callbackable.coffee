@@ -1,12 +1,11 @@
 #= require callback
 
-@Callbackable = {
-  callbacks: {}
-
+@Callbackable =
   register_callback: (type, fn) ->
-    callback = new Callback(type, fn)
-    @callbacks[callback.type] ?= []
-    @callbacks[callback.type].push(callback)
+    c = new Callback(type, fn)
+    @callbacks ?= {}
+    @callbacks[c.type] ?= []
+    @callbacks[c.type].push(c)
 
   run_callbacks: (type) ->
     c.run() for c in @get_callbacks(type)
@@ -16,4 +15,3 @@
 
   get_callbacks: (type) ->
     @callbacks[type] || []
-}
