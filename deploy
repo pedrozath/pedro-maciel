@@ -1,0 +1,6 @@
+#! /bin/bash
+
+cd ../pedro-maciel-deploy
+git add .
+git commit -m "deploying at $(date +"%d/%m/%Y at %H:%M:%S")"
+git push
